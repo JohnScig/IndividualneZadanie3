@@ -62,7 +62,16 @@ namespace BankSystem
             currentClient.City = tb_City.Text;
             currentClient.PostalCode = tb_PostalCode.Text;
 
-            new NewAccountModel().CreateClientAndAccount(currentClient);
+            if (new NewAccountModel().CreateClientAndAccount(currentClient))
+            {
+                MessageBox.Show("New client was created in the database!");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong. The programmer is probably an idiot");
+            }
+
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)

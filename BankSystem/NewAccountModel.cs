@@ -11,6 +11,8 @@ namespace BankSystem
 {
     public class NewAccountModel
     {
+        private ClientModel _clientModel = new ClientModel();
+        private AccountModel _accountModel = new AccountModel();
 
         public ClientModel GenerateRandomClient()
         {
@@ -32,6 +34,8 @@ namespace BankSystem
             }
             return false;
         }
+
+
 
 
     }
