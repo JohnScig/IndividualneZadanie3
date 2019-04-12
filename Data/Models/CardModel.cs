@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Models
 {
-    class CardModel
+    public class CardModel
     {
         public string CardNumber { get; set; }
         public string PIN { get; set; }
