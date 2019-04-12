@@ -43,16 +43,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="GeneratorTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BankSystem\BankSystem.csproj">
+      <Project>{fe73468d-94e6-4e84-815f-495b4720f266}</Project>
+      <Name>BankSystem</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Controls\Support.csproj">
       <Project>{125d687e-7153-4c25-9d39-fa3fd7f1145a}</Project>
       <Name>Support</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{30ba08c2-845e-4062-ad82-153977bb26e9}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TransformerBank\ATM.csproj">
+      <Project>{dfec4fb5-5a4d-4189-97bd-a3ce26470357}</Project>
+      <Name>ATM</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
