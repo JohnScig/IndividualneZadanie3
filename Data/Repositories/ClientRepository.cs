@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace Data.Repositories
         public static string DatabaseName { get; set; } = "TransformerBank";
         public static string ConnString { get; set; } = $"Server={ServerName}; Database = {DatabaseName}; Trusted_Connection = True";
 
-        public void AddClient (ClientModel clientModel)
+        public int AddClient(ClientModel clientModel)
         {
             try
             {
@@ -36,18 +37,25 @@ namespace Data.Repositories
                         command.Parameters.Add("@PostalCode", SqlDbType.NVarChar).Value = clientModel.PostalCode;
                         command.Parameters.Add("@City", SqlDbType.NVarChar).Value = clientModel.City;
 
-                        if (command.ExecuteNonQuery()>0)
+                        if (command.ExecuteNonQuery() > 0)
                         {
-                            Console.WriteLine("Person Added");
+                            Debug.WriteLine("Person Added");
+                            using (SqlCommand command2 = connection.CreateCommand())
+                            {
+                                command2.CommandText = "SELECT @@Identity";
+                                return Convert.ToInt32(command2.ExecuteScalar());
+                            }
                         }
                     }
                 }
-            } catch (SqlException e)
+                return 0;
+            }
+            catch (SqlException e)
             {
-                Console.WriteLine(e.ToString());
+                Debug.WriteLine(e.ToString());
+                return 0;
             }
         }
-
     }
 }
 /*

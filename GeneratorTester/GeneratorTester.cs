@@ -13,7 +13,11 @@ namespace GeneratorTester
     {
         static void Main(string[] args)
         {
-            new GeneratorTester().TestAddingPeople();
+            //new GeneratorTester().TestAddingPeople();
+            TestPeopleGenerator();
+            TestAddressGenerator();
+            
+
         }
 
         public static void TestPeopleGenerator()
@@ -60,14 +64,14 @@ namespace GeneratorTester
             string[] parsedPerson = generatedClient.Split(';');
             string[] parsedAddress = generatedAddress.Split(';');
 
-            string[] parsedDate = parsedPerson[2].Split('.');
-            DateTime myDateOfBirth = new DateTime(Convert.ToInt32(parsedDate[2]), Convert.ToInt32(parsedDate[1]), Convert.ToInt32(parsedDate[0]));
+            //string[] parsedDate = parsedPerson[2].Split('.');
+            //DateTime myDateOfBirth = new DateTime(Convert.ToInt32(parsedDate[2]), Convert.ToInt32(parsedDate[1]), Convert.ToInt32(parsedDate[0]));
 
             ClientModel clientModel = new ClientModel()
             {
                 LastName = parsedPerson[0],
                 FirstName = parsedPerson[1],
-                DateOfBirth = myDateOfBirth,
+                //DateOfBirth = myDateOfBirth,
                 PersonalID = parsedPerson[3].Replace(" ", String.Empty),
                 PhoneNumber = parsedPerson[4].Replace(" ", String.Empty),
                 Email = parsedPerson[5],
@@ -77,6 +81,8 @@ namespace GeneratorTester
             };
             clientRepository.AddClient(clientModel);
         }
+
+ 
 
 
 

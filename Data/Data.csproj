@@ -41,14 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountGenerator.cs" />
+    <Compile Include="ClientGenerator.cs" />
     <Compile Include="DeleteThisEmptyClass.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\CardModel.cs" />
     <Compile Include="Models\ClientModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CardRepository.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Controls\Support.csproj">
+      <Project>{125d687e-7153-4c25-9d39-fa3fd7f1145a}</Project>
+      <Name>Support</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -27,7 +27,7 @@ namespace BankSystem
 
         private void cmdNewAccount_Click(object sender, EventArgs e)
         {
-            using (frmAccount newForm = new frmAccount())
+            using (NewAccountView newForm = new NewAccountView())
             {
                 newForm.ShowDialog();
             }

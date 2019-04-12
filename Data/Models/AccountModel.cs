@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Models
 {
-    class AccountModel
+    public class AccountModel
     {
         public string IBAN { get; set; }
         public decimal Balance { get; set; }
