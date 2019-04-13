@@ -46,11 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmClientManagement.cs">
+    <Compile Include="ClientManagerModel.cs" />
+    <Compile Include="ClientManagerView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmClientManagement.Designer.cs">
-      <DependentUpon>frmClientManagement.cs</DependentUpon>
+    <Compile Include="ClientManagerView.Designer.cs">
+      <DependentUpon>ClientManagerView.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAccounts.cs">
       <SubType>Form</SubType>
@@ -58,11 +59,12 @@
     <Compile Include="frmAccounts.Designer.cs">
       <DependentUpon>frmAccounts.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="MainMenuModel.cs" />
+    <Compile Include="MainMenuView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <Compile Include="MainMenuView.Designer.cs">
+      <DependentUpon>MainMenuView.cs</DependentUpon>
     </Compile>
     <Compile Include="NewAccountModel.cs" />
     <Compile Include="NewAccountView.cs">
@@ -88,14 +90,14 @@
     <EmbeddedResource Include="NewAccountView.resx">
       <DependentUpon>NewAccountView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmClientManagement.resx">
-      <DependentUpon>frmClientManagement.cs</DependentUpon>
+    <EmbeddedResource Include="ClientManagerView.resx">
+      <DependentUpon>ClientManagerView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAccounts.resx">
       <DependentUpon>frmAccounts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <EmbeddedResource Include="MainMenuView.resx">
+      <DependentUpon>MainMenuView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTransaction.resx">
       <DependentUpon>frmTransaction.cs</DependentUpon>

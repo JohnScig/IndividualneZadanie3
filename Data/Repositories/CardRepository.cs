@@ -12,9 +12,11 @@ namespace Data.Repositories
 {
     public class CardRepository
     {
-        public static string ServerName { get; set; } = @"TRANSFORMER10\SQLEXPRESS2017";
-        public static string DatabaseName { get; set; } = "TransformerBank";
-        public static string ConnString { get; set; } = $"Server={ServerName}; Database = {DatabaseName}; Trusted_Connection = True";
+        //public static string ServerName { get; set; } = ServerSettings.ServerName;
+        //public static string DatabaseName { get; set; } = ServerSettings.DatabaseName;
+        //public static string ConnString { get; set; } = $"Server={ServerName}; Database = {DatabaseName}; Trusted_Connection = True";
+        public static string ConnString { get; set; } = $"Server={ServerSettings.ServerName}; Database = {ServerSettings.DatabaseName}; Trusted_Connection = True";
+
 
         //private CardModel cardModel = new CardModel();
 
@@ -57,6 +59,47 @@ namespace Data.Repositories
             {
                 Debug.WriteLine(e.ToString());
                 return false;
+            }
+        }
+
+        public DataSet GetCards(string iban)
+        {
+            DataSet datasetCards = new DataSet();
+
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return datasetCards;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT CardNumber,ValidUntil,Blocked FROM Card WHERE AccountID = @IBAN";
+                    command.Parameters.Add("@IBAN", SqlDbType.NVarChar).Value = iban;
+
+
+                    try
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        adapter.Fill(datasetCards, "Cards");
+                        return datasetCards;
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return datasetCards;
+                    }
+
+                }
             }
         }
 
@@ -137,4 +180,4 @@ namespace Data.Repositories
         }
     }
 }
-    
+

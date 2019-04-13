@@ -19,10 +19,10 @@ namespace BankSystem
 
         private void cmdManageAccount_Click(object sender, EventArgs e)
         {
-            using (frmClientManagement newForm = new frmClientManagement())
-            {
-                newForm.ShowDialog();
-            }
+            //using (ClientManagerView newForm = new ClientManagerView())
+            //{
+            //    newForm.ShowDialog();
+            //}
         }
     }
 }

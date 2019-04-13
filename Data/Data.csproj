@@ -51,6 +51,7 @@
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CardRepository.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
+    <Compile Include="ServerSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Controls\Support.csproj">

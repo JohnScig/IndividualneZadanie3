@@ -10,22 +10,67 @@ using System.Windows.Forms;
 
 namespace BankSystem
 {
-    public partial class frmClientManagement : Form
+    public partial class ClientManagerView : Form
     {
-
+        string personalID;
+        string IBAN;
         /// <summary>
         /// Backup, do not really use :)
         /// </summary>
-        public frmClientManagement() : this(0) { }
+        //public ClientManagerView() : this(0) { }
 
         /// <summary>
         /// Used when viewing/updating existing client.
         /// </summary>
         /// <param name="clientId"></param>
-        public frmClientManagement(int clientId)
+        public ClientManagerView(string personalID)
+
         {
             InitializeComponent();
+            this.personalID = personalID;
+            LoadClientInfoGridViews();
+            //Setup_dgvCardsInfo();
         }
+
+        public void LoadClientInfoGridViews()
+        {
+            List<string> clientInfo = new ClientManagerModel().GetClientAndAccountInfo(personalID);
+            IBAN = clientInfo[5];
+            dgv_ClientInfo.Rows.Add(clientInfo[1],clientInfo[2],clientInfo[3],clientInfo[4],clientInfo[5], clientInfo[6], clientInfo[7]);
+            LoadCardInfoGridView(IBAN);
+        }
+
+        public void LoadCardInfoGridView(string iban)
+        {
+            dgv_CardsInfo.DataSource = new ClientManagerModel().GetCardInfo(iban);
+            dgv_CardsInfo.DataMember = "Cards";
+            dgv_CardsInfo.Columns[1].FillWeight = 60;
+            dgv_CardsInfo.Columns[2].FillWeight = 50;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void cmdUpdate_Click(object sender, EventArgs e)
         {

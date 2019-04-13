@@ -10,18 +10,25 @@ using System.Windows.Forms;
 
 namespace BankSystem
 {
-    public partial class frmMain : Form
+    public partial class MainMenuView : Form
     {
-        public frmMain()
+        public MainMenuView()
         {
             InitializeComponent();
         }
 
-        private void cmdFindClient_Click(object sender, EventArgs e)
+        private void btn_FindClient_Click(object sender, EventArgs e)
         {
-            using (frmClientManagement newForm = new frmClientManagement())
+            if (new MainMenuModel().CheckClientsExistence(tb_PersonalID.Text))
             {
-                newForm.ShowDialog();
+                using (ClientManagerView newForm = new ClientManagerView(tb_PersonalID.Text))
+                {
+                    newForm.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("client and account not found");
             }
         }
 
@@ -48,5 +55,7 @@ namespace BankSystem
                 newForm.ShowDialog();
             }
         }
+
+
     }
 }

@@ -12,9 +12,9 @@ namespace Data.Repositories
 {
     public class ClientRepository
     {
-        public static string ServerName { get; set; } = @"TRANSFORMER10\SQLEXPRESS2017";
-        public static string DatabaseName { get; set; } = "TransformerBank";
-        public static string ConnString { get; set; } = $"Server={ServerName}; Database = {DatabaseName}; Trusted_Connection = True";
+        //public static string ServerName { get; set; } = ServerSettings.ServerName;
+        //public static string DatabaseName { get; set; } = ServerSettings.DatabaseName;
+        public static string ConnString { get; set; } = $"Server={ServerSettings.ServerName}; Database = {ServerSettings.DatabaseName}; Trusted_Connection = True";
 
         public int AddClient(ClientModel clientModel)
         {
@@ -56,8 +56,95 @@ namespace Data.Repositories
                 return 0;
             }
         }
+
+        public int CheckClientExistence(string personalID)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return 0;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT Client_ID FROM Client WHERE Client.PersonalID = @PersonalID";
+                    command.Parameters.Add("@PersonalID", SqlDbType.NVarChar).Value = personalID;
+
+                    try
+                    {
+                        return Convert.ToInt32(command.ExecuteScalar());
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return 0;
+                    }
+
+
+                }
+            }
+        }
+
+        public List<string> GetBasicInfo(string personalID)
+        {
+            List<string> basicInfo = new List<string>();
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return basicInfo;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT Client_ID,FirstName,LastName,DateOfBirth FROM Client WHERE PersonalID=@PersonalID";
+                    command.Parameters.Add("@personalID", SqlDbType.NVarChar).Value = personalID;
+
+                    try
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                basicInfo.Add(reader.GetInt32(0).ToString());
+                                basicInfo.Add(reader.GetString(1));
+                                basicInfo.Add(reader.GetString(2));
+                                basicInfo.Add(personalID);
+                                basicInfo.Add(reader.GetDateTime(3).Year.ToString() + '.' + reader.GetDateTime(3).Month.ToString() + '.' + reader.GetDateTime(3).Day.ToString());
+                            }
+
+                            return basicInfo;
+
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return basicInfo;
+                    }
+
+
+                }
+            }
+        }
     }
 }
+
 /*
         public static void AddPerson(string title, string firstName, string middleName, string lastName)
         {
