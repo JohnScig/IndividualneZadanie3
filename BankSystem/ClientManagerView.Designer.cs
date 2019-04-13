@@ -61,7 +61,7 @@
             this.btn_UpdateClientInfo.TabIndex = 4;
             this.btn_UpdateClientInfo.Text = "Update Client Info";
             this.btn_UpdateClientInfo.UseVisualStyleBackColor = true;
-            this.btn_UpdateClientInfo.Click += new System.EventHandler(this.cmdUpdate_Click);
+            this.btn_UpdateClientInfo.Click += new System.EventHandler(this.btn_UpdateClientInfo_Click);
             // 
             // btn_NewTransaction
             // 
@@ -71,7 +71,6 @@
             this.btn_NewTransaction.TabIndex = 5;
             this.btn_NewTransaction.Text = "New transaction";
             this.btn_NewTransaction.UseVisualStyleBackColor = true;
-            this.btn_NewTransaction.Click += new System.EventHandler(this.cmdNewTransaction_Click);
             // 
             // btn_CloseAccount
             // 
@@ -81,7 +80,6 @@
             this.btn_CloseAccount.TabIndex = 6;
             this.btn_CloseAccount.Text = "Close account";
             this.btn_CloseAccount.UseVisualStyleBackColor = true;
-            this.btn_CloseAccount.Click += new System.EventHandler(this.cmdCloseAccount_Click);
             // 
             // btn_AllTransactions
             // 
@@ -91,7 +89,6 @@
             this.btn_AllTransactions.TabIndex = 8;
             this.btn_AllTransactions.Text = "All transactions";
             this.btn_AllTransactions.UseVisualStyleBackColor = true;
-            this.btn_AllTransactions.Click += new System.EventHandler(this.cmdAllTransactions_Click);
             // 
             // btn_Withdraw
             // 
@@ -101,7 +98,6 @@
             this.btn_Withdraw.TabIndex = 9;
             this.btn_Withdraw.Text = "Withdraw";
             this.btn_Withdraw.UseVisualStyleBackColor = true;
-            this.btn_Withdraw.Click += new System.EventHandler(this.cmdWithdrawal_Click);
             // 
             // btn_Deposit
             // 
@@ -111,7 +107,6 @@
             this.btn_Deposit.TabIndex = 10;
             this.btn_Deposit.Text = "Deposit";
             this.btn_Deposit.UseVisualStyleBackColor = true;
-            this.btn_Deposit.Click += new System.EventHandler(this.cmdDeposit_Click);
             // 
             // btn_AddCard
             // 
@@ -139,6 +134,7 @@
             this.btn_BlockCard.TabIndex = 14;
             this.btn_BlockCard.Text = "Block Card";
             this.btn_BlockCard.UseVisualStyleBackColor = true;
+            this.btn_BlockCard.Click += new System.EventHandler(this.btn_BlockCard_Click);
             // 
             // btn_UnblockCard
             // 
@@ -148,6 +144,7 @@
             this.btn_UnblockCard.TabIndex = 15;
             this.btn_UnblockCard.Text = "Unblock Card";
             this.btn_UnblockCard.UseVisualStyleBackColor = true;
+            this.btn_UnblockCard.Click += new System.EventHandler(this.btn_UnblockCard_Click);
             // 
             // dgv_ClientInfo
             // 

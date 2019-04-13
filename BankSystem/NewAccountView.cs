@@ -14,6 +14,11 @@ namespace BankSystem
 {
     public partial class NewAccountView : Form
     {
+
+        private string personalID;
+        private bool editing = false;
+        ClientModel currentClient = new ClientModel();
+
         /// <summary>
         /// Used when adding new account.
         /// </summary>
@@ -26,12 +31,15 @@ namespace BankSystem
         /// Used when viewing/updating existing account.
         /// </summary>
         /// <param name="clientId"></param>
-        public NewAccountView(int clientId)
+        public NewAccountView(string personalID)
         {
             InitializeComponent();
+            editing = true;
+            this.personalID = personalID;
+            PopulateTextBoxes(personalID);
         }
 
-        ClientModel currentClient = new ClientModel();
+
 
         private void btn_GenerateRandomPerson_Click(object sender, EventArgs e)
         {           
@@ -62,14 +70,31 @@ namespace BankSystem
             currentClient.City = tb_City.Text;
             currentClient.PostalCode = tb_PostalCode.Text;
 
-            if (new NewAccountModel().CreateClientAndAccount(currentClient))
+
+            if (editing)
             {
-                MessageBox.Show("New client was created in the database!");
-                this.Close();
+                if (new NewAccountModel().EditClient(personalID, currentClient))
+                {
+                    MessageBox.Show("Client was edited in the database!");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong. The programmer is probably an idiot");
+                }
             }
             else
             {
-                MessageBox.Show("Something went wrong. The programmer is probably an idiot");
+
+                if (new NewAccountModel().CreateClientAndAccount(currentClient))
+                {
+                    MessageBox.Show("New client was created in the database!");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong. The programmer is probably an idiot");
+                }
             }
 
         }
@@ -79,6 +104,21 @@ namespace BankSystem
             this.Close();
         }
 
+        public void PopulateTextBoxes(string personalID)
+        {
+            currentClient = new NewAccountModel().GetClient(personalID);
 
+            tb_FirstName.Text = currentClient.FirstName;
+            tb_LastName.Text = currentClient.LastName;
+            tb_Year.Text = currentClient.DateOfBirth.Year.ToString();
+            tb_Month.Text = currentClient.DateOfBirth.Month.ToString();
+            tb_Day.Text = currentClient.DateOfBirth.Day.ToString();
+            tb_PersonalID.Text = currentClient.PersonalID;
+            tb_PhoneNumber.Text = currentClient.PhoneNumber;
+            tb_Email.Text = currentClient.Email;
+            tb_Street.Text = currentClient.Street;
+            tb_City.Text = currentClient.City;
+            tb_PostalCode.Text = currentClient.PostalCode;
+        }
     }
 }

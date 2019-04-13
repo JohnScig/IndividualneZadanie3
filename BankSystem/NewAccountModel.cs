@@ -35,8 +35,14 @@ namespace BankSystem
             return false;
         }
 
+        public ClientModel GetClient(string personalID)
+        {
+            return new ClientRepository().GetClient(personalID);
+        }
 
-
-
+        public bool EditClient(string personalID, ClientModel currentClient)
+        {
+            return new ClientRepository().EditClient(personalID, currentClient);
+        }
     }
 }

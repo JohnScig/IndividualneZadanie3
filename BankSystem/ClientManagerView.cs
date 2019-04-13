@@ -34,6 +34,7 @@ namespace BankSystem
 
         public void LoadClientInfoGridViews()
         {
+            dgv_ClientInfo.Rows.Clear();
             List<string> clientInfo = new ClientManagerModel().GetClientAndAccountInfo(personalID);
             IBAN = clientInfo[5];
             dgv_ClientInfo.Rows.Add(clientInfo[1],clientInfo[2],clientInfo[3],clientInfo[4],clientInfo[5], clientInfo[6], clientInfo[7]);
@@ -60,73 +61,104 @@ namespace BankSystem
             LoadCardInfoGridView(IBAN);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        private void cmdUpdate_Click(object sender, EventArgs e)
+        private void btn_BlockCard_Click(object sender, EventArgs e)
         {
-            using (NewAccountView newForm = new NewAccountView(42))
+            if (new ClientManagerModel().BlockCard(dgv_CardsInfo.SelectedRows[0].Cells[0].Value.ToString()))
+            {
+                MessageBox.Show("Card successfully blocked");
+                LoadCardInfoGridView(IBAN);
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong, card remains unblocked");
+            }
+        }
+
+        private void btn_UnblockCard_Click(object sender, EventArgs e)
+        {
+            if (new ClientManagerModel().UnblockCard(dgv_CardsInfo.SelectedRows[0].Cells[0].Value.ToString()))
+            {
+                MessageBox.Show("Card successfully unblocked");
+                LoadCardInfoGridView(IBAN);
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong, card remains blocked");
+            }
+        }
+
+        private void btn_UpdateClientInfo_Click(object sender, EventArgs e)
+        {
+            using (NewAccountView newForm = new NewAccountView(personalID))
             {
                 newForm.ShowDialog();
+                LoadClientInfoGridViews();
             }
         }
 
-        private void cmdDeposit_Click(object sender, EventArgs e)
-        {
-            using (frmTransaction newForm = new frmTransaction())
-            {
-                newForm.ShowDialog();
-            }
-        }
 
-        private void cmdWithdrawal_Click(object sender, EventArgs e)
-        {
-            using (frmTransaction newForm = new frmTransaction())
-            {
-                newForm.ShowDialog();
-            }
-        }
 
-        private void cmdAllTransactions_Click(object sender, EventArgs e)
-        {
-            using (frmTransactions newForm = new frmTransactions(42))
-            {
-                newForm.ShowDialog();
-            }
-        }
 
-        private void cmdNewTransaction_Click(object sender, EventArgs e)
-        {
-            using (frmTransaction newForm = new frmTransaction())
-            {
-                newForm.ShowDialog();
-            }
-        }
 
-        private void cmdCloseAccount_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Hodor?", "Hodor!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-            {
-                DialogResult = DialogResult.OK;
-            }
-        }
+
+
+
+
+
+
+
+
+
+
+
+
+        //private void cmdUpdate_Click(object sender, EventArgs e)
+        //{
+        //    using (NewAccountView newForm = new NewAccountView(42))
+        //    {
+        //        newForm.ShowDialog();
+        //    }
+        //}
+
+        //private void cmdDeposit_Click(object sender, EventArgs e)
+        //{
+        //    using (frmTransaction newForm = new frmTransaction())
+        //    {
+        //        newForm.ShowDialog();
+        //    }
+        //}
+
+        //private void cmdWithdrawal_Click(object sender, EventArgs e)
+        //{
+        //    using (frmTransaction newForm = new frmTransaction())
+        //    {
+        //        newForm.ShowDialog();
+        //    }
+        //}
+
+        //private void cmdAllTransactions_Click(object sender, EventArgs e)
+        //{
+        //    using (frmTransactions newForm = new frmTransactions(42))
+        //    {
+        //        newForm.ShowDialog();
+        //    }
+        //}
+
+        //private void cmdNewTransaction_Click(object sender, EventArgs e)
+        //{
+        //    using (frmTransaction newForm = new frmTransaction())
+        //    {
+        //        newForm.ShowDialog();
+        //    }
+        //}
+
+        //private void cmdCloseAccount_Click(object sender, EventArgs e)
+        //{
+        //    if (MessageBox.Show("Hodor?", "Hodor!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+        //    {
+        //        DialogResult = DialogResult.OK;
+        //    }
+        //}
 
 
     }

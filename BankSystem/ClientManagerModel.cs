@@ -32,5 +32,15 @@ namespace BankSystem
         {
             return new CardRepository().GetCards(iban);
         }
+
+        public bool BlockCard(string cardNumber)
+        {
+            return new CardRepository().BlockCard(cardNumber);
+        }
+
+        public bool UnblockCard(string cardNumber)
+        {
+            return new CardRepository().UnblockCard(cardNumber);
+        }
     }
 }
