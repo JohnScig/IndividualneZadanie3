@@ -22,6 +22,7 @@ namespace Data
             Random r = new Random();
             sb.Append("SK");
             sb.Append(r.Next(10, 99).ToString());
+            sb.Append("9999");
             sb.Append("000000");
             sb.Append(r.Next(10000, 99999).ToString());
             sb.Append(r.Next(10000, 99999).ToString());

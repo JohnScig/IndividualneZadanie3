@@ -42,7 +42,7 @@ namespace BankSystem
 
         private void cmdAllAccounts_Click(object sender, EventArgs e)
         {
-            using (frmAccounts newForm = new frmAccounts())
+            using (AllAccountsView newForm = new AllAccountsView())
             {
                 newForm.ShowDialog();
             }
@@ -50,7 +50,7 @@ namespace BankSystem
 
         private void cmdAllTransactions_Click(object sender, EventArgs e)
         {
-            using (frmTransactions newForm = new frmTransactions())
+            using (AllTransactionsView newForm = new AllTransactionsView())
             {
                 newForm.ShowDialog();
             }

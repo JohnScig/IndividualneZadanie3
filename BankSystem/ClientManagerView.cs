@@ -29,7 +29,6 @@ namespace BankSystem
             InitializeComponent();
             this.personalID = personalID;
             LoadClientInfoGridViews();
-            //Setup_dgvCardsInfo();
         }
 
         public void LoadClientInfoGridViews()
@@ -94,6 +93,19 @@ namespace BankSystem
                 newForm.ShowDialog();
                 LoadClientInfoGridViews();
             }
+        }
+
+        private void btn_AllTransactions_Click(object sender, EventArgs e)
+        {
+            using (AllTransactionsView newForm = new AllTransactionsView(IBAN))
+            {
+                newForm.ShowDialog();
+            }
+        }
+
+        private void btn_Refresh_Click(object sender, EventArgs e)
+        {
+            LoadClientInfoGridViews();
         }
 
 

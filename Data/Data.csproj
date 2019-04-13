@@ -41,10 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountGenerator.cs" />
-    <Compile Include="CardGenerator.cs" />
-    <Compile Include="ClientGenerator.cs" />
-    <Compile Include="DeleteThisEmptyClass.cs" />
+    <Compile Include="Generators\AccountGenerator.cs" />
+    <Compile Include="Generators\CardGenerator.cs" />
+    <Compile Include="Generators\ClientGenerator.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\CardModel.cs" />
     <Compile Include="Models\ClientModel.cs" />
@@ -52,6 +51,7 @@
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CardRepository.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
+    <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="ServerSettings.cs" />
   </ItemGroup>
   <ItemGroup>

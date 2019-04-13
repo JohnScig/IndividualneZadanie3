@@ -132,5 +132,46 @@ namespace Data.Repositories
                 }
             }
         }
+
+        public DataSet GetAllAccounts()
+        {
+            DataSet datasetAllAccount = new DataSet();
+
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return datasetAllAccount;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "select C.LastName, C.FirstName,  A.* from Client AS C LEFT JOIN Account AS A ON C.Client_ID = A.OwnerID ORDER BY C.LastName, C.FirstName";
+                    //command.Parameters.Add("@accountID", SqlDbType.NVarChar).Value = accountID;
+
+
+                    try
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        adapter.Fill(datasetAllAccount, "AllAccounts");
+                        return datasetAllAccount;
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return datasetAllAccount;
+                    }
+
+                }
+            }
+        }
     }
 }

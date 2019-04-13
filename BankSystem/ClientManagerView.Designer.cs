@@ -48,6 +48,7 @@
             this.Column_Debit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_CardsInfo = new System.Windows.Forms.DataGridView();
             this.btn_ResetPin = new System.Windows.Forms.Button();
+            this.btn_Refresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ClientInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_CardsInfo)).BeginInit();
@@ -89,6 +90,7 @@
             this.btn_AllTransactions.TabIndex = 8;
             this.btn_AllTransactions.Text = "All transactions";
             this.btn_AllTransactions.UseVisualStyleBackColor = true;
+            this.btn_AllTransactions.Click += new System.EventHandler(this.btn_AllTransactions_Click);
             // 
             // btn_Withdraw
             // 
@@ -246,11 +248,22 @@
             this.btn_ResetPin.UseVisualStyleBackColor = true;
             this.btn_ResetPin.Click += new System.EventHandler(this.btn_ResetPin_Click);
             // 
+            // btn_Refresh
+            // 
+            this.btn_Refresh.Location = new System.Drawing.Point(12, 426);
+            this.btn_Refresh.Name = "btn_Refresh";
+            this.btn_Refresh.Size = new System.Drawing.Size(112, 23);
+            this.btn_Refresh.TabIndex = 19;
+            this.btn_Refresh.Text = "Refresh";
+            this.btn_Refresh.UseVisualStyleBackColor = true;
+            this.btn_Refresh.Click += new System.EventHandler(this.btn_Refresh_Click);
+            // 
             // ClientManagerView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 493);
+            this.Controls.Add(this.btn_Refresh);
             this.Controls.Add(this.btn_ResetPin);
             this.Controls.Add(this.dgv_CardsInfo);
             this.Controls.Add(this.dgv_ClientInfo);
@@ -295,5 +308,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Balance;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Debit;
         private System.Windows.Forms.Button btn_ResetPin;
+        private System.Windows.Forms.Button btn_Refresh;
     }
 }

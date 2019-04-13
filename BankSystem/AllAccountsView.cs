@@ -10,11 +10,19 @@ using System.Windows.Forms;
 
 namespace BankSystem
 {
-    public partial class frmAccounts : Form
+    public partial class AllAccountsView : Form
     {
-        public frmAccounts()
+        public AllAccountsView()
         {
             InitializeComponent();
+            LoadAllAccounts();
+        }
+
+        public void LoadAllAccounts()
+        {
+            dgv_AllAccounts.DataSource = new AllAccountsModel().GetAllAccounts();
+            dgv_AllAccounts.DataMember = "AllAccounts";
+            dgv_AllAccounts.Columns[2].FillWeight = 200;
         }
 
         private void cmdManageAccount_Click(object sender, EventArgs e)
