@@ -72,6 +72,7 @@
             this.btn_NewTransaction.TabIndex = 5;
             this.btn_NewTransaction.Text = "New transaction";
             this.btn_NewTransaction.UseVisualStyleBackColor = true;
+            this.btn_NewTransaction.Click += new System.EventHandler(this.btn_NewTransaction_Click);
             // 
             // btn_CloseAccount
             // 
@@ -100,6 +101,7 @@
             this.btn_Withdraw.TabIndex = 9;
             this.btn_Withdraw.Text = "Withdraw";
             this.btn_Withdraw.UseVisualStyleBackColor = true;
+            this.btn_Withdraw.Click += new System.EventHandler(this.btn_Withdraw_Click);
             // 
             // btn_Deposit
             // 
@@ -109,6 +111,7 @@
             this.btn_Deposit.TabIndex = 10;
             this.btn_Deposit.Text = "Deposit";
             this.btn_Deposit.UseVisualStyleBackColor = true;
+            this.btn_Deposit.Click += new System.EventHandler(this.btn_Deposit_Click);
             // 
             // btn_AddCard
             // 
@@ -166,6 +169,7 @@
             this.Column_Balance,
             this.Column_Debit});
             this.dgv_ClientInfo.Location = new System.Drawing.Point(12, 9);
+            this.dgv_ClientInfo.MultiSelect = false;
             this.dgv_ClientInfo.Name = "dgv_ClientInfo";
             this.dgv_ClientInfo.ReadOnly = true;
             this.dgv_ClientInfo.RowHeadersVisible = false;
@@ -231,6 +235,7 @@
             this.dgv_CardsInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_CardsInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_CardsInfo.Location = new System.Drawing.Point(746, 9);
+            this.dgv_CardsInfo.MultiSelect = false;
             this.dgv_CardsInfo.Name = "dgv_CardsInfo";
             this.dgv_CardsInfo.ReadOnly = true;
             this.dgv_CardsInfo.RowHeadersVisible = false;

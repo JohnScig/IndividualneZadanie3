@@ -94,5 +94,180 @@ namespace Data.Repositories
                 }
             }
         }
+
+        public bool NewATMWithdrawal(decimal amount, string cardNumber)
+        {
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "INSERT INTO Transactions (FromAccount, ToAccount, Amount, Timestamp) " +
+                                                    "VALUES ((SELECT Card.AccountID FROM Card WHERE CardNumber = @CardNumber), @ToAccount, @Amount, @Timestamp)";
+                    command.Parameters.Add("@CardNumber", SqlDbType.NVarChar).Value = cardNumber;
+                    command.Parameters.Add("@ToAccount", SqlDbType.NVarChar).Value = "SK8699990000009999999999";
+                    command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = -amount;
+                    command.Parameters.Add("@Timestamp", SqlDbType.DateTime2).Value = DateTime.Now;
+
+                    try
+                    {
+                        if (command.ExecuteNonQuery() == 1)
+                        {
+                            return true;
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return false;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool NewBankWithdrawal(decimal amount, string accountID)
+        {
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "INSERT INTO Transactions (FromAccount, ToAccount, Amount, Timestamp) " +
+                                                    "VALUES (@FromAccount, @ToAccount, @Amount, @Timestamp)";
+                    command.Parameters.Add("@FromAccount", SqlDbType.NVarChar).Value = accountID;
+                    command.Parameters.Add("@ToAccount", SqlDbType.NVarChar).Value = "SK8699990000009999999999";
+                    command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = -amount;
+                    command.Parameters.Add("@Timestamp", SqlDbType.DateTime2).Value = DateTime.Now;
+
+                    try
+                    {
+                        if (command.ExecuteNonQuery() == 1)
+                        {
+                            return true;
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return false;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool NewBankDeposit(decimal amount, string accountID)
+        {
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "INSERT INTO Transactions (FromAccount, ToAccount, Amount, Timestamp) " +
+                                                    "VALUES (@FromAccount, @ToAccount, @Amount, @Timestamp)";
+                    command.Parameters.Add("@FromAccount", SqlDbType.NVarChar).Value = "SK8699990000009999999999";
+                    command.Parameters.Add("@ToAccount", SqlDbType.NVarChar).Value = accountID;
+                    command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
+                    command.Parameters.Add("@Timestamp", SqlDbType.DateTime2).Value = DateTime.Now;
+
+                    try
+                    {
+                        if (command.ExecuteNonQuery() == 1)
+                        {
+                            return true;
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return false;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool NewTransfer(string senderIBAN, string receiverIBAN, decimal amount, string variable, string specific, string constant, string message)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+                try
+                {
+                    using (SqlCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText = "INSERT INTO Transactions Values(@FromAccount,@ToAccount,@Amount,@VariableSymbol,@SpecificSymbol,@ConstantSymbol,@Message,@Timestamp)";
+                        command.Parameters.Add("@FromAccount", SqlDbType.NVarChar).Value = senderIBAN;
+                        command.Parameters.Add("@ToAccount", SqlDbType.NVarChar).Value = receiverIBAN;
+                        command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
+                        command.Parameters.Add("@VariableSymbol", SqlDbType.NVarChar).Value = variable;
+                        command.Parameters.Add("@SpecificSymbol", SqlDbType.NVarChar).Value = specific;
+                        command.Parameters.Add("@ConstantSymbol", SqlDbType.NVarChar).Value = constant;
+                        command.Parameters.Add("@Message", SqlDbType.NVarChar).Value = message;
+                        command.Parameters.Add("@Timestamp", SqlDbType.DateTime2).Value = DateTime.Now;
+
+                        if (command.ExecuteNonQuery() == 1)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+            }
+            return false;
+        }
+
     }
 }
+

@@ -66,6 +66,7 @@
             this.dgv_AllAccounts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_AllAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_AllAccounts.Location = new System.Drawing.Point(12, 12);
+            this.dgv_AllAccounts.MultiSelect = false;
             this.dgv_AllAccounts.Name = "dgv_AllAccounts";
             this.dgv_AllAccounts.ReadOnly = true;
             this.dgv_AllAccounts.RowHeadersVisible = false;

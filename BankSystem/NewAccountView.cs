@@ -120,5 +120,6 @@ namespace BankSystem
             tb_City.Text = currentClient.City;
             tb_PostalCode.Text = currentClient.PostalCode;
         }
+
     }
 }

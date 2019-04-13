@@ -153,7 +153,7 @@ namespace Data.Repositories
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "select C.LastName, C.FirstName,  A.* from Client AS C LEFT JOIN Account AS A ON C.Client_ID = A.OwnerID ORDER BY C.LastName, C.FirstName";
+                    command.CommandText = "select C.LastName, C.FirstName, C.PersonalID,  A.IBAN,A.Balance,A.DebtLimit,A.BankID,A.OpenDate,A.CloseDate FROM Client AS C INNER JOIN Account AS A ON C.Client_ID = A.OwnerID ORDER BY C.LastName, C.FirstName";
                     //command.Parameters.Add("@accountID", SqlDbType.NVarChar).Value = accountID;
 
 
@@ -170,6 +170,138 @@ namespace Data.Repositories
                         return datasetAllAccount;
                     }
 
+                }
+            }
+        }
+
+        public bool Withdraw(decimal amount, string accountID)
+        {
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+
+                try
+                {
+                    using (SqlCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText = "UPDATE Account SET Balance=Balance-@Amount " +
+                            "WHERE IBAN = @AccountID " +
+                            "AND Balance >= @Amount;";
+
+                        command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
+                        command.Parameters.Add("@AccountID", SqlDbType.NVarChar).Value = accountID;
+
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            return (new TransactionRepository().NewBankWithdrawal(amount, accountID));
+                        }
+
+                        return false;
+                    }
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+
+
+            }
+
+        }
+
+        public bool Deposit(decimal amount, string accountID)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+
+                try
+                {
+                    using (SqlCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText = "UPDATE Account SET Balance=Balance+@Amount " +
+                            "WHERE IBAN = @AccountID;";
+
+                        command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
+                        command.Parameters.Add("@AccountID", SqlDbType.NVarChar).Value = accountID;
+
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            return (new TransactionRepository().NewBankDeposit(amount, accountID));
+                        }
+
+                        return false;
+                    }
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+            }
+        }
+
+        public static bool TransferMoney(string senderIBAN, string receiverIBAN, decimal amount, string variable, string specific, string constant, string message)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+
+                try
+                {
+                    using (SqlCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText = "UPDATE Account SET Balance = Balance - @Amount WHERE IBAN = @SenderIBAN; " +
+                                              "UPDATE Account SET Balance = Balance + @Amount WHERE IBAN = @ReceiverIBAN; ";
+
+                        command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
+                        command.Parameters.Add("@SenderIBAN", SqlDbType.NVarChar).Value = senderIBAN;
+                        command.Parameters.Add("@ReceiverIBAN", SqlDbType.NVarChar).Value = receiverIBAN;
+
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            return (new TransactionRepository().NewTransfer(senderIBAN, receiverIBAN, amount, variable, specific, constant, message));
+                        }
+
+                        return false;
+                    }
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
                 }
             }
         }

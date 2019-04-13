@@ -61,6 +61,13 @@
     <Compile Include="AllAccountsView.Designer.cs">
       <DependentUpon>AllAccountsView.cs</DependentUpon>
     </Compile>
+    <Compile Include="DepositModel.cs" />
+    <Compile Include="DepositView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DepositView.Designer.cs">
+      <DependentUpon>DepositView.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenuModel.cs" />
     <Compile Include="MainMenuView.cs">
       <SubType>Form</SubType>
@@ -75,11 +82,12 @@
     <Compile Include="NewAccountView.Designer.cs">
       <DependentUpon>NewAccountView.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTransaction.cs">
+    <Compile Include="NewTransactionModel.cs" />
+    <Compile Include="NewTransactionView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTransaction.Designer.cs">
-      <DependentUpon>frmTransaction.cs</DependentUpon>
+    <Compile Include="NewTransactionView.Designer.cs">
+      <DependentUpon>NewTransactionView.cs</DependentUpon>
     </Compile>
     <Compile Include="AllTransactionsView.cs">
       <SubType>Form</SubType>
@@ -96,6 +104,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WithdrawModel.cs" />
+    <Compile Include="WithdrawView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WithdrawView.Designer.cs">
+      <DependentUpon>WithdrawView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DepositView.resx">
+      <DependentUpon>DepositView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewAccountView.resx">
       <DependentUpon>NewAccountView.cs</DependentUpon>
     </EmbeddedResource>
@@ -108,8 +126,8 @@
     <EmbeddedResource Include="MainMenuView.resx">
       <DependentUpon>MainMenuView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTransaction.resx">
-      <DependentUpon>frmTransaction.cs</DependentUpon>
+    <EmbeddedResource Include="NewTransactionView.resx">
+      <DependentUpon>NewTransactionView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AllTransactionsView.resx">
       <DependentUpon>AllTransactionsView.cs</DependentUpon>
@@ -126,6 +144,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="WithdrawView.resx">
+      <DependentUpon>WithdrawView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

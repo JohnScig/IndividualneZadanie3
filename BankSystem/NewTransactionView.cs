@@ -8,25 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TransformerBank
+namespace BankSystem
 {
-    public partial class WithdrawView : Form
+    public partial class NewTransactionView : Form
     {
-        //public WithdrawView()
-        //{
-        //    InitializeComponent();
-        //}
-
-        string currentCardNumber;
-        public WithdrawView(string cardNumber)
+        public NewTransactionView(List<string> senderData)
         {
             InitializeComponent();
-            currentCardNumber = cardNumber;
+            LoadLabels(senderData);
         }
 
         private void btn_Confirm_Click(object sender, EventArgs e)
         {
-            if (new WithdrawModel().Withdraw(Convert.ToDecimal(ntb_Amount.Text), currentCardNumber))
+            if (new NewTransactionModel().TransferMoney(lbl_IBAN.Text, tb_IBAN.Text, Convert.ToDecimal(ntb_Amount.Text), tb_Variable.Text, tb_Specific.Text, tb_Constant.Text, tb_Message.Text))
+
             {
                 MessageBox.Show("success");
                 this.Close();
@@ -35,21 +30,22 @@ namespace TransformerBank
             {
                 MessageBox.Show("fail");
             }
-
-
-            //MessageBox.Show(new MainMenuModel().Withdraw(amount).ToString() + " successfully withdrawn");
         }
+
 
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        public void LoadLabels(List<string> senderData)
+        {
+            lbl_FirstName.Text = senderData[0];
+            lbl_LastName.Text = senderData[1];
+            lbl_IBAN.Text = senderData[2];
+            lbl_Balance.Text = senderData[3];
+
+        }
+
     }
 }
-
-
-
-//private void btn_Withdraw_Click(object sender, EventArgs e)
-//{
-
-//}

@@ -108,6 +108,41 @@ namespace BankSystem
             LoadClientInfoGridViews();
         }
 
+        private void btn_Withdraw_Click(object sender, EventArgs e)
+        {
+            using (WithdrawView newForm = new WithdrawView(dgv_ClientInfo.SelectedRows[0].Cells[4].Value.ToString()))
+            {
+                MessageBox.Show(dgv_ClientInfo.SelectedRows[0].Cells[4].Value.ToString());
+                newForm.ShowDialog();
+                LoadClientInfoGridViews();
+            }
+        }
+
+        private void btn_Deposit_Click(object sender, EventArgs e)
+        {
+            using (DepositView newForm = new DepositView(dgv_ClientInfo.SelectedRows[0].Cells[4].Value.ToString()))
+            {
+                MessageBox.Show(dgv_ClientInfo.SelectedRows[0].Cells[4].Value.ToString());
+                newForm.ShowDialog();
+                LoadClientInfoGridViews();
+            }
+
+        }
+
+        private void btn_NewTransaction_Click(object sender, EventArgs e)
+        {
+            List<string> senderData = new List<string>();
+            senderData.Add(dgv_ClientInfo.SelectedRows[0].Cells[0].Value.ToString());
+            senderData.Add(dgv_ClientInfo.SelectedRows[0].Cells[1].Value.ToString());
+            senderData.Add(dgv_ClientInfo.SelectedRows[0].Cells[4].Value.ToString());
+            senderData.Add(dgv_ClientInfo.SelectedRows[0].Cells[5].Value.ToString());
+
+            using (NewTransactionView newForm = new NewTransactionView(senderData))
+            {
+                newForm.ShowDialog();
+            }
+        }
+
 
 
 

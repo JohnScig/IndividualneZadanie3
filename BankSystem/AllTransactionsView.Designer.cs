@@ -41,6 +41,7 @@
             this.dgv_AllTransactions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_AllTransactions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_AllTransactions.Location = new System.Drawing.Point(12, 12);
+            this.dgv_AllTransactions.MultiSelect = false;
             this.dgv_AllTransactions.Name = "dgv_AllTransactions";
             this.dgv_AllTransactions.ReadOnly = true;
             this.dgv_AllTransactions.RowHeadersVisible = false;

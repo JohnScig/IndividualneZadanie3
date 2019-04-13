@@ -194,25 +194,15 @@ namespace Data.Repositories
                                 "SELECT Card.AccountID " +
                                 "FROM Card " +
                                 "WHERE CardNumber = @CardNumber) " +
-                            "AND Balance >= 500;";
+                            "AND Balance >= @Amount;";
 
                         command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
                         command.Parameters.Add("@CardNumber", SqlDbType.NVarChar).Value = cardNumber;
 
                         if (command.ExecuteNonQuery() > 0)
                         {
-                            using (SqlCommand commandTransaction = connection.CreateCommand())
-                            {
 
-                                commandTransaction.CommandText = "INSERT INTO Transactions (FromAccount, ToAccount, Amount, Timestamp) " +
-                                                                "VALUES ((SELECT Card.AccountID FROM Card WHERE CardNumber = @CardNumber), @ToAccount, @Amount, @Timestamp)";
-                                commandTransaction.Parameters.Add("@CardNumber", SqlDbType.NVarChar).Value = cardNumber;
-                                commandTransaction.Parameters.Add("@ToAccount", SqlDbType.NVarChar).Value = "SK8699990000009999999999";
-                                commandTransaction.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
-                                commandTransaction.Parameters.Add("@Timestamp", SqlDbType.DateTime2).Value = DateTime.Now;
-                                commandTransaction.ExecuteNonQuery();
-                            }
-                            return true;
+                            return (new TransactionRepository().NewATMWithdrawal(amount, cardNumber));
                         }
 
                         return false;

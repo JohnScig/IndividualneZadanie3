@@ -8,25 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TransformerBank
+namespace BankSystem
 {
     public partial class WithdrawView : Form
     {
-        //public WithdrawView()
-        //{
-        //    InitializeComponent();
-        //}
 
-        string currentCardNumber;
-        public WithdrawView(string cardNumber)
+        string currentAccountID;
+
+        public WithdrawView(string accountID)
         {
             InitializeComponent();
-            currentCardNumber = cardNumber;
+            currentAccountID = accountID;
         }
 
         private void btn_Confirm_Click(object sender, EventArgs e)
         {
-            if (new WithdrawModel().Withdraw(Convert.ToDecimal(ntb_Amount.Text), currentCardNumber))
+            if (new WithdrawModel().Withdraw(Convert.ToDecimal(ntb_Amount.Text), currentAccountID))
             {
                 MessageBox.Show("success");
                 this.Close();
@@ -36,8 +33,6 @@ namespace TransformerBank
                 MessageBox.Show("fail");
             }
 
-
-            //MessageBox.Show(new MainMenuModel().Withdraw(amount).ToString() + " successfully withdrawn");
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
@@ -46,10 +41,3 @@ namespace TransformerBank
         }
     }
 }
-
-
-
-//private void btn_Withdraw_Click(object sender, EventArgs e)
-//{
-
-//}

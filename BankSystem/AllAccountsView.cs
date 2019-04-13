@@ -22,15 +22,16 @@ namespace BankSystem
         {
             dgv_AllAccounts.DataSource = new AllAccountsModel().GetAllAccounts();
             dgv_AllAccounts.DataMember = "AllAccounts";
-            dgv_AllAccounts.Columns[2].FillWeight = 200;
+            dgv_AllAccounts.Columns[3].FillWeight = 200;
         }
 
         private void cmdManageAccount_Click(object sender, EventArgs e)
         {
-            //using (ClientManagerView newForm = new ClientManagerView())
-            //{
-            //    newForm.ShowDialog();
-            //}
+
+            using (ClientManagerView newForm = new ClientManagerView(dgv_AllAccounts.SelectedRows[0].Cells[2].Value.ToString()))
+            {
+                newForm.ShowDialog();
+            }
         }
     }
 }
