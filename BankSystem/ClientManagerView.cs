@@ -48,9 +48,17 @@ namespace BankSystem
             dgv_CardsInfo.Columns[2].FillWeight = 50;
         }
 
+        private void btn_AddCard_Click(object sender, EventArgs e)
+        {
+            new NewPinView(IBAN).ShowDialog();
+            LoadCardInfoGridView(IBAN);
+        }
 
-
-
+        private void btn_ResetPin_Click(object sender, EventArgs e)
+        {
+            new NewPinView(IBAN,dgv_CardsInfo.SelectedRows[0].Cells[0].Value.ToString()).ShowDialog();
+            LoadCardInfoGridView(IBAN);
+        }
 
 
 
@@ -119,5 +127,7 @@ namespace BankSystem
                 DialogResult = DialogResult.OK;
             }
         }
+
+
     }
 }

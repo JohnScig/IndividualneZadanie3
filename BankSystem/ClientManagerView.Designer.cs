@@ -36,7 +36,7 @@
             this.btn_Deposit = new System.Windows.Forms.Button();
             this.btn_AddCard = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btn_InvalidateCard = new System.Windows.Forms.Button();
+            this.btn_BlockCard = new System.Windows.Forms.Button();
             this.btn_UnblockCard = new System.Windows.Forms.Button();
             this.dgv_ClientInfo = new System.Windows.Forms.DataGridView();
             this.Column_FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +47,7 @@
             this.Column_Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_Debit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_CardsInfo = new System.Windows.Forms.DataGridView();
+            this.btn_ResetPin = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ClientInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_CardsInfo)).BeginInit();
@@ -114,12 +115,13 @@
             // 
             // btn_AddCard
             // 
-            this.btn_AddCard.Location = new System.Drawing.Point(746, 458);
+            this.btn_AddCard.Location = new System.Drawing.Point(746, 393);
             this.btn_AddCard.Name = "btn_AddCard";
-            this.btn_AddCard.Size = new System.Drawing.Size(84, 23);
+            this.btn_AddCard.Size = new System.Drawing.Size(141, 25);
             this.btn_AddCard.TabIndex = 12;
             this.btn_AddCard.Text = "Add New Card";
             this.btn_AddCard.UseVisualStyleBackColor = true;
+            this.btn_AddCard.Click += new System.EventHandler(this.btn_AddCard_Click);
             // 
             // pictureBox1
             // 
@@ -129,20 +131,20 @@
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
-            // btn_InvalidateCard
+            // btn_BlockCard
             // 
-            this.btn_InvalidateCard.Location = new System.Drawing.Point(836, 458);
-            this.btn_InvalidateCard.Name = "btn_InvalidateCard";
-            this.btn_InvalidateCard.Size = new System.Drawing.Size(104, 23);
-            this.btn_InvalidateCard.TabIndex = 14;
-            this.btn_InvalidateCard.Text = "Invalidate Card";
-            this.btn_InvalidateCard.UseVisualStyleBackColor = true;
+            this.btn_BlockCard.Location = new System.Drawing.Point(746, 424);
+            this.btn_BlockCard.Name = "btn_BlockCard";
+            this.btn_BlockCard.Size = new System.Drawing.Size(141, 25);
+            this.btn_BlockCard.TabIndex = 14;
+            this.btn_BlockCard.Text = "Block Card";
+            this.btn_BlockCard.UseVisualStyleBackColor = true;
             // 
             // btn_UnblockCard
             // 
-            this.btn_UnblockCard.Location = new System.Drawing.Point(946, 458);
+            this.btn_UnblockCard.Location = new System.Drawing.Point(893, 424);
             this.btn_UnblockCard.Name = "btn_UnblockCard";
-            this.btn_UnblockCard.Size = new System.Drawing.Size(84, 23);
+            this.btn_UnblockCard.Size = new System.Drawing.Size(137, 25);
             this.btn_UnblockCard.TabIndex = 15;
             this.btn_UnblockCard.Text = "Unblock Card";
             this.btn_UnblockCard.UseVisualStyleBackColor = true;
@@ -168,6 +170,7 @@
             this.dgv_ClientInfo.Name = "dgv_ClientInfo";
             this.dgv_ClientInfo.ReadOnly = true;
             this.dgv_ClientInfo.RowHeadersVisible = false;
+            this.dgv_ClientInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_ClientInfo.Size = new System.Drawing.Size(714, 73);
             this.dgv_ClientInfo.TabIndex = 16;
             // 
@@ -232,18 +235,30 @@
             this.dgv_CardsInfo.Name = "dgv_CardsInfo";
             this.dgv_CardsInfo.ReadOnly = true;
             this.dgv_CardsInfo.RowHeadersVisible = false;
-            this.dgv_CardsInfo.Size = new System.Drawing.Size(284, 443);
+            this.dgv_CardsInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_CardsInfo.Size = new System.Drawing.Size(284, 378);
             this.dgv_CardsInfo.TabIndex = 17;
+            // 
+            // btn_ResetPin
+            // 
+            this.btn_ResetPin.Location = new System.Drawing.Point(893, 395);
+            this.btn_ResetPin.Name = "btn_ResetPin";
+            this.btn_ResetPin.Size = new System.Drawing.Size(137, 23);
+            this.btn_ResetPin.TabIndex = 18;
+            this.btn_ResetPin.Text = "Reset Pin";
+            this.btn_ResetPin.UseVisualStyleBackColor = true;
+            this.btn_ResetPin.Click += new System.EventHandler(this.btn_ResetPin_Click);
             // 
             // ClientManagerView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 493);
+            this.Controls.Add(this.btn_ResetPin);
             this.Controls.Add(this.dgv_CardsInfo);
             this.Controls.Add(this.dgv_ClientInfo);
             this.Controls.Add(this.btn_UnblockCard);
-            this.Controls.Add(this.btn_InvalidateCard);
+            this.Controls.Add(this.btn_BlockCard);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btn_AddCard);
             this.Controls.Add(this.btn_Deposit);
@@ -271,7 +286,7 @@
         private System.Windows.Forms.Button btn_Deposit;
         private System.Windows.Forms.Button btn_AddCard;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btn_InvalidateCard;
+        private System.Windows.Forms.Button btn_BlockCard;
         private System.Windows.Forms.Button btn_UnblockCard;
         private System.Windows.Forms.DataGridView dgv_ClientInfo;
         private System.Windows.Forms.DataGridView dgv_CardsInfo;
@@ -282,5 +297,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_IBAN;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Balance;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Debit;
+        private System.Windows.Forms.Button btn_ResetPin;
     }
 }

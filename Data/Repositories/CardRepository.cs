@@ -62,6 +62,53 @@ namespace Data.Repositories
             }
         }
 
+        public bool AddCard(string cardNumber, string hashedPin, string pin, string accountID)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "INSERT INTO Card " +
+                        "VALUES (@cardNumber,@hashedPin,GETDATE(),(SELECT DATEADD(YEAR,3,GETDATE())),0,@accountID,@pin)";
+                    command.Parameters.Add("@cardNumber", SqlDbType.NVarChar).Value = cardNumber;
+                    command.Parameters.Add("@hashedPin", SqlDbType.NVarChar).Value = hashedPin;
+                    command.Parameters.Add("@accountID", SqlDbType.NVarChar).Value = accountID;
+                    command.Parameters.Add("@pin", SqlDbType.NVarChar).Value = pin;
+
+
+                    try
+                    {
+                        if (command.ExecuteNonQuery()>0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        } 
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return false;
+                    }
+
+                }
+            }
+        }
+
         public DataSet GetCards(string iban)
         {
             DataSet datasetCards = new DataSet();
@@ -176,6 +223,50 @@ namespace Data.Repositories
             {
                 Debug.WriteLine(e.ToString());
                 return false;
+            }
+        }
+
+        public bool SetNewPin(string cardNumber,string hashedPin, string newPin)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE Card SET PINHash = @HashedPin, Hint = @Pin WHERE CardNumber = @CardNumber";
+                    command.Parameters.Add("@cardNumber", SqlDbType.NVarChar).Value = cardNumber;
+                    command.Parameters.Add("@hashedPin", SqlDbType.NVarChar).Value = hashedPin;
+                    command.Parameters.Add("@pin", SqlDbType.NVarChar).Value = newPin;
+
+                    try
+                    {
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return false;
+                    }
+
+                }
             }
         }
     }

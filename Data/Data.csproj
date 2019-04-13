@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountGenerator.cs" />
+    <Compile Include="CardGenerator.cs" />
     <Compile Include="ClientGenerator.cs" />
     <Compile Include="DeleteThisEmptyClass.cs" />
     <Compile Include="Models\AccountModel.cs" />
