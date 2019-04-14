@@ -38,25 +38,27 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_BlockCard = new System.Windows.Forms.Button();
             this.btn_UnblockCard = new System.Windows.Forms.Button();
-            this.dgv_ClientInfo = new System.Windows.Forms.DataGridView();
-            this.Column_FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_PersonalID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_DateOfBirth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgv_AccountsInfo = new System.Windows.Forms.DataGridView();
             this.Column_IBAN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_Debit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colum_Open = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_CardsInfo = new System.Windows.Forms.DataGridView();
             this.btn_ResetPin = new System.Windows.Forms.Button();
             this.btn_Refresh = new System.Windows.Forms.Button();
+            this.lbl_FirstName = new System.Windows.Forms.Label();
+            this.lbl_LastName = new System.Windows.Forms.Label();
+            this.lbl_PersonalID = new System.Windows.Forms.Label();
+            this.lbl_DateOfBirth = new System.Windows.Forms.Label();
+            this.btn_OpenNewAccount = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ClientInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_AccountsInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_CardsInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_UpdateClientInfo
             // 
-            this.btn_UpdateClientInfo.Location = new System.Drawing.Point(12, 119);
+            this.btn_UpdateClientInfo.Location = new System.Drawing.Point(12, 201);
             this.btn_UpdateClientInfo.Name = "btn_UpdateClientInfo";
             this.btn_UpdateClientInfo.Size = new System.Drawing.Size(112, 23);
             this.btn_UpdateClientInfo.TabIndex = 4;
@@ -70,18 +72,19 @@
             this.btn_NewTransaction.Name = "btn_NewTransaction";
             this.btn_NewTransaction.Size = new System.Drawing.Size(112, 23);
             this.btn_NewTransaction.TabIndex = 5;
-            this.btn_NewTransaction.Text = "New transaction";
+            this.btn_NewTransaction.Text = "New Transaction";
             this.btn_NewTransaction.UseVisualStyleBackColor = true;
             this.btn_NewTransaction.Click += new System.EventHandler(this.btn_NewTransaction_Click);
             // 
             // btn_CloseAccount
             // 
-            this.btn_CloseAccount.Location = new System.Drawing.Point(12, 148);
+            this.btn_CloseAccount.Location = new System.Drawing.Point(12, 259);
             this.btn_CloseAccount.Name = "btn_CloseAccount";
             this.btn_CloseAccount.Size = new System.Drawing.Size(112, 23);
             this.btn_CloseAccount.TabIndex = 6;
-            this.btn_CloseAccount.Text = "Close account";
+            this.btn_CloseAccount.Text = "Close Account";
             this.btn_CloseAccount.UseVisualStyleBackColor = true;
+            this.btn_CloseAccount.Click += new System.EventHandler(this.btn_CloseAccount_Click);
             // 
             // btn_AllTransactions
             // 
@@ -125,9 +128,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(162, 119);
+            this.pictureBox1.Location = new System.Drawing.Point(162, 201);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(564, 362);
+            this.pictureBox1.Size = new System.Drawing.Size(564, 280);
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
@@ -151,59 +154,29 @@
             this.btn_UnblockCard.UseVisualStyleBackColor = true;
             this.btn_UnblockCard.Click += new System.EventHandler(this.btn_UnblockCard_Click);
             // 
-            // dgv_ClientInfo
+            // dgv_AccountsInfo
             // 
-            this.dgv_ClientInfo.AllowUserToAddRows = false;
-            this.dgv_ClientInfo.AllowUserToDeleteRows = false;
-            this.dgv_ClientInfo.AllowUserToResizeColumns = false;
-            this.dgv_ClientInfo.AllowUserToResizeRows = false;
-            this.dgv_ClientInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_ClientInfo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
-            this.dgv_ClientInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_ClientInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column_FirstName,
-            this.Column_LastName,
-            this.Column_PersonalID,
-            this.Column_DateOfBirth,
+            this.dgv_AccountsInfo.AllowUserToAddRows = false;
+            this.dgv_AccountsInfo.AllowUserToDeleteRows = false;
+            this.dgv_AccountsInfo.AllowUserToResizeColumns = false;
+            this.dgv_AccountsInfo.AllowUserToResizeRows = false;
+            this.dgv_AccountsInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_AccountsInfo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            this.dgv_AccountsInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_AccountsInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column_IBAN,
             this.Column_Balance,
-            this.Column_Debit});
-            this.dgv_ClientInfo.Location = new System.Drawing.Point(12, 9);
-            this.dgv_ClientInfo.MultiSelect = false;
-            this.dgv_ClientInfo.Name = "dgv_ClientInfo";
-            this.dgv_ClientInfo.ReadOnly = true;
-            this.dgv_ClientInfo.RowHeadersVisible = false;
-            this.dgv_ClientInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_ClientInfo.Size = new System.Drawing.Size(714, 73);
-            this.dgv_ClientInfo.TabIndex = 16;
-            // 
-            // Column_FirstName
-            // 
-            this.Column_FirstName.FillWeight = 80F;
-            this.Column_FirstName.HeaderText = "First Name";
-            this.Column_FirstName.Name = "Column_FirstName";
-            this.Column_FirstName.ReadOnly = true;
-            // 
-            // Column_LastName
-            // 
-            this.Column_LastName.FillWeight = 80F;
-            this.Column_LastName.HeaderText = "Last Name";
-            this.Column_LastName.Name = "Column_LastName";
-            this.Column_LastName.ReadOnly = true;
-            // 
-            // Column_PersonalID
-            // 
-            this.Column_PersonalID.FillWeight = 70F;
-            this.Column_PersonalID.HeaderText = "ID Card";
-            this.Column_PersonalID.Name = "Column_PersonalID";
-            this.Column_PersonalID.ReadOnly = true;
-            // 
-            // Column_DateOfBirth
-            // 
-            this.Column_DateOfBirth.FillWeight = 90F;
-            this.Column_DateOfBirth.HeaderText = "Date of Birth";
-            this.Column_DateOfBirth.Name = "Column_DateOfBirth";
-            this.Column_DateOfBirth.ReadOnly = true;
+            this.Column_Debit,
+            this.Colum_Open});
+            this.dgv_AccountsInfo.Location = new System.Drawing.Point(12, 50);
+            this.dgv_AccountsInfo.MultiSelect = false;
+            this.dgv_AccountsInfo.Name = "dgv_AccountsInfo";
+            this.dgv_AccountsInfo.ReadOnly = true;
+            this.dgv_AccountsInfo.RowHeadersVisible = false;
+            this.dgv_AccountsInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_AccountsInfo.Size = new System.Drawing.Size(714, 132);
+            this.dgv_AccountsInfo.TabIndex = 16;
+            this.dgv_AccountsInfo.SelectionChanged += new System.EventHandler(this.dgv_AccountsInfo_SelectionChanged);
             // 
             // Column_IBAN
             // 
@@ -225,6 +198,13 @@
             this.Column_Debit.HeaderText = "Debit Limit";
             this.Column_Debit.Name = "Column_Debit";
             this.Column_Debit.ReadOnly = true;
+            // 
+            // Colum_Open
+            // 
+            this.Colum_Open.FillWeight = 30F;
+            this.Colum_Open.HeaderText = "Open";
+            this.Colum_Open.Name = "Colum_Open";
+            this.Colum_Open.ReadOnly = true;
             // 
             // dgv_CardsInfo
             // 
@@ -263,15 +243,66 @@
             this.btn_Refresh.UseVisualStyleBackColor = true;
             this.btn_Refresh.Click += new System.EventHandler(this.btn_Refresh_Click);
             // 
+            // lbl_FirstName
+            // 
+            this.lbl_FirstName.AutoSize = true;
+            this.lbl_FirstName.Location = new System.Drawing.Point(13, 9);
+            this.lbl_FirstName.Name = "lbl_FirstName";
+            this.lbl_FirstName.Size = new System.Drawing.Size(54, 13);
+            this.lbl_FirstName.TabIndex = 20;
+            this.lbl_FirstName.Text = "FirstName";
+            // 
+            // lbl_LastName
+            // 
+            this.lbl_LastName.AutoSize = true;
+            this.lbl_LastName.Location = new System.Drawing.Point(206, 9);
+            this.lbl_LastName.Name = "lbl_LastName";
+            this.lbl_LastName.Size = new System.Drawing.Size(58, 13);
+            this.lbl_LastName.TabIndex = 21;
+            this.lbl_LastName.Text = "Last Name";
+            // 
+            // lbl_PersonalID
+            // 
+            this.lbl_PersonalID.AutoSize = true;
+            this.lbl_PersonalID.Location = new System.Drawing.Point(421, 9);
+            this.lbl_PersonalID.Name = "lbl_PersonalID";
+            this.lbl_PersonalID.Size = new System.Drawing.Size(59, 13);
+            this.lbl_PersonalID.TabIndex = 22;
+            this.lbl_PersonalID.Text = "PersonalID";
+            // 
+            // lbl_DateOfBirth
+            // 
+            this.lbl_DateOfBirth.AutoSize = true;
+            this.lbl_DateOfBirth.Location = new System.Drawing.Point(589, 9);
+            this.lbl_DateOfBirth.Name = "lbl_DateOfBirth";
+            this.lbl_DateOfBirth.Size = new System.Drawing.Size(68, 13);
+            this.lbl_DateOfBirth.TabIndex = 23;
+            this.lbl_DateOfBirth.Text = "Date Of Birth";
+            // 
+            // btn_OpenNewAccount
+            // 
+            this.btn_OpenNewAccount.Location = new System.Drawing.Point(12, 230);
+            this.btn_OpenNewAccount.Name = "btn_OpenNewAccount";
+            this.btn_OpenNewAccount.Size = new System.Drawing.Size(112, 23);
+            this.btn_OpenNewAccount.TabIndex = 24;
+            this.btn_OpenNewAccount.Text = "Open New Account";
+            this.btn_OpenNewAccount.UseVisualStyleBackColor = true;
+            this.btn_OpenNewAccount.Click += new System.EventHandler(this.btn_OpenNewAccount_Click);
+            // 
             // ClientManagerView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 493);
+            this.Controls.Add(this.btn_OpenNewAccount);
+            this.Controls.Add(this.lbl_DateOfBirth);
+            this.Controls.Add(this.lbl_PersonalID);
+            this.Controls.Add(this.lbl_LastName);
+            this.Controls.Add(this.lbl_FirstName);
             this.Controls.Add(this.btn_Refresh);
             this.Controls.Add(this.btn_ResetPin);
             this.Controls.Add(this.dgv_CardsInfo);
-            this.Controls.Add(this.dgv_ClientInfo);
+            this.Controls.Add(this.dgv_AccountsInfo);
             this.Controls.Add(this.btn_UnblockCard);
             this.Controls.Add(this.btn_BlockCard);
             this.Controls.Add(this.pictureBox1);
@@ -286,9 +317,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Client Manager";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ClientInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_AccountsInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_CardsInfo)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -303,16 +335,18 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btn_BlockCard;
         private System.Windows.Forms.Button btn_UnblockCard;
-        private System.Windows.Forms.DataGridView dgv_ClientInfo;
+        private System.Windows.Forms.DataGridView dgv_AccountsInfo;
         private System.Windows.Forms.DataGridView dgv_CardsInfo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_FirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_LastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_PersonalID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_DateOfBirth;
+        private System.Windows.Forms.Button btn_ResetPin;
+        private System.Windows.Forms.Button btn_Refresh;
+        private System.Windows.Forms.Label lbl_FirstName;
+        private System.Windows.Forms.Label lbl_LastName;
+        private System.Windows.Forms.Label lbl_PersonalID;
+        private System.Windows.Forms.Label lbl_DateOfBirth;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_IBAN;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Balance;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Debit;
-        private System.Windows.Forms.Button btn_ResetPin;
-        private System.Windows.Forms.Button btn_Refresh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Colum_Open;
+        private System.Windows.Forms.Button btn_OpenNewAccount;
     }
 }

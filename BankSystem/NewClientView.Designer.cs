@@ -1,6 +1,6 @@
 ﻿namespace BankSystem
 {
-    partial class NewAccountView
+    partial class NewClientView
     {
         /// <summary>
         /// Required designer variable.

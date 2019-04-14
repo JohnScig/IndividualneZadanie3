@@ -35,7 +35,7 @@ namespace Data.Repositories
 
                         if (command.ExecuteNonQuery() > 0)
                         {
-                            Debug.WriteLine("Person Added");
+                            Debug.WriteLine("Account Added");
                             return true;
                         }
                     }
@@ -46,6 +46,78 @@ namespace Data.Repositories
             {
                 Console.WriteLine(e.ToString());
                 return false;
+            }
+        }
+
+        public bool AddAccount(AccountModel accountModel, string personalID)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText = "INSERT INTO Account (IBAN,OwnerID,BankID,OpenDate) " +
+                            "VALUES (@IBAN,(SELECT Client_ID FROM Client WHERE PersonalID = @PersonalID),@BankID,@OpenDate)";
+                        command.Parameters.Add("@IBAN", SqlDbType.NVarChar).Value = accountModel.IBAN;
+                        command.Parameters.Add("@PersonalID", SqlDbType.NVarChar).Value = personalID;
+                        command.Parameters.Add("@BankID", SqlDbType.NVarChar).Value = accountModel.BankID;
+                        command.Parameters.Add("@OpenDate", SqlDbType.DateTime2).Value = accountModel.OpenDate;
+
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            Debug.WriteLine("Account Added");
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+        }
+
+        public bool CloseAccount(string iban)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+
+                try
+                {
+                    using (SqlCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText = "UPDATE Account SET CloseDate = GETDATE() WHERE IBAN = @Iban";
+
+                        command.Parameters.Add("@Iban", SqlDbType.NVarChar).Value = iban;
+
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+
+                        return false;
+                    }
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
             }
         }
 
@@ -168,6 +240,60 @@ namespace Data.Repositories
                         Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
                         Debug.WriteLine(e.ToString());
                         return datasetAllAccount;
+                    }
+
+                }
+            }
+        }
+
+        public List<AccountModel> GetAllAccounts(string personalID)
+        {
+            List<AccountModel> allAccounts = new List<AccountModel>();
+
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return allAccounts;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT A.* FROM Account AS A LEFT JOIN Client AS C ON A.OwnerID=C.Client_ID WHERE C.PersonalID = @PersonalID";
+                    command.Parameters.Add("@PersonalID", SqlDbType.NVarChar).Value = personalID;
+                    try
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                allAccounts.Add(new AccountModel()
+                                {
+                                    IBAN = reader.GetString(0),
+                                    Balance = reader.GetDecimal(1),
+                                    DebtLimit = reader.GetDecimal(2),
+                                    OwnerID = reader.GetInt32(3),
+                                    BankID = reader.GetString(4),
+                                    OpenDate = reader.GetDateTime(5),
+                                    CloseDate = reader.IsDBNull(6) ? DateTime.MinValue : reader.GetDateTime(6)
+                                });
+                            }
+                        }
+
+                        return allAccounts;
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return allAccounts;
                     }
 
                 }

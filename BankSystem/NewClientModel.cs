@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BankSystem
 {
-    public class NewAccountModel
+    public class NewClientModel
     {
         private ClientModel _clientModel = new ClientModel();
         private AccountModel _accountModel = new AccountModel();
@@ -21,12 +21,12 @@ namespace BankSystem
 
         public bool CreateClientAndAccount(ClientModel clientModel)
         {
-            AccountModel accountModel = new AccountGenerator().GenerateAccount();
+            //AccountModel accountModel = new AccountGenerator().GenerateAccount();
 
             int clientID = new ClientRepository().AddClient(clientModel);
             if (clientID > 0)
             {
-                if (new AccountRepository().AddAccount(accountModel, clientID))
+                if (new AccountRepository().AddAccount(new AccountGenerator().GenerateAccount(), clientID))
                 {
                     return true;
                 }

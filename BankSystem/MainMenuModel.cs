@@ -11,8 +11,18 @@ namespace BankSystem
     {
         public bool CheckClientsExistence(string PersonalID)
         {
-            return new AccountRepository().CheckAccountExistence(new ClientRepository().CheckClientExistence(PersonalID));
-            
+            //return new AccountRepository().CheckAccountExistence(new ClientRepository().CheckClientExistence(PersonalID));
+            if (new ClientRepository().CheckClientExistence(PersonalID)>0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+            //return new ClientRepository().CheckClientExistence(PersonalID);
+
         }
     }
 }

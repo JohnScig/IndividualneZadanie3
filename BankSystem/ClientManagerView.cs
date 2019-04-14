@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +14,10 @@ namespace BankSystem
     public partial class ClientManagerView : Form
     {
         string personalID;
-        string IBAN;
+        private string _iban;
+        private List<Button> _blockableButtons = new List<Button>();
+
+
         /// <summary>
         /// Backup, do not really use :)
         /// </summary>
@@ -27,37 +31,90 @@ namespace BankSystem
 
         {
             InitializeComponent();
+            _blockableButtons.Add(btn_AddCard);
+            _blockableButtons.Add(btn_ResetPin);
+            _blockableButtons.Add(btn_BlockCard);
+            _blockableButtons.Add(btn_UnblockCard);
+            _blockableButtons.Add(btn_CloseAccount);
+            _blockableButtons.Add(btn_NewTransaction);
+            _blockableButtons.Add(btn_Deposit);
+            _blockableButtons.Add(btn_Withdraw);
+
             this.personalID = personalID;
-            LoadClientInfoGridViews();
+
+            LoadClientInfo();
+            LoadAccountsInfoGridView();
+
+
         }
 
-        public void LoadClientInfoGridViews()
+
+        public void LoadAccountsInfoGridView()
         {
-            dgv_ClientInfo.Rows.Clear();
-            List<string> clientInfo = new ClientManagerModel().GetClientAndAccountInfo(personalID);
-            IBAN = clientInfo[5];
-            dgv_ClientInfo.Rows.Add(clientInfo[1],clientInfo[2],clientInfo[3],clientInfo[4],clientInfo[5], clientInfo[6], clientInfo[7]);
-            LoadCardInfoGridView(IBAN);
+            dgv_AccountsInfo.Rows.Clear();
+            List<AccountModel> accounts = new ClientManagerModel().GetAccounts(personalID);
+            foreach (AccountModel account in accounts)
+            {
+                string isOpen = "open";
+                if (account.CloseDate != DateTime.MinValue)
+                {
+                    isOpen = "Closed: " + account.CloseDate.ToString();
+                }
+                dgv_AccountsInfo.Rows.Add(account.IBAN, account.Balance.ToString(), account.DebtLimit.ToString(),isOpen);
+            }
         }
 
-        public void LoadCardInfoGridView(string iban)
+        public void LoadClientInfo()
         {
-            dgv_CardsInfo.DataSource = new ClientManagerModel().GetCardInfo(iban);
+            ClientManagerModel clientManagerModel = new ClientManagerModel();
+            List<string> basicClientInfo = clientManagerModel.GetClientInfo(personalID);
+            lbl_FirstName.Text = basicClientInfo[1];
+            lbl_LastName.Text = basicClientInfo[2];
+            lbl_PersonalID.Text = basicClientInfo[4];
+            lbl_DateOfBirth.Text = basicClientInfo[3];
+
+        }
+
+        public void LoadCardInfoGridView(string _iban)
+        {
+            dgv_CardsInfo.DataSource = new ClientManagerModel().GetCardInfo(_iban);
             dgv_CardsInfo.DataMember = "Cards";
             dgv_CardsInfo.Columns[1].FillWeight = 60;
             dgv_CardsInfo.Columns[2].FillWeight = 50;
         }
 
+        private void dgv_AccountsInfo_SelectionChanged(object sender, EventArgs e)
+        {
+            LoadCardInfoGridView(dgv_AccountsInfo.CurrentRow.Cells[0].Value.ToString());
+
+            if (dgv_AccountsInfo.CurrentRow.Cells[3].Value.ToString().Equals("open"))
+            {
+                foreach (Button item in _blockableButtons)
+                {
+                    item.Enabled = true;
+                }
+            }
+            else
+            {
+                foreach (Button item in _blockableButtons)
+                {
+                    item.Enabled = false;
+                }
+            }
+
+            _iban = dgv_AccountsInfo.CurrentRow.Cells[0].Value.ToString();
+        }
+
         private void btn_AddCard_Click(object sender, EventArgs e)
         {
-            new NewPinView(IBAN).ShowDialog();
-            LoadCardInfoGridView(IBAN);
+            new NewPinView(_iban).ShowDialog();
+            LoadCardInfoGridView(_iban);
         }
 
         private void btn_ResetPin_Click(object sender, EventArgs e)
         {
-            new NewPinView(IBAN,dgv_CardsInfo.SelectedRows[0].Cells[0].Value.ToString()).ShowDialog();
-            LoadCardInfoGridView(IBAN);
+            new NewPinView(_iban,dgv_CardsInfo.SelectedRows[0].Cells[0].Value.ToString()).ShowDialog();
+            LoadCardInfoGridView(_iban);
         }
 
         private void btn_BlockCard_Click(object sender, EventArgs e)
@@ -65,7 +122,7 @@ namespace BankSystem
             if (new ClientManagerModel().BlockCard(dgv_CardsInfo.SelectedRows[0].Cells[0].Value.ToString()))
             {
                 MessageBox.Show("Card successfully blocked");
-                LoadCardInfoGridView(IBAN);
+                LoadCardInfoGridView(_iban);
             }
             else
             {
@@ -78,7 +135,7 @@ namespace BankSystem
             if (new ClientManagerModel().UnblockCard(dgv_CardsInfo.SelectedRows[0].Cells[0].Value.ToString()))
             {
                 MessageBox.Show("Card successfully unblocked");
-                LoadCardInfoGridView(IBAN);
+                LoadCardInfoGridView(_iban);
             }
             else
             {
@@ -88,16 +145,16 @@ namespace BankSystem
 
         private void btn_UpdateClientInfo_Click(object sender, EventArgs e)
         {
-            using (NewAccountView newForm = new NewAccountView(personalID))
+            using (NewClientView newForm = new NewClientView(personalID))
             {
                 newForm.ShowDialog();
-                LoadClientInfoGridViews();
+                LoadClientInfo();
             }
         }
 
         private void btn_AllTransactions_Click(object sender, EventArgs e)
         {
-            using (AllTransactionsView newForm = new AllTransactionsView(IBAN))
+            using (AllTransactionsView newForm = new AllTransactionsView(_iban))
             {
                 newForm.ShowDialog();
             }
@@ -105,26 +162,27 @@ namespace BankSystem
 
         private void btn_Refresh_Click(object sender, EventArgs e)
         {
-            LoadClientInfoGridViews();
+            LoadAccountsInfoGridView();
+            LoadClientInfo();
         }
 
         private void btn_Withdraw_Click(object sender, EventArgs e)
         {
-            using (WithdrawView newForm = new WithdrawView(dgv_ClientInfo.SelectedRows[0].Cells[4].Value.ToString()))
+            using (WithdrawView newForm = new WithdrawView(_iban))
             {
-                MessageBox.Show(dgv_ClientInfo.SelectedRows[0].Cells[4].Value.ToString());
+                //MessageBox.Show(dgv_AccountsInfo.CurrentRow.Cells[0].Value.ToString());
                 newForm.ShowDialog();
-                LoadClientInfoGridViews();
+                LoadAccountsInfoGridView();
             }
         }
 
         private void btn_Deposit_Click(object sender, EventArgs e)
         {
-            using (DepositView newForm = new DepositView(dgv_ClientInfo.SelectedRows[0].Cells[4].Value.ToString()))
+            using (DepositView newForm = new DepositView(_iban))
             {
-                MessageBox.Show(dgv_ClientInfo.SelectedRows[0].Cells[4].Value.ToString());
+                //MessageBox.Show(dgv_AccountsInfo.CurrentRow.Cells[0].Value.ToString());
                 newForm.ShowDialog();
-                LoadClientInfoGridViews();
+                LoadAccountsInfoGridView();
             }
 
         }
@@ -132,16 +190,59 @@ namespace BankSystem
         private void btn_NewTransaction_Click(object sender, EventArgs e)
         {
             List<string> senderData = new List<string>();
-            senderData.Add(dgv_ClientInfo.SelectedRows[0].Cells[0].Value.ToString());
-            senderData.Add(dgv_ClientInfo.SelectedRows[0].Cells[1].Value.ToString());
-            senderData.Add(dgv_ClientInfo.SelectedRows[0].Cells[4].Value.ToString());
-            senderData.Add(dgv_ClientInfo.SelectedRows[0].Cells[5].Value.ToString());
+            senderData.Add(lbl_FirstName.Text);
+            senderData.Add(lbl_LastName.Text);
+            senderData.Add(_iban);
+            senderData.Add(dgv_AccountsInfo.CurrentRow.Cells[1].Value.ToString());
 
             using (NewTransactionView newForm = new NewTransactionView(senderData))
             {
                 newForm.ShowDialog();
             }
+            LoadAccountsInfoGridView();
         }
+
+        private void btn_OpenNewAccount_Click(object sender, EventArgs e)
+        {
+            if (new ClientManagerModel().OpenNewAccount(personalID))
+            {
+                MessageBox.Show("New Account Open Successfully");
+            }
+            else
+            {
+                MessageBox.Show("A problem has occurred, no account created");
+            }
+            LoadAccountsInfoGridView();
+        }
+
+        private void btn_CloseAccount_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToDecimal(dgv_AccountsInfo.CurrentRow.Cells[1].Value) < 0)
+            {
+                MessageBox.Show("Account is in debt. It cannot be closed before the debt is paid.");
+            }
+            else if (Convert.ToDecimal(dgv_AccountsInfo.CurrentRow.Cells[1].Value) > 0)
+            {
+                MessageBox.Show("Account has money in it. It cannot be closed before the money is withdrawn or transfered to another account.");
+            }
+            else
+            {
+                if (new ClientManagerModel().CloseAccount(_iban))
+                {
+                    MessageBox.Show("Account has been closed successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("A problem has occurred. Account remains open");
+                }
+
+            }
+
+            LoadAccountsInfoGridView();
+        }
+
+
+
 
 
 

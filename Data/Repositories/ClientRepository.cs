@@ -25,8 +25,13 @@ namespace Data.Repositories
                     connection.Open();
                     using (SqlCommand command = connection.CreateCommand())
                     {
-                        command.CommandText = "INSERT INTO Client (LastName,FirstName,DateOfBirth,PersonalID,PhoneNumber,Email,StreetName,PostalCode,City) " +
+                        //command.CommandText = "INSERT INTO Client (LastName,FirstName,DateOfBirth,PersonalID,PhoneNumber,Email,StreetName,PostalCode,City) " +
+                        //    "VALUES (@LastName,@FirstName,@DateOfBirth,@PersonalID,@PhoneNumber,@Email,@StreetName,@PostalCode,@City)";
+
+                        command.CommandText = "IF NOT EXISTS (SELECT * FROM Client WHERE PersonalID = @PersonalID) " +
+                            "INSERT INTO Client (LastName,FirstName,DateOfBirth,PersonalID,PhoneNumber,Email,StreetName,PostalCode,City) " +
                             "VALUES (@LastName,@FirstName,@DateOfBirth,@PersonalID,@PhoneNumber,@Email,@StreetName,@PostalCode,@City)";
+
                         command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = clientModel.LastName;
                         command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = clientModel.FirstName;
                         command.Parameters.Add("@DateOfBirth", SqlDbType.DateTime2).Value = clientModel.DateOfBirth;
@@ -46,9 +51,13 @@ namespace Data.Repositories
                                 return Convert.ToInt32(command2.ExecuteScalar());
                             }
                         }
+                        else
+                        {
+                            Debug.WriteLine("Personal ID duplicate found");
+                            return -1;
+                        }
                     }
                 }
-                return 0;
             }
             catch (SqlException e)
             {
@@ -173,7 +182,7 @@ namespace Data.Repositories
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT Client_ID,FirstName,LastName,DateOfBirth FROM Client WHERE PersonalID=@PersonalID";
+                    command.CommandText = "SELECT Client_ID,FirstName,LastName,DateOfBirth,PersonalID FROM Client WHERE PersonalID=@PersonalID";
                     command.Parameters.Add("@personalID", SqlDbType.NVarChar).Value = personalID;
 
                     try

@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace BankSystem
 {
-    public partial class NewAccountView : Form
+    public partial class NewClientView : Form
     {
 
         private string personalID;
@@ -22,7 +22,7 @@ namespace BankSystem
         /// <summary>
         /// Used when adding new account.
         /// </summary>
-        public NewAccountView()
+        public NewClientView()
         {
             InitializeComponent();
         }
@@ -31,7 +31,7 @@ namespace BankSystem
         /// Used when viewing/updating existing account.
         /// </summary>
         /// <param name="clientId"></param>
-        public NewAccountView(string personalID)
+        public NewClientView(string personalID)
         {
             InitializeComponent();
             editing = true;
@@ -43,7 +43,7 @@ namespace BankSystem
 
         private void btn_GenerateRandomPerson_Click(object sender, EventArgs e)
         {           
-            currentClient = new NewAccountModel().GenerateRandomClient();
+            currentClient = new NewClientModel().GenerateRandomClient();
 
             tb_FirstName.Text = currentClient.FirstName;
             tb_LastName.Text = currentClient.LastName;
@@ -73,7 +73,7 @@ namespace BankSystem
 
             if (editing)
             {
-                if (new NewAccountModel().EditClient(personalID, currentClient))
+                if (new NewClientModel().EditClient(personalID, currentClient))
                 {
                     MessageBox.Show("Client was edited in the database!");
                     this.Close();
@@ -86,7 +86,7 @@ namespace BankSystem
             else
             {
 
-                if (new NewAccountModel().CreateClientAndAccount(currentClient))
+                if (new NewClientModel().CreateClientAndAccount(currentClient))
                 {
                     MessageBox.Show("New client was created in the database!");
                     this.Close();
@@ -106,7 +106,7 @@ namespace BankSystem
 
         public void PopulateTextBoxes(string personalID)
         {
-            currentClient = new NewAccountModel().GetClient(personalID);
+            currentClient = new NewClientModel().GetClient(personalID);
 
             tb_FirstName.Text = currentClient.FirstName;
             tb_LastName.Text = currentClient.LastName;

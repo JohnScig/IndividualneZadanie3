@@ -302,6 +302,48 @@ namespace Data.Repositories
             }
         }
 
+        public bool BlockAllCards(string iban)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE Card SET Blocked = 1 WHERE AccountID = @AccountID";
+                    command.Parameters.Add("@AccountID", SqlDbType.NVarChar).Value = iban;
+
+                    try
+                    {
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return false;
+                    }
+
+                }
+            }
+        }
+
         public bool UnblockCard(string cardNumber)
         {
             using (SqlConnection connection = new SqlConnection(ConnString))

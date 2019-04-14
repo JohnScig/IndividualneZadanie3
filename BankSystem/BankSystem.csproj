@@ -75,12 +75,12 @@
     <Compile Include="MainMenuView.Designer.cs">
       <DependentUpon>MainMenuView.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewAccountModel.cs" />
-    <Compile Include="NewAccountView.cs">
+    <Compile Include="NewClientModel.cs" />
+    <Compile Include="NewClientView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewAccountView.Designer.cs">
-      <DependentUpon>NewAccountView.cs</DependentUpon>
+    <Compile Include="NewClientView.Designer.cs">
+      <DependentUpon>NewClientView.cs</DependentUpon>
     </Compile>
     <Compile Include="NewTransactionModel.cs" />
     <Compile Include="NewTransactionView.cs">
@@ -114,8 +114,8 @@
     <EmbeddedResource Include="DepositView.resx">
       <DependentUpon>DepositView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewAccountView.resx">
-      <DependentUpon>NewAccountView.cs</DependentUpon>
+    <EmbeddedResource Include="NewClientView.resx">
+      <DependentUpon>NewClientView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClientManagerView.resx">
       <DependentUpon>ClientManagerView.cs</DependentUpon>

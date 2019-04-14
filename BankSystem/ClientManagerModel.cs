@@ -1,4 +1,5 @@
-﻿using Data.Models;
+﻿using Data;
+using Data.Models;
 using Data.Repositories;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,33 @@ namespace BankSystem
         public bool UnblockCard(string cardNumber)
         {
             return new CardRepository().UnblockCard(cardNumber);
+        }
+
+        public List<string> GetClientInfo(string personalID)
+        {
+            List<string> basicClientInfo = new List<string>();
+
+            foreach (string information in new ClientRepository().GetBasicInfo(personalID))
+            {
+                basicClientInfo.Add(information);
+            }
+            return basicClientInfo;
+
+        }
+
+        public List<AccountModel> GetAccounts(string personalID)
+        {
+            return new AccountRepository().GetAllAccounts(personalID);
+        }
+
+        public bool OpenNewAccount(string personalID)
+        {
+            return new AccountRepository().AddAccount(new AccountGenerator().GenerateAccount(), personalID);
+        }
+
+        public bool CloseAccount(string iban)
+        {
+            return (new CardRepository().BlockAllCards(iban) && new AccountRepository().CloseAccount(iban));
         }
     }
 }

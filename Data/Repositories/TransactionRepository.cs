@@ -117,7 +117,7 @@ namespace Data.Repositories
                                                     "VALUES ((SELECT Card.AccountID FROM Card WHERE CardNumber = @CardNumber), @ToAccount, @Amount, @Timestamp)";
                     command.Parameters.Add("@CardNumber", SqlDbType.NVarChar).Value = cardNumber;
                     command.Parameters.Add("@ToAccount", SqlDbType.NVarChar).Value = "SK8699990000009999999999";
-                    command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = -amount;
+                    command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
                     command.Parameters.Add("@Timestamp", SqlDbType.DateTime2).Value = DateTime.Now;
 
                     try
@@ -160,7 +160,7 @@ namespace Data.Repositories
                                                     "VALUES (@FromAccount, @ToAccount, @Amount, @Timestamp)";
                     command.Parameters.Add("@FromAccount", SqlDbType.NVarChar).Value = accountID;
                     command.Parameters.Add("@ToAccount", SqlDbType.NVarChar).Value = "SK8699990000009999999999";
-                    command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = -amount;
+                    command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
                     command.Parameters.Add("@Timestamp", SqlDbType.DateTime2).Value = DateTime.Now;
 
                     try

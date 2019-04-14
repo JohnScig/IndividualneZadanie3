@@ -28,13 +28,13 @@ namespace BankSystem
             }
             else
             {
-                MessageBox.Show("client and account not found");
+                MessageBox.Show("client not found");
             }
         }
 
         private void cmdNewAccount_Click(object sender, EventArgs e)
         {
-            using (NewAccountView newForm = new NewAccountView())
+            using (NewClientView newForm = new NewClientView())
             {
                 newForm.ShowDialog();
             }
