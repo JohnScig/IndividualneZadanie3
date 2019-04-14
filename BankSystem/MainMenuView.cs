@@ -56,6 +56,34 @@ namespace BankSystem
             }
         }
 
+        private void btn_TopClients_Click(object sender, EventArgs e)
+        {
+            dgv_managerView.DataSource = new MainMenuModel().GetTopClients();
+            dgv_managerView.DataMember = "TopClients";
+        }
 
+        private void btn_BankAssets_Click(object sender, EventArgs e)
+        {
+            dgv_managerView.DataSource = new MainMenuModel().GetBankAssets();
+            dgv_managerView.DataMember = "BankAssets";
+        }
+
+        private void btn_NumberOfAccounts_Click(object sender, EventArgs e)
+        {
+            dgv_managerView.DataSource = new MainMenuModel().GetNumberOfAccounts();
+            dgv_managerView.DataMember = "NumberOfAccounts";
+        }
+
+        private void btn_AverageAccountsPerPerson_Click(object sender, EventArgs e)
+        {
+            dgv_managerView.DataSource = new MainMenuModel().GetAverageAccountPerPerson();
+            dgv_managerView.DataMember = "AverageAccountPerPerson";
+        }
+
+        private void btn_Demography_Click(object sender, EventArgs e)
+        {
+            dgv_managerView.DataSource = new MainMenuModel().GetDemography();
+            dgv_managerView.DataMember = "Demography";
+        }
     }
 }

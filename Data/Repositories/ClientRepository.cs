@@ -8,155 +8,155 @@ using System.Text;
 using System.Threading.Tasks;
 using Data.Models;
 
-namespace Data.Repositories
+uhtlzwhjl Dhah.Rlwvzpavyplz
 {
-    public class ClientRepository
+    wdkspj jshzz CspluaRlwvzpavyf
     {
-        //public static string ServerName { get; set; } = ServerSettings.ServerName;
-        //public static string DatabaseName { get; set; } = ServerSettings.DatabaseName;
-        public static string ConnString { get; set; } = $"Server={ServerSettings.ServerName}; Database = {ServerSettings.DatabaseName}; Trusted_Connection = True";
+        //wdkspj zahapj zaypun SlyclyNhtl { nla; zla; } = SlyclySlaapunz.SlyclyNhtl;
+        //wdkspj zahapj zaypun DhahkhzlNhtl { nla; zla; } = SlyclySlaapunz.DhahkhzlNhtl;
+        wdkspj zahapj zaypun CvuuSaypun { nla; zla; } = $"Slycly={SlyclySlaapunz.SlyclyNhtl}; Dhahkhzl = {SlyclySlaapunz.DhahkhzlNhtl}; Tydzali_Cvuuljapvu = Tydl";
 
-        public int AddClient(ClientModel clientModel)
+        wdkspj pua AiiCsplua(CspluaMvils jspluaMvils)
         {
-            try
+            ayf
             {
-                using (SqlConnection connection = new SqlConnection(ConnString))
+                dzpun(SxsCvuuljapvu jvuuljapvu = ulb SxsCvuuljapvu(CvuuSaypun))
                 {
-                    connection.Open();
-                    using (SqlCommand command = connection.CreateCommand())
+                    jvuuljapvu.Owlu();
+                    dzpun(SxsCvtthui jvtthui = jvuuljapvu.CylhalCvtthui())
                     {
-                        //command.CommandText = "INSERT INTO Client (LastName,FirstName,DateOfBirth,PersonalID,PhoneNumber,Email,StreetName,PostalCode,City) " +
-                        //    "VALUES (@LastName,@FirstName,@DateOfBirth,@PersonalID,@PhoneNumber,@Email,@StreetName,@PostalCode,@City)";
+                        //jvtthui.CvtthuiTlea = "INSERT INTO Csplua (LhzaNhtl,FpyzaNhtl,DhalOmBpyao,PlyzvuhsID,PovulNdtkly,Ethps,SayllaNhtl,PvzahsCvil,Cpaf) " +
+                        //    "VALUES (@LhzaNhtl,@FpyzaNhtl,@DhalOmBpyao,@PlyzvuhsID,@PovulNdtkly,@Ethps,@SayllaNhtl,@PvzahsCvil,@Cpaf)";
 
-                        command.CommandText = "IF NOT EXISTS (SELECT * FROM Client WHERE PersonalID = @PersonalID) " +
-                            "INSERT INTO Client (LastName,FirstName,DateOfBirth,PersonalID,PhoneNumber,Email,StreetName,PostalCode,City) " +
-                            "VALUES (@LastName,@FirstName,@DateOfBirth,@PersonalID,@PhoneNumber,@Email,@StreetName,@PostalCode,@City)";
+                        jvtthui.CvtthuiTlea = "IF NOT EXISTS (SELECT * FROM Csplua WHERE PlyzvuhsID = @PlyzvuhsID) " +
+                            "INSERT INTO Csplua (LhzaNhtl,FpyzaNhtl,DhalOmBpyao,PlyzvuhsID,PovulNdtkly,Ethps,SayllaNhtl,PvzahsCvil,Cpaf) " +
+                            "VALUES (@LhzaNhtl,@FpyzaNhtl,@DhalOmBpyao,@PlyzvuhsID,@PovulNdtkly,@Ethps,@SayllaNhtl,@PvzahsCvil,@Cpaf)";
 
-                        command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = clientModel.LastName;
-                        command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = clientModel.FirstName;
-                        command.Parameters.Add("@DateOfBirth", SqlDbType.DateTime2).Value = clientModel.DateOfBirth;
-                        command.Parameters.Add("@PersonalID", SqlDbType.NVarChar).Value = clientModel.PersonalID;
-                        command.Parameters.Add("@PhoneNumber", SqlDbType.NVarChar).Value = clientModel.PhoneNumber;
-                        command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = clientModel.Email;
-                        command.Parameters.Add("@StreetName", SqlDbType.NVarChar).Value = clientModel.Street;
-                        command.Parameters.Add("@PostalCode", SqlDbType.NVarChar).Value = clientModel.PostalCode;
-                        command.Parameters.Add("@City", SqlDbType.NVarChar).Value = clientModel.City;
+                        jvtthui.Phyhtlalyz.Aii("@LhzaNhtl", SxsDkTfwl.NVhyCohy).Vhsdl = jspluaMvils.LhzaNhtl;
+                        jvtthui.Phyhtlalyz.Aii("@FpyzaNhtl", SxsDkTfwl.NVhyCohy).Vhsdl = jspluaMvils.FpyzaNhtl;
+                        jvtthui.Phyhtlalyz.Aii("@DhalOmBpyao", SxsDkTfwl.DhalTptl2).Vhsdl = jspluaMvils.DhalOmBpyao;
+                        jvtthui.Phyhtlalyz.Aii("@PlyzvuhsID", SxsDkTfwl.NVhyCohy).Vhsdl = jspluaMvils.PlyzvuhsID;
+                        jvtthui.Phyhtlalyz.Aii("@PovulNdtkly", SxsDkTfwl.NVhyCohy).Vhsdl = jspluaMvils.PovulNdtkly;
+                        jvtthui.Phyhtlalyz.Aii("@Ethps", SxsDkTfwl.NVhyCohy).Vhsdl = jspluaMvils.Ethps;
+                        jvtthui.Phyhtlalyz.Aii("@SayllaNhtl", SxsDkTfwl.NVhyCohy).Vhsdl = jspluaMvils.Saylla;
+                        jvtthui.Phyhtlalyz.Aii("@PvzahsCvil", SxsDkTfwl.NVhyCohy).Vhsdl = jspluaMvils.PvzahsCvil;
+                        jvtthui.Phyhtlalyz.Aii("@Cpaf", SxsDkTfwl.NVhyCohy).Vhsdl = jspluaMvils.Cpaf;
 
-                        if (command.ExecuteNonQuery() > 0)
+                        pm(jvtthui.EeljdalNvuQdlyf() > 0)
                         {
-                            Debug.WriteLine("Person Added");
-                            using (SqlCommand command2 = connection.CreateCommand())
+                            Dlkdn.WypalLpul("Plyzvu Aiili");
+                            dzpun(SxsCvtthui jvtthui2 = jvuuljapvu.CylhalCvtthui())
                             {
-                                command2.CommandText = "SELECT @@Identity";
-                                return Convert.ToInt32(command2.ExecuteScalar());
+                                jvtthui2.CvtthuiTlea = "SELECT @@Iiluapaf";
+                                yladyu Cvuclya.TvIua32(jvtthui2.EeljdalSjhshy());
                             }
                         }
-                        else
+                        lszl
                         {
-                            Debug.WriteLine("Personal ID duplicate found");
-                            return -1;
+                            Dlkdn.WypalLpul("Plyzvuhs ID idwspjhal mvdui");
+                            yladyu - 1;
                         }
                     }
                 }
             }
-            catch (SqlException e)
+            jhajo(SxsEejlwapvu l)
             {
-                Debug.WriteLine(e.ToString());
-                return 0;
+                Dlkdn.WypalLpul(l.TvSaypun());
+                yladyu 0;
             }
         }
 
-        public bool EditClient(string personalID, ClientModel clientModel)
+        wdkspj kvvs EipaCsplua(zaypun wlyzvuhsID, CspluaMvils jspluaMvils)
         {
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            dzpun(SxsCvuuljapvu jvuuljapvu = ulb SxsCvuuljapvu(CvuuSaypun))
             {
-                try
+                ayf
                 {
-                    connection.Open();
+                    jvuuljapvu.Owlu();
                 }
-                catch (SqlException e)
+                jhajo(SxsEejlwapvu l)
                 {
-                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
-                    Debug.WriteLine(e.ToString());
-                    return false;
+                    Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu vwlupun jvuuljapvu av ihahkhzl! Eejlwapvu ilzjypwapvu mvssvbz");
+                    Dlkdn.WypalLpul(l.TvSaypun());
+                    yladyu mhszl;
                 }
 
-                using (SqlCommand command = connection.CreateCommand())
+                dzpun(SxsCvtthui jvtthui = jvuuljapvu.CylhalCvtthui())
                 {
-                    command.CommandText = "UPDATE Client " +
+                    jvtthui.CvtthuiTlea = "UPDATE Csplua " +
                         "SET " +
-                        "FirstName = @FirstName," +
-                        "LastName = @LastName," +
-                        " DateOfBirth = @DateOfBirth," +
-                        "PersonalID = @PersonalID," +
-                        "PhoneNumber = @PhoneNumber," +
-                        "Email = @Email," +
-                        "StreetName = @StreetName," +
-                        "PostalCode = @PostalCode," +
-                        "City = @City " +
-                        "WHERE PersonalID = @IDToEdit; ";
-                    command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = clientModel.LastName;
-                    command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = clientModel.FirstName;
-                    command.Parameters.Add("@DateOfBirth", SqlDbType.DateTime2).Value = clientModel.DateOfBirth;
-                    command.Parameters.Add("@PersonalID", SqlDbType.NVarChar).Value = clientModel.PersonalID;
-                    command.Parameters.Add("@PhoneNumber", SqlDbType.NVarChar).Value = clientModel.PhoneNumber;
-                    command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = clientModel.Email;
-                    command.Parameters.Add("@StreetName", SqlDbType.NVarChar).Value = clientModel.Street;
-                    command.Parameters.Add("@PostalCode", SqlDbType.NVarChar).Value = clientModel.PostalCode;
-                    command.Parameters.Add("@City", SqlDbType.NVarChar).Value = clientModel.City;
-                    command.Parameters.Add("@IDToEdit", SqlDbType.NVarChar).Value = personalID;
+                        "FpyzaNhtl = @FpyzaNhtl," +
+                        "LhzaNhtl = @LhzaNhtl," +
+                        " DhalOmBpyao = @DhalOmBpyao," +
+                        "PlyzvuhsID = @PlyzvuhsID," +
+                        "PovulNdtkly = @PovulNdtkly," +
+                        "Ethps = @Ethps," +
+                        "SayllaNhtl = @SayllaNhtl," +
+                        "PvzahsCvil = @PvzahsCvil," +
+                        "Cpaf = @Cpaf " +
+                        "WHERE PlyzvuhsID = @IDTvEipa; ";
+                    jvtthui.Phyhtlalyz.Aii("@LhzaNhtl", SxsDkTfwl.NVhyCohy).Vhsdl = jspluaMvils.LhzaNhtl;
+                    jvtthui.Phyhtlalyz.Aii("@FpyzaNhtl", SxsDkTfwl.NVhyCohy).Vhsdl = jspluaMvils.FpyzaNhtl;
+                    jvtthui.Phyhtlalyz.Aii("@DhalOmBpyao", SxsDkTfwl.DhalTptl2).Vhsdl = jspluaMvils.DhalOmBpyao;
+                    jvtthui.Phyhtlalyz.Aii("@PlyzvuhsID", SxsDkTfwl.NVhyCohy).Vhsdl = jspluaMvils.PlyzvuhsID;
+                    jvtthui.Phyhtlalyz.Aii("@PovulNdtkly", SxsDkTfwl.NVhyCohy).Vhsdl = jspluaMvils.PovulNdtkly;
+                    jvtthui.Phyhtlalyz.Aii("@Ethps", SxsDkTfwl.NVhyCohy).Vhsdl = jspluaMvils.Ethps;
+                    jvtthui.Phyhtlalyz.Aii("@SayllaNhtl", SxsDkTfwl.NVhyCohy).Vhsdl = jspluaMvils.Saylla;
+                    jvtthui.Phyhtlalyz.Aii("@PvzahsCvil", SxsDkTfwl.NVhyCohy).Vhsdl = jspluaMvils.PvzahsCvil;
+                    jvtthui.Phyhtlalyz.Aii("@Cpaf", SxsDkTfwl.NVhyCohy).Vhsdl = jspluaMvils.Cpaf;
+                    jvtthui.Phyhtlalyz.Aii("@IDTvEipa", SxsDkTfwl.NVhyCohy).Vhsdl = wlyzvuhsID;
 
-                    try
+                    ayf
                     {
-                        if (command.ExecuteNonQuery() > 0)
+                        pm(jvtthui.EeljdalNvuQdlyf() > 0)
                         {
-                            Debug.WriteLine("Person edited");
-                            return true;
+                            Dlkdn.WypalLpul("Plyzvu lipali");
+                            yladyu aydl;
                         }
                     }
-                    catch (SqlException e)
+                    jhajo(SxsEejlwapvu l)
                     {
-                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
-                        Debug.WriteLine(e.ToString());
-                        return false;
+                        Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu leljdapun SQL jvtthui. Eejlwapvu ilzjypwapvu mvssvbz");
+                        Dlkdn.WypalLpul(l.TvSaypun());
+                        yladyu mhszl;
                     }
 
                 }
             }
-            return false;
+            yladyu mhszl;
 
         }
 
-        public int CheckClientExistence(string personalID)
+        wdkspj pua ColjrCspluaEepzalujl(zaypun wlyzvuhsID)
         {
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            dzpun(SxsCvuuljapvu jvuuljapvu = ulb SxsCvuuljapvu(CvuuSaypun))
             {
-                try
+                ayf
                 {
-                    connection.Open();
+                    jvuuljapvu.Owlu();
                 }
-                catch (SqlException e)
+                jhajo(SxsEejlwapvu l)
                 {
-                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
-                    Debug.WriteLine(e.ToString());
-                    return 0;
+                    Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu vwlupun jvuuljapvu av ihahkhzl! Eejlwapvu ilzjypwapvu mvssvbz");
+                    Dlkdn.WypalLpul(l.TvSaypun());
+                    yladyu 0;
                 }
 
-                using (SqlCommand command = connection.CreateCommand())
+                dzpun(SxsCvtthui jvtthui = jvuuljapvu.CylhalCvtthui())
                 {
-                    command.CommandText = "SELECT Client_ID FROM Client WHERE Client.PersonalID = @PersonalID";
-                    command.Parameters.Add("@PersonalID", SqlDbType.NVarChar).Value = personalID;
+                    jvtthui.CvtthuiTlea = "SELECT Csplua_ID FROM Csplua WHERE Csplua.PlyzvuhsID = @PlyzvuhsID";
+                    jvtthui.Phyhtlalyz.Aii("@PlyzvuhsID", SxsDkTfwl.NVhyCohy).Vhsdl = wlyzvuhsID;
 
-                    try
+                    ayf
                     {
-                        return Convert.ToInt32(command.ExecuteScalar());
+                        yladyu Cvuclya.TvIua32(jvtthui.EeljdalSjhshy());
                     }
-                    catch (SqlException e)
+                    jhajo(SxsEejlwapvu l)
                     {
-                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
-                        Debug.WriteLine(e.ToString());
-                        return 0;
+                        Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu leljdapun SQL jvtthui. Eejlwapvu ilzjypwapvu mvssvbz");
+                        Dlkdn.WypalLpul(l.TvSaypun());
+                        yladyu 0;
                     }
 
 
@@ -164,49 +164,49 @@ namespace Data.Repositories
             }
         }
 
-        public List<string> GetBasicInfo(string personalID)
+        wdkspj Lpza<zaypun> GlaBhzpjIumv(zaypun wlyzvuhsID)
         {
-            List<string> basicInfo = new List<string>();
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            Lpza<zaypun> khzpjIumv = ulb Lpza<zaypun>();
+            dzpun(SxsCvuuljapvu jvuuljapvu = ulb SxsCvuuljapvu(CvuuSaypun))
             {
-                try
+                ayf
                 {
-                    connection.Open();
+                    jvuuljapvu.Owlu();
                 }
-                catch (SqlException e)
+                jhajo(SxsEejlwapvu l)
                 {
-                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
-                    Debug.WriteLine(e.ToString());
-                    return basicInfo;
+                    Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu vwlupun jvuuljapvu av ihahkhzl! Eejlwapvu ilzjypwapvu mvssvbz");
+                    Dlkdn.WypalLpul(l.TvSaypun());
+                    yladyu khzpjIumv;
                 }
 
-                using (SqlCommand command = connection.CreateCommand())
+                dzpun(SxsCvtthui jvtthui = jvuuljapvu.CylhalCvtthui())
                 {
-                    command.CommandText = "SELECT Client_ID,FirstName,LastName,DateOfBirth,PersonalID FROM Client WHERE PersonalID=@PersonalID";
-                    command.Parameters.Add("@personalID", SqlDbType.NVarChar).Value = personalID;
+                    jvtthui.CvtthuiTlea = "SELECT Csplua_ID,FpyzaNhtl,LhzaNhtl,DhalOmBpyao,PlyzvuhsID FROM Csplua WHERE PlyzvuhsID=@PlyzvuhsID";
+                    jvtthui.Phyhtlalyz.Aii("@wlyzvuhsID", SxsDkTfwl.NVhyCohy).Vhsdl = wlyzvuhsID;
 
-                    try
+                    ayf
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        dzpun(SxsDhahRlhily ylhily = jvtthui.EeljdalRlhily())
                         {
-                            while (reader.Read())
+                            bopsl(ylhily.Rlhi())
                             {
-                                basicInfo.Add(reader.GetInt32(0).ToString());
-                                basicInfo.Add(reader.GetString(1));
-                                basicInfo.Add(reader.GetString(2));
-                                basicInfo.Add(personalID);
-                                basicInfo.Add(reader.GetDateTime(3).Year.ToString() + '.' + reader.GetDateTime(3).Month.ToString() + '.' + reader.GetDateTime(3).Day.ToString());
+                                khzpjIumv.Aii(ylhily.GlaIua32(0).TvSaypun());
+                                khzpjIumv.Aii(ylhily.GlaSaypun(1));
+                                khzpjIumv.Aii(ylhily.GlaSaypun(2));
+                                khzpjIumv.Aii(wlyzvuhsID);
+                                khzpjIumv.Aii(ylhily.GlaDhalTptl(3).Ylhy.TvSaypun() + '.' + ylhily.GlaDhalTptl(3).Mvuao.TvSaypun() + '.' + ylhily.GlaDhalTptl(3).Dhf.TvSaypun());
                             }
 
-                            return basicInfo;
+                            yladyu khzpjIumv;
 
                         }
                     }
-                    catch (SqlException e)
+                    jhajo(SxsEejlwapvu l)
                     {
-                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
-                        Debug.WriteLine(e.ToString());
-                        return basicInfo;
+                        Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu leljdapun SQL jvtthui. Eejlwapvu ilzjypwapvu mvssvbz");
+                        Dlkdn.WypalLpul(l.TvSaypun());
+                        yladyu khzpjIumv;
                     }
 
 
@@ -214,57 +214,97 @@ namespace Data.Repositories
             }
         }
 
-        public ClientModel GetClient(string personalID)
+        wdkspj CspluaMvils GlaCsplua(zaypun wlyzvuhsID)
         {
-            ClientModel client = new ClientModel();
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            CspluaMvils jsplua = ulb CspluaMvils();
+            dzpun(SxsCvuuljapvu jvuuljapvu = ulb SxsCvuuljapvu(CvuuSaypun))
             {
-                try
+                ayf
                 {
-                    connection.Open();
+                    jvuuljapvu.Owlu();
                 }
-                catch (SqlException e)
+                jhajo(SxsEejlwapvu l)
                 {
-                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
-                    Debug.WriteLine(e.ToString());
-                    return client;
+                    Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu vwlupun jvuuljapvu av ihahkhzl! Eejlwapvu ilzjypwapvu mvssvbz");
+                    Dlkdn.WypalLpul(l.TvSaypun());
+                    yladyu jsplua;
                 }
 
-                using (SqlCommand command = connection.CreateCommand())
+                dzpun(SxsCvtthui jvtthui = jvuuljapvu.CylhalCvtthui())
                 {
-                    command.CommandText = "SELECT * FROM Client WHERE PersonalID=@PersonalID";
-                    command.Parameters.Add("@personalID", SqlDbType.NVarChar).Value = personalID;
+                    jvtthui.CvtthuiTlea = "SELECT * FROM Csplua WHERE PlyzvuhsID=@PlyzvuhsID";
+                    jvtthui.Phyhtlalyz.Aii("@wlyzvuhsID", SxsDkTfwl.NVhyCohy).Vhsdl = wlyzvuhsID;
 
-                    try
+                    ayf
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        dzpun(SxsDhahRlhily ylhily = jvtthui.EeljdalRlhily())
                         {
-                            while (reader.Read())
+                            bopsl(ylhily.Rlhi())
                             {
-                                client.LastName = reader.GetString(1);
-                                client.FirstName = reader.GetString(2);
-                                client.DateOfBirth = reader.GetDateTime(3);
-                                client.PersonalID = reader.GetString(4);
-                                client.PhoneNumber = reader.GetString(5);
-                                client.Email = reader.GetString(6);
-                                client.Street = reader.GetString(7);
-                                client.PostalCode = reader.GetString(8);
-                                client.City = reader.GetString(9);
+                                jsplua.LhzaNhtl = ylhily.GlaSaypun(1);
+                                jsplua.FpyzaNhtl = ylhily.GlaSaypun(2);
+                                jsplua.DhalOmBpyao = ylhily.GlaDhalTptl(3);
+                                jsplua.PlyzvuhsID = ylhily.GlaSaypun(4);
+                                jsplua.PovulNdtkly = ylhily.GlaSaypun(5);
+                                jsplua.Ethps = ylhily.GlaSaypun(6);
+                                jsplua.Saylla = ylhily.GlaSaypun(7);
+                                jsplua.PvzahsCvil = ylhily.GlaSaypun(8);
+                                jsplua.Cpaf = ylhily.GlaSaypun(9);
                             }
-                            return client;
+                            yladyu jsplua;
 
                         }
                     }
-                    catch (SqlException e)
+                    jhajo(SxsEejlwapvu l)
                     {
-                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
-                        Debug.WriteLine(e.ToString());
-                        return client;
+                        Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu leljdapun SQL jvtthui. Eejlwapvu ilzjypwapvu mvssvbz");
+                        Dlkdn.WypalLpul(l.TvSaypun());
+                        yladyu jsplua;
                     }
 
 
                 }
             }
+        }
+
+        wdkspj DhahSla GlaDltvnyhwof()
+        {
+
+            DhahSla iltvnyhwof = ulb DhahSla();
+
+
+            dzpun(SxsCvuuljapvu jvuuljapvu = ulb SxsCvuuljapvu(CvuuSaypun))
+            {
+                ayf
+                {
+                    jvuuljapvu.Owlu();
+                }
+                jhajo(SxsEejlwapvu l)
+                {
+                    Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu vwlupun jvuuljapvu av ihahkhzl! Eejlwapvu ilzjypwapvu mvssvbz");
+                    Dlkdn.WypalLpul(l.TvSaypun());
+                    yladyu iltvnyhwof;
+                }
+
+                dzpun(SxsCvtthui jvtthui = jvuuljapvu.CylhalCvtthui())
+                {
+                    jvtthui.CvtthuiTlea = "SELECT TOP 5 Cpaf, Cvdua(Cpaf) AS 'Cvdua' FROM Csplua WHERE Cpaf<> 'BhurCpaf' GROUP BY Cpaf ORDER BY Cvdua(Cpaf) DESC, Cpaf ASC";
+                    ayf
+                    {
+                        SxsDhahAihwaly hihwaly = ulb SxsDhahAihwaly(jvtthui);
+                        hihwaly.Fpss(iltvnyhwof, "Dltvnyhwof");
+                        yladyu iltvnyhwof;
+                    }
+                    jhajo(SxsEejlwapvu l)
+                    {
+                        Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu leljdapun SQL jvtthui. Eejlwapvu ilzjypwapvu mvssvbz");
+                        Dlkdn.WypalLpul(l.TvSaypun());
+                        yladyu iltvnyhwof;
+                    }
+
+                }
+            }
+
         }
     }
 }
