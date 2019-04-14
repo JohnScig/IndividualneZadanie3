@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Data;
 
 namespace GeneratorTester
 {
@@ -64,14 +65,14 @@ namespace GeneratorTester
             string[] parsedPerson = generatedClient.Split(';');
             string[] parsedAddress = generatedAddress.Split(';');
 
-            //string[] parsedDate = parsedPerson[2].Split('.');
-            //DateTime myDateOfBirth = new DateTime(Convert.ToInt32(parsedDate[2]), Convert.ToInt32(parsedDate[1]), Convert.ToInt32(parsedDate[0]));
+            string[] parsedDate = parsedPerson[2].Split('.');
+            DateTime myDateOfBirth = new DateTime(Convert.ToInt32(parsedDate[2]), Convert.ToInt32(parsedDate[1]), Convert.ToInt32(parsedDate[0]));
 
             ClientModel clientModel = new ClientModel()
             {
                 LastName = parsedPerson[0],
                 FirstName = parsedPerson[1],
-                //DateOfBirth = myDateOfBirth,
+                DateOfBirth = DateConverter.ConvertToDate(parsedPerson[2]),
                 PersonalID = parsedPerson[3].Replace(" ", String.Empty),
                 PhoneNumber = parsedPerson[4].Replace(" ", String.Empty),
                 Email = parsedPerson[5],

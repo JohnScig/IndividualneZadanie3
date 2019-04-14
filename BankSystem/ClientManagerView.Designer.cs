@@ -39,10 +39,6 @@
             this.btn_BlockCard = new System.Windows.Forms.Button();
             this.btn_UnblockCard = new System.Windows.Forms.Button();
             this.dgv_AccountsInfo = new System.Windows.Forms.DataGridView();
-            this.Column_IBAN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_Debit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Colum_Open = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_CardsInfo = new System.Windows.Forms.DataGridView();
             this.btn_ResetPin = new System.Windows.Forms.Button();
             this.btn_Refresh = new System.Windows.Forms.Button();
@@ -51,6 +47,10 @@
             this.lbl_PersonalID = new System.Windows.Forms.Label();
             this.lbl_DateOfBirth = new System.Windows.Forms.Label();
             this.btn_OpenNewAccount = new System.Windows.Forms.Button();
+            this.Column_IBAN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Debit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colum_Open = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AccountsInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_CardsInfo)).BeginInit();
@@ -178,34 +178,6 @@
             this.dgv_AccountsInfo.TabIndex = 16;
             this.dgv_AccountsInfo.SelectionChanged += new System.EventHandler(this.dgv_AccountsInfo_SelectionChanged);
             // 
-            // Column_IBAN
-            // 
-            this.Column_IBAN.FillWeight = 160F;
-            this.Column_IBAN.HeaderText = "IBAN";
-            this.Column_IBAN.Name = "Column_IBAN";
-            this.Column_IBAN.ReadOnly = true;
-            // 
-            // Column_Balance
-            // 
-            this.Column_Balance.FillWeight = 90F;
-            this.Column_Balance.HeaderText = "Balance";
-            this.Column_Balance.Name = "Column_Balance";
-            this.Column_Balance.ReadOnly = true;
-            // 
-            // Column_Debit
-            // 
-            this.Column_Debit.FillWeight = 90F;
-            this.Column_Debit.HeaderText = "Debit Limit";
-            this.Column_Debit.Name = "Column_Debit";
-            this.Column_Debit.ReadOnly = true;
-            // 
-            // Colum_Open
-            // 
-            this.Colum_Open.FillWeight = 30F;
-            this.Colum_Open.HeaderText = "Open";
-            this.Colum_Open.Name = "Colum_Open";
-            this.Colum_Open.ReadOnly = true;
-            // 
             // dgv_CardsInfo
             // 
             this.dgv_CardsInfo.AllowUserToAddRows = false;
@@ -289,6 +261,33 @@
             this.btn_OpenNewAccount.UseVisualStyleBackColor = true;
             this.btn_OpenNewAccount.Click += new System.EventHandler(this.btn_OpenNewAccount_Click);
             // 
+            // Column_IBAN
+            // 
+            this.Column_IBAN.FillWeight = 120F;
+            this.Column_IBAN.HeaderText = "IBAN";
+            this.Column_IBAN.Name = "Column_IBAN";
+            this.Column_IBAN.ReadOnly = true;
+            // 
+            // Column_Balance
+            // 
+            this.Column_Balance.FillWeight = 90F;
+            this.Column_Balance.HeaderText = "Balance";
+            this.Column_Balance.Name = "Column_Balance";
+            this.Column_Balance.ReadOnly = true;
+            // 
+            // Column_Debit
+            // 
+            this.Column_Debit.FillWeight = 90F;
+            this.Column_Debit.HeaderText = "Debit Limit";
+            this.Column_Debit.Name = "Column_Debit";
+            this.Column_Debit.ReadOnly = true;
+            // 
+            // Colum_Open
+            // 
+            this.Colum_Open.HeaderText = "Open";
+            this.Colum_Open.Name = "Colum_Open";
+            this.Colum_Open.ReadOnly = true;
+            // 
             // ClientManagerView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -343,10 +342,10 @@
         private System.Windows.Forms.Label lbl_LastName;
         private System.Windows.Forms.Label lbl_PersonalID;
         private System.Windows.Forms.Label lbl_DateOfBirth;
+        private System.Windows.Forms.Button btn_OpenNewAccount;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_IBAN;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Balance;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Debit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Colum_Open;
-        private System.Windows.Forms.Button btn_OpenNewAccount;
     }
 }

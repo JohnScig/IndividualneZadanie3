@@ -95,6 +95,134 @@ namespace Data.Repositories
             }
         }
 
+        public DataSet GetFilteredTransactions(List<string> filterCriteria)
+        {
+            DataSet datasetFilteredTransactions = new DataSet();
+
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return datasetFilteredTransactions;
+                }
+
+                //tb_Iban.Text, transactionType, tb_AmountLowPoint.Text,tb_AmountHighPoint.Text,tb_EarliestDate.Text,tb_LatestDate.Text
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    string query = "SELECT * from Transactions " +
+                       "WHERE " +
+                           "JS_TransactionTypeCondition AND " +
+                           "JS_LowerThanCondition AND " +
+                           "JS_HigherThanCondition AND " +
+                           "JS_AfterCondition AND " +
+                           "JS_BeforeCondition " +
+                        "ORDER BY Timestamp;";
+
+                    // Filtering by Transaction Type
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////
+                    if (filterCriteria[0].Length != 0)
+                    {
+                        if (filterCriteria[1] == "debit")
+                        {
+                            query = query.Replace("JS_TransactionTypeCondition", "FromAccount LIKE @Iban");
+                            command.Parameters.Add("@Iban", SqlDbType.NVarChar).Value = "%" + filterCriteria[0] + "%";
+                        }
+                        else if (filterCriteria[1] == "credit")
+                        {
+                            query = query.Replace("JS_TransactionTypeCondition", "ToAccount LIKE @Iban");
+                            command.Parameters.Add("@Iban", SqlDbType.NVarChar).Value = "%" + filterCriteria[0] + "%";
+                        }
+                        else
+                        {
+                            query = query.Replace("JS_TransactionTypeCondition", "(ToAccount LIKE @Iban OR FromAccount LIKE @Iban)");
+                            command.Parameters.Add("@Iban", SqlDbType.NVarChar).Value = "%" + filterCriteria[0] + "%";
+                        }
+                    }
+                    else
+                    {
+                        query = query.Replace("JS_TransactionTypeCondition", "1=1");
+                    }
+
+
+
+                    //Transfer-Higher-Than Condition
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////
+                    if (filterCriteria[2].Length != 0)
+                    {
+                        query = query.Replace("JS_LowerThanCondition", "Amount > @LowPoint");
+                        command.Parameters.Add("@LowPoint", SqlDbType.Decimal).Value = Convert.ToDecimal(filterCriteria[2]);
+                    }
+                    else
+                    {
+                        query = query.Replace("JS_LowerThanCondition", "1=1");
+                    }
+
+                    //Account-Lower-Than Condition
+                    if (filterCriteria[3].Length != 0)
+                    {
+                        query = query.Replace("JS_HigherThanCondition", "Amount < @HighPoint");
+                        command.Parameters.Add("@HighPoint", SqlDbType.Decimal).Value = Convert.ToDecimal(filterCriteria[3]);
+                    }
+                    else
+                    {
+                        query = query.Replace("JS_HigherThanCondition", "1=1");
+                    }
+
+
+
+                    //Transfer-Created-After Condition
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////
+                    if (filterCriteria[4].Length != 0)
+                    {
+                        query = query.Replace("JS_AfterCondition", "Timestamp > @EarlierPoint");
+                        command.Parameters.Add("@EarlierPoint", SqlDbType.DateTime2).Value = DateConverter.ConvertToDate(filterCriteria[4]);
+                    }
+                    else
+                    {
+                        query = query.Replace("JS_AfterCondition", "1=1");
+                    }
+
+                    //Account-Created-Before Condition
+                    if (filterCriteria[5].Length != 0)
+                    {
+                        query = query.Replace("JS_BeforeCondition", "Timestamp < @LaterPoint");
+                        command.Parameters.Add("@LaterPoint", SqlDbType.DateTime2).Value = DateConverter.ConvertToDate(filterCriteria[5]);
+                    }
+                    else
+                    {
+                        query = query.Replace("JS_BeforeCondition", "1=1");
+                    }
+
+
+                    command.CommandText = query;
+
+                    try
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        adapter.Fill(datasetFilteredTransactions, "FilteredTransactions");
+                        return datasetFilteredTransactions;
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return datasetFilteredTransactions;
+                    }
+
+                }
+
+
+            }
+
+        }
+
         public bool NewATMWithdrawal(decimal amount, string cardNumber)
         {
 

@@ -14,5 +14,11 @@ namespace BankSystem
         {
             return new AccountRepository().GetAllAccounts();
         }
+
+        public DataSet GetFilteredAccounts (List<string> filterCriteria)
+        {
+            return new AccountRepository().GetFilteredAccounts(filterCriteria);
+        }
+        
     }
 }

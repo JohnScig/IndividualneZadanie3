@@ -19,5 +19,11 @@ namespace BankSystem
         {
             return new TransactionRepository().GetTransactions();
         }
+
+        public DataSet GetFilteredTransactions(List<string> filterCriteria)
+        {
+            return new TransactionRepository().GetFilteredTransactions(filterCriteria);
+        }
+
     }
 }

@@ -246,6 +246,142 @@ namespace Data.Repositories
             }
         }
 
+        public DataSet GetFilteredAccounts(List<string> filterCriteria)
+        {
+            DataSet datasetFilteredAccount = new DataSet();
+
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return datasetFilteredAccount;
+                }
+                //{  tb_LastName.Text, tb_FirstName.Text, tb_PersonalID.Text, tb_Iban.Text, accountStatus, tb_EarliestDate.Text, tb_LatestDate.Text };
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    string query = "SELECT C.LastName, C.FirstName, C.PersonalID, A.IBAN,A.Balance,A.DebtLimit,A.BankID,A.OpenDate,A.CloseDate " +
+                       "FROM Client AS C INNER JOIN Account AS A ON C.Client_ID = A.OwnerID " +
+                       "WHERE " +
+                           "JS_LastNameCondition AND " +
+                           "JS_FirstNameCondition AND " +
+                           "JS_PersonalIDCondition AND " +
+                           "JS_IBANCondition AND " +
+                           "JS_StatusCondition AND " +
+                           "JS_AfterCondition AND " +
+                           "JS_BeforeCondition " +
+                       "ORDER BY C.LastName, C.FirstName";
+
+
+                    //Last Name Condition
+                    if (filterCriteria[0].Length != 0)
+                    {
+                        query = query.Replace("JS_LastNameCondition", "C.LastName LIKE @LastName");
+                        command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = "%" + filterCriteria[0] + "%";
+                    }
+                    else
+                    {
+                        query = query.Replace("JS_LastNameCondition", "1=1");
+                    }
+
+
+                    //First Name Condition
+                    if (filterCriteria[1].Length != 0)
+                    {
+                        query = query.Replace("JS_FirstNameCondition", "C.FirstName LIKE @FirstName");
+                        command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = "%" + filterCriteria[1] + "%";
+                    }
+                    else
+                    {
+                        query = query.Replace("JS_FirstNameCondition", "1=1");
+                    }
+
+
+                    //Personal ID Condition
+                    if (filterCriteria[2].Length != 0)
+                    {
+                        query = query.Replace("JS_PersonalIDCondition", "C.PersonalID LIKE @PersonalID");
+                        command.Parameters.Add("@PersonalID", SqlDbType.NVarChar).Value = "%" + filterCriteria[2] + "%";
+                    }
+                    else
+                    {
+                        query = query.Replace("JS_PersonalIDCondition", "1=1");
+                    }
+
+
+                    //IBAN Condition
+                    if (filterCriteria[3].Length != 0)
+                    {
+                        query = query.Replace("JS_IBANCondition", "A.IBAN LIKE @IBAN");
+                        command.Parameters.Add("@IBAN", SqlDbType.NVarChar).Value = "%" + filterCriteria[3] + "%";
+                    }
+                    else
+                    {
+                        query = query.Replace("JS_IBANCondition", "1=1");
+                    }
+
+                    // filter open/closed/all accounts
+                    if (filterCriteria[4] == "open")
+                    {
+                        query = query.Replace("JS_StatusCondition", "A.CloseDate IS NULL");
+                    }
+                    else if (filterCriteria[4] == "closed")
+                    {
+                        query = query.Replace("JS_StatusCondition", "A.CloseDate IS NOT NULL");
+                    }
+                    else
+                    {
+                        query = query.Replace("JS_StatusCondition", "1=1");
+                    }
+
+                    //Account-Created-After Condition
+                    if (filterCriteria[5].Length != 0)
+                    {
+                        query = query.Replace("JS_AfterCondition", "A.OpenDate > @EarlierPoint");
+                        command.Parameters.Add("@EarlierPoint", SqlDbType.DateTime2).Value = DateConverter.ConvertToDate(filterCriteria[5]);
+                    }
+                    else
+                    {
+                        query = query.Replace("JS_AfterCondition", "1=1");
+                    }
+
+                    //Account-Created-Before Condition
+                    if (filterCriteria[6].Length != 0)
+                    {
+                        query = query.Replace("JS_BeforeCondition", "A.OpenDate < @LaterPoint");
+                        command.Parameters.Add("@LaterPoint", SqlDbType.DateTime2).Value = DateConverter.ConvertToDate(filterCriteria[6]);
+                    }
+                    else
+                    {
+                        query = query.Replace("JS_BeforeCondition", "1=1");
+                    }
+
+
+                    command.CommandText = query;
+
+                    try
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        adapter.Fill(datasetFilteredAccount, "FilteredAccounts");
+                        return datasetFilteredAccount;
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return datasetFilteredAccount;
+                    }
+
+                }
+            }
+        }
+
         public List<AccountModel> GetAllAccounts(string personalID)
         {
             List<AccountModel> allAccounts = new List<AccountModel>();
@@ -431,5 +567,7 @@ namespace Data.Repositories
                 }
             }
         }
+
+
     }
 }
