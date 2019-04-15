@@ -59,7 +59,7 @@
             // 
             // btn_GenerateRandomPerson
             // 
-            this.btn_GenerateRandomPerson.Location = new System.Drawing.Point(12, 489);
+            this.btn_GenerateRandomPerson.Location = new System.Drawing.Point(160, 483);
             this.btn_GenerateRandomPerson.Name = "btn_GenerateRandomPerson";
             this.btn_GenerateRandomPerson.Size = new System.Drawing.Size(141, 23);
             this.btn_GenerateRandomPerson.TabIndex = 5;
@@ -263,7 +263,7 @@
             // 
             // btn_Confirm
             // 
-            this.btn_Confirm.Location = new System.Drawing.Point(226, 460);
+            this.btn_Confirm.Location = new System.Drawing.Point(27, 454);
             this.btn_Confirm.Name = "btn_Confirm";
             this.btn_Confirm.Size = new System.Drawing.Size(75, 23);
             this.btn_Confirm.TabIndex = 16;
@@ -273,7 +273,7 @@
             // 
             // btn_Cancel
             // 
-            this.btn_Cancel.Location = new System.Drawing.Point(226, 489);
+            this.btn_Cancel.Location = new System.Drawing.Point(27, 483);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
             this.btn_Cancel.TabIndex = 17;

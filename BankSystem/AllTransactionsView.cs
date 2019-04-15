@@ -115,5 +115,10 @@ namespace BankSystem
             dgv_AllTransactions.Columns[6].FillWeight = 50;
             dgv_AllTransactions.Columns[8].FillWeight = 50;
         }
+
+        private void btn_Close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

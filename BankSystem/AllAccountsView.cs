@@ -70,5 +70,10 @@ namespace BankSystem
             //filterCriteria = [tb_LastName.Text,tb_FirstName.Text,tb_Iban.Text,chb_IncludeClosed.Checked.ToString(),tb_EarliestDate.Text,tb_LatestDate.Text];
             LoadFilteredAccounts(filterCriteria);
         }
+
+        private void btn_Close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

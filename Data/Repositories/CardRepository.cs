@@ -17,6 +17,156 @@ namespace Data.Repositories
         //public static string ConnString { get; set; } = $"Server={ServerName}; Database = {DatabaseName}; Trusted_Connection = True";
         public static string ConnString { get; set; } = $"Server={ServerSettings.ServerName}; Database = {ServerSettings.DatabaseName}; Trusted_Connection = True";
 
+        public bool CheckBlockedCard(string cardNumber)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT Blocked FROM Card WHERE CardNumber = @CardNumber";
+                    command.Parameters.Add("@cardNumber", SqlDbType.NVarChar).Value = cardNumber;
+
+                    try
+                    {
+                        return (Convert.ToBoolean(command.ExecuteScalar()));
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return false;
+                    }
+
+                }
+            }
+        }
+
+        public void RemoveOldPinMistakes(string cardNumber)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                }
+
+                bool removeBadTries = false;
+
+                using (SqlCommand commandGetDateTimeMistake = connection.CreateCommand())
+                {
+                    commandGetDateTimeMistake.CommandText = "SELECT " +
+                        "CASE " +
+                            "WHEN (SELECT DATEDIFF(MINUTE, (SELECT LastWrongTry FROM Card WHERE CardNumber = @cardNumber), GETDATE())) > 30 THEN 1 " +
+                            "ELSE 0 " +
+                        "END";
+                                                
+                    commandGetDateTimeMistake.Parameters.Add("@cardNumber", SqlDbType.NVarChar).Value = cardNumber;
+
+                    try
+                    {
+                        removeBadTries = (Convert.ToBoolean(commandGetDateTimeMistake.ExecuteScalar()));
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                    }
+
+                    if (removeBadTries)
+                    {
+                        using (SqlCommand commandRemoveOldMistakes = connection.CreateCommand())
+                        {
+                            commandRemoveOldMistakes.CommandText = "UPDATE Card SET Tries = 0 WHERE CardNumber = @CardNumber";
+                            commandRemoveOldMistakes.Parameters.Add("@cardNumber", SqlDbType.NVarChar).Value = cardNumber;
+
+                            try
+                            {
+                                commandRemoveOldMistakes.ExecuteScalar();
+                            }
+                            catch (SqlException e)
+                            {
+                                Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                                Debug.WriteLine(e.ToString());
+                            }
+                        }
+                    }              
+                }
+            }
+        }
+        public int CheckTries(string cardNumber)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return -1;
+                }
+
+                using (SqlCommand commandUpdate = connection.CreateCommand())
+                {
+                    commandUpdate.CommandText = "UPDATE Card SET Tries = (Tries+1) WHERE CardNumber = @cardNumber " +
+                                                "UPDATE Card SET LastWrongTry = GETDATE() WHERE CardNumber = @cardNumber ";
+                    commandUpdate.Parameters.Add("@cardNumber", SqlDbType.NVarChar).Value = cardNumber;
+
+                    try
+                    {
+                        commandUpdate.ExecuteNonQuery();
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return -1;
+                    }
+
+                    using (SqlCommand commandReturnValue = connection.CreateCommand())
+                    {
+                        commandReturnValue.CommandText = "SELECT Tries FROM Card WHERE CardNumber = @CardNumber";
+                        commandReturnValue.Parameters.Add("@cardNumber", SqlDbType.NVarChar).Value = cardNumber;
+
+                        try
+                        {
+                            return (Convert.ToInt32(commandReturnValue.ExecuteScalar()));
+                        }
+                        catch (SqlException e)
+                        {
+                            Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                            Debug.WriteLine(e.ToString());
+                            return -2;
+                        }
+
+                    }
+
+                }
+
+
+
+            }
+        }
+
+
 
         //private CardModel cardModel = new CardModel();
 
@@ -361,7 +511,8 @@ namespace Data.Repositories
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "UPDATE Card SET Blocked = 0 WHERE CardNumber = @CardNumber";
+                    command.CommandText = "UPDATE Card SET Blocked = 0 WHERE CardNumber = @CardNumber " +
+                                          "UPDATE Card SET Tries = 0 WHERE CardNumber = @CardNumber; ";
                     command.Parameters.Add("@cardNumber", SqlDbType.NVarChar).Value = cardNumber;
 
                     try

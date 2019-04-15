@@ -39,6 +39,10 @@
             this.btn_BlockCard = new System.Windows.Forms.Button();
             this.btn_UnblockCard = new System.Windows.Forms.Button();
             this.dgv_AccountsInfo = new System.Windows.Forms.DataGridView();
+            this.Column_IBAN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Debit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colum_Open = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_CardsInfo = new System.Windows.Forms.DataGridView();
             this.btn_ResetPin = new System.Windows.Forms.Button();
             this.btn_Refresh = new System.Windows.Forms.Button();
@@ -47,10 +51,7 @@
             this.lbl_PersonalID = new System.Windows.Forms.Label();
             this.lbl_DateOfBirth = new System.Windows.Forms.Label();
             this.btn_OpenNewAccount = new System.Windows.Forms.Button();
-            this.Column_IBAN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_Debit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Colum_Open = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_Close = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AccountsInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_CardsInfo)).BeginInit();
@@ -68,7 +69,7 @@
             // 
             // btn_NewTransaction
             // 
-            this.btn_NewTransaction.Location = new System.Drawing.Point(12, 306);
+            this.btn_NewTransaction.Location = new System.Drawing.Point(12, 298);
             this.btn_NewTransaction.Name = "btn_NewTransaction";
             this.btn_NewTransaction.Size = new System.Drawing.Size(112, 23);
             this.btn_NewTransaction.TabIndex = 5;
@@ -88,7 +89,7 @@
             // 
             // btn_AllTransactions
             // 
-            this.btn_AllTransactions.Location = new System.Drawing.Point(12, 458);
+            this.btn_AllTransactions.Location = new System.Drawing.Point(12, 385);
             this.btn_AllTransactions.Name = "btn_AllTransactions";
             this.btn_AllTransactions.Size = new System.Drawing.Size(112, 23);
             this.btn_AllTransactions.TabIndex = 8;
@@ -98,7 +99,7 @@
             // 
             // btn_Withdraw
             // 
-            this.btn_Withdraw.Location = new System.Drawing.Point(12, 364);
+            this.btn_Withdraw.Location = new System.Drawing.Point(12, 356);
             this.btn_Withdraw.Name = "btn_Withdraw";
             this.btn_Withdraw.Size = new System.Drawing.Size(112, 23);
             this.btn_Withdraw.TabIndex = 9;
@@ -108,7 +109,7 @@
             // 
             // btn_Deposit
             // 
-            this.btn_Deposit.Location = new System.Drawing.Point(12, 335);
+            this.btn_Deposit.Location = new System.Drawing.Point(12, 327);
             this.btn_Deposit.Name = "btn_Deposit";
             this.btn_Deposit.Size = new System.Drawing.Size(112, 23);
             this.btn_Deposit.TabIndex = 10;
@@ -178,6 +179,33 @@
             this.dgv_AccountsInfo.TabIndex = 16;
             this.dgv_AccountsInfo.SelectionChanged += new System.EventHandler(this.dgv_AccountsInfo_SelectionChanged);
             // 
+            // Column_IBAN
+            // 
+            this.Column_IBAN.FillWeight = 120F;
+            this.Column_IBAN.HeaderText = "IBAN";
+            this.Column_IBAN.Name = "Column_IBAN";
+            this.Column_IBAN.ReadOnly = true;
+            // 
+            // Column_Balance
+            // 
+            this.Column_Balance.FillWeight = 90F;
+            this.Column_Balance.HeaderText = "Balance";
+            this.Column_Balance.Name = "Column_Balance";
+            this.Column_Balance.ReadOnly = true;
+            // 
+            // Column_Debit
+            // 
+            this.Column_Debit.FillWeight = 90F;
+            this.Column_Debit.HeaderText = "Debit Limit";
+            this.Column_Debit.Name = "Column_Debit";
+            this.Column_Debit.ReadOnly = true;
+            // 
+            // Colum_Open
+            // 
+            this.Colum_Open.HeaderText = "Open";
+            this.Colum_Open.Name = "Colum_Open";
+            this.Colum_Open.ReadOnly = true;
+            // 
             // dgv_CardsInfo
             // 
             this.dgv_CardsInfo.AllowUserToAddRows = false;
@@ -207,7 +235,7 @@
             // 
             // btn_Refresh
             // 
-            this.btn_Refresh.Location = new System.Drawing.Point(12, 426);
+            this.btn_Refresh.Location = new System.Drawing.Point(12, 429);
             this.btn_Refresh.Name = "btn_Refresh";
             this.btn_Refresh.Size = new System.Drawing.Size(112, 23);
             this.btn_Refresh.TabIndex = 19;
@@ -261,38 +289,22 @@
             this.btn_OpenNewAccount.UseVisualStyleBackColor = true;
             this.btn_OpenNewAccount.Click += new System.EventHandler(this.btn_OpenNewAccount_Click);
             // 
-            // Column_IBAN
+            // btn_Close
             // 
-            this.Column_IBAN.FillWeight = 120F;
-            this.Column_IBAN.HeaderText = "IBAN";
-            this.Column_IBAN.Name = "Column_IBAN";
-            this.Column_IBAN.ReadOnly = true;
-            // 
-            // Column_Balance
-            // 
-            this.Column_Balance.FillWeight = 90F;
-            this.Column_Balance.HeaderText = "Balance";
-            this.Column_Balance.Name = "Column_Balance";
-            this.Column_Balance.ReadOnly = true;
-            // 
-            // Column_Debit
-            // 
-            this.Column_Debit.FillWeight = 90F;
-            this.Column_Debit.HeaderText = "Debit Limit";
-            this.Column_Debit.Name = "Column_Debit";
-            this.Column_Debit.ReadOnly = true;
-            // 
-            // Colum_Open
-            // 
-            this.Colum_Open.HeaderText = "Open";
-            this.Colum_Open.Name = "Colum_Open";
-            this.Colum_Open.ReadOnly = true;
+            this.btn_Close.Location = new System.Drawing.Point(12, 458);
+            this.btn_Close.Name = "btn_Close";
+            this.btn_Close.Size = new System.Drawing.Size(112, 23);
+            this.btn_Close.TabIndex = 25;
+            this.btn_Close.Text = "Close";
+            this.btn_Close.UseVisualStyleBackColor = true;
+            this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
             // 
             // ClientManagerView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 493);
+            this.Controls.Add(this.btn_Close);
             this.Controls.Add(this.btn_OpenNewAccount);
             this.Controls.Add(this.lbl_DateOfBirth);
             this.Controls.Add(this.lbl_PersonalID);
@@ -347,5 +359,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Balance;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Debit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Colum_Open;
+        private System.Windows.Forms.Button btn_Close;
     }
 }

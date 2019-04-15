@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InsertCardView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertCardView.Designer.cs">
+      <DependentUpon>InsertCardView.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenuModel.cs" />
     <Compile Include="MainMenuView.cs">
       <SubType>Form</SubType>
@@ -69,6 +75,9 @@
     <Compile Include="WithdrawView.Designer.cs">
       <DependentUpon>WithdrawView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="InsertCardView.resx">
+      <DependentUpon>InsertCardView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainMenuView.resx">
       <DependentUpon>MainMenuView.cs</DependentUpon>
     </EmbeddedResource>

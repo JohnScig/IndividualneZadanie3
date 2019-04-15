@@ -80,7 +80,9 @@
             this.Controls.Add(this.ntb_Amount);
             this.Controls.Add(this.lbl_Command);
             this.Name = "WithdrawView";
+            this.Opacity = 0.95D;
             this.Text = "Withdrawal View";
+            this.TransparencyKey = System.Drawing.Color.Blue;
             this.ResumeLayout(false);
             this.PerformLayout();
 

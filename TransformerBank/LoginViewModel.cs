@@ -18,5 +18,29 @@ namespace TransformerBank
             return cardRepository.CheckCard(cardNumber,new CardGenerator().HashPin(pin));
         }
 
+        public bool CheckBlockedCard(string cardNumber)
+        {
+            return new CardRepository().CheckBlockedCard(cardNumber);
+        }
+
+        public int CheckTries(string cardNumber)
+        {
+            int tries = new CardRepository().CheckTries(cardNumber);
+            
+            if (tries > 4)
+            {
+                new CardRepository().BlockCard(cardNumber);
+                return tries;
+            }
+
+            return tries;
+
+        }
+
+        public void RemoveOldPinMistakes(string cardNumber)
+        {
+            new CardRepository().RemoveOldPinMistakes(cardNumber);
+        }
+
     }
 }

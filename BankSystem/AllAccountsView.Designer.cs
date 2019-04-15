@@ -50,6 +50,7 @@
             this.rb_Closed = new System.Windows.Forms.RadioButton();
             this.rb_Open = new System.Windows.Forms.RadioButton();
             this.rb_All = new System.Windows.Forms.RadioButton();
+            this.btn_Close = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AllAccounts)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -259,11 +260,22 @@
             this.rb_All.Text = "Search For All Accounts";
             this.rb_All.UseVisualStyleBackColor = true;
             // 
+            // btn_Close
+            // 
+            this.btn_Close.Location = new System.Drawing.Point(131, 555);
+            this.btn_Close.Name = "btn_Close";
+            this.btn_Close.Size = new System.Drawing.Size(113, 37);
+            this.btn_Close.TabIndex = 26;
+            this.btn_Close.Text = "Close";
+            this.btn_Close.UseVisualStyleBackColor = true;
+            this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
+            // 
             // AllAccountsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1159, 608);
+            this.Controls.Add(this.btn_Close);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_RemoveFilters);
             this.Controls.Add(this.label5);
@@ -317,5 +329,6 @@
         private System.Windows.Forms.RadioButton rb_Closed;
         private System.Windows.Forms.RadioButton rb_Open;
         private System.Windows.Forms.RadioButton rb_All;
+        private System.Windows.Forms.Button btn_Close;
     }
 }
