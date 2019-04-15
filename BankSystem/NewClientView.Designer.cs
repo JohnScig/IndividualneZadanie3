@@ -281,7 +281,7 @@
             this.btn_Cancel.UseVisualStyleBackColor = true;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
-            // NewAccountView
+            // NewClientView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -313,9 +313,9 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btn_GenerateRandomPerson);
-            this.Name = "NewAccountView";
+            this.Name = "NewClientView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "frmAccount";
+            this.Text = "New Account";
             this.ResumeLayout(false);
             this.PerformLayout();
 

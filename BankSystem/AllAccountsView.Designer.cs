@@ -47,9 +47,9 @@
             this.tb_PersonalID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rb_All = new System.Windows.Forms.RadioButton();
-            this.rb_Open = new System.Windows.Forms.RadioButton();
             this.rb_Closed = new System.Windows.Forms.RadioButton();
+            this.rb_Open = new System.Windows.Forms.RadioButton();
+            this.rb_All = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AllAccounts)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -227,17 +227,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Account Status";
             // 
-            // rb_All
+            // rb_Closed
             // 
-            this.rb_All.AutoSize = true;
-            this.rb_All.Checked = true;
-            this.rb_All.Location = new System.Drawing.Point(27, 19);
-            this.rb_All.Name = "rb_All";
-            this.rb_All.Size = new System.Drawing.Size(139, 17);
-            this.rb_All.TabIndex = 0;
-            this.rb_All.TabStop = true;
-            this.rb_All.Text = "Search For All Accounts";
-            this.rb_All.UseVisualStyleBackColor = true;
+            this.rb_Closed.AutoSize = true;
+            this.rb_Closed.Location = new System.Drawing.Point(27, 65);
+            this.rb_Closed.Name = "rb_Closed";
+            this.rb_Closed.Size = new System.Drawing.Size(184, 17);
+            this.rb_Closed.TabIndex = 2;
+            this.rb_Closed.Text = "Search For Closed Accounts Only";
+            this.rb_Closed.UseVisualStyleBackColor = true;
             // 
             // rb_Open
             // 
@@ -249,15 +247,17 @@
             this.rb_Open.Text = "Search For Open Accounts Only";
             this.rb_Open.UseVisualStyleBackColor = true;
             // 
-            // rb_Closed
+            // rb_All
             // 
-            this.rb_Closed.AutoSize = true;
-            this.rb_Closed.Location = new System.Drawing.Point(27, 65);
-            this.rb_Closed.Name = "rb_Closed";
-            this.rb_Closed.Size = new System.Drawing.Size(184, 17);
-            this.rb_Closed.TabIndex = 2;
-            this.rb_Closed.Text = "Search For Closed Accounts Only";
-            this.rb_Closed.UseVisualStyleBackColor = true;
+            this.rb_All.AutoSize = true;
+            this.rb_All.Checked = true;
+            this.rb_All.Location = new System.Drawing.Point(27, 19);
+            this.rb_All.Name = "rb_All";
+            this.rb_All.Size = new System.Drawing.Size(139, 17);
+            this.rb_All.TabIndex = 0;
+            this.rb_All.TabStop = true;
+            this.rb_All.Text = "Search For All Accounts";
+            this.rb_All.UseVisualStyleBackColor = true;
             // 
             // AllAccountsView
             // 
@@ -285,7 +285,7 @@
             this.Controls.Add(this.btn_ManageAccount);
             this.Name = "AllAccountsView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmClients";
+            this.Text = "Accounts Overview";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AllAccounts)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -236,7 +236,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "NewTransactionView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "frmTransaction";
+            this.Text = "New Transaction";
             this.ResumeLayout(false);
             this.PerformLayout();
 

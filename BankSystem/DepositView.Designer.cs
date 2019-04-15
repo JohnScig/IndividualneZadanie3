@@ -80,7 +80,7 @@
             this.Controls.Add(this.ntb_Amount);
             this.Controls.Add(this.lbl_Command);
             this.Name = "DepositView";
-            this.Text = "DepositView";
+            this.Text = "Deposit Details";
             this.ResumeLayout(false);
             this.PerformLayout();
 

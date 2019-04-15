@@ -39,6 +39,7 @@ namespace BankSystem
             {
                 newForm.ShowDialog();
             }
+            LoadAllAccounts();
         }
 
         private void btn_RemoveFilters_Click(object sender, EventArgs e)

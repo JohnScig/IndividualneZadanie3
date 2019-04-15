@@ -178,7 +178,7 @@
             this.Location = new System.Drawing.Point(600, 200);
             this.Name = "MainMenuView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Bank System";
+            this.Text = "Transformer Bank System";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_managerView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

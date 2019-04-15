@@ -253,7 +253,7 @@
             this.Controls.Add(this.dgv_AllTransactions);
             this.Name = "AllTransactionsView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmTransactions";
+            this.Text = "Transactions Overview";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AllTransactions)).EndInit();
             this.gb_TransactionType.ResumeLayout(false);
             this.gb_TransactionType.PerformLayout();

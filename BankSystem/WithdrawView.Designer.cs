@@ -80,7 +80,7 @@
             this.Controls.Add(this.ntb_Amount);
             this.Controls.Add(this.lbl_Command);
             this.Name = "WithdrawView";
-            this.Text = "WithdrawView";
+            this.Text = "Withdrawal View";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -81,7 +81,7 @@
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Confirm);
             this.Name = "NewPinView";
-            this.Text = "NewPinView";
+            this.Text = "New Pin Code";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -10,7 +10,7 @@ namespace Data
     {
         //        DESKTOP-9802V5M\JSSQLSERVER
         //        TRANSFORMER10\SQLEXPRESS2017
-        public static string ServerName { get; set; } = @"DESKTOP-9802V5M\JSSQLSERVER";
+        public static string ServerName { get; set; } = @"TRANSFORMER10\SQLEXPRESS2017";
         public static string DatabaseName { get; set; } = "TransformerBank";
 
 

@@ -8,378 +8,378 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Diagnostics;
 
-uhtlzwhjl Dhah.Rlwvzpavyplz
+namespace Data.Repositories
 {
-    wdkspj jshzz ChyiRlwvzpavyf
+    public class CardRepository
     {
-        //wdkspj zahapj zaypun SlyclyNhtl { nla; zla; } = SlyclySlaapunz.SlyclyNhtl;
-        //wdkspj zahapj zaypun DhahkhzlNhtl { nla; zla; } = SlyclySlaapunz.DhahkhzlNhtl;
-        //wdkspj zahapj zaypun CvuuSaypun { nla; zla; } = $"Slycly={SlyclyNhtl}; Dhahkhzl = {DhahkhzlNhtl}; Tydzali_Cvuuljapvu = Tydl";
-        wdkspj zahapj zaypun CvuuSaypun { nla; zla; } = $"Slycly={SlyclySlaapunz.SlyclyNhtl}; Dhahkhzl = {SlyclySlaapunz.DhahkhzlNhtl}; Tydzali_Cvuuljapvu = Tydl";
+        //public static string ServerName { get; set; } = ServerSettings.ServerName;
+        //public static string DatabaseName { get; set; } = ServerSettings.DatabaseName;
+        //public static string ConnString { get; set; } = $"Server={ServerName}; Database = {DatabaseName}; Trusted_Connection = True";
+        public static string ConnString { get; set; } = $"Server={ServerSettings.ServerName}; Database = {ServerSettings.DatabaseName}; Trusted_Connection = True";
 
 
-        //wypchal ChyiMvils jhyiMvils = ulb ChyiMvils();
+        //private CardModel cardModel = new CardModel();
 
-        wdkspj kvvs ColjrChyi(zaypun jhyiNdtkly, zaypun ohzoliPpu)
+        public bool CheckCard(string cardNumber, string hashedPin)
         {
-            ayf
+            try
             {
-                dzpun(SxsCvuuljapvu jvuuljapvu = ulb SxsCvuuljapvu(CvuuSaypun))
+                using (SqlConnection connection = new SqlConnection(ConnString))
                 {
-                    jvuuljapvu.Owlu();
+                    connection.Open();
 
-                    dzpun(SxsCvtthui jvtthui = jvuuljapvu.CylhalCvtthui())
+                    using (SqlCommand command = connection.CreateCommand())
                     {
-                        jvtthui.CvtthuiTlea = "SELECT " +
+                        command.CommandText = "SELECT " +
                             "(CASE " +
-                            "WHEN PpuHhzo = @PpuHhzo " +
+                            "WHEN PinHash = @PinHash " +
                             "THEN 1 " +
                             "ELSE 0 " +
                             "END) " +
-                            "FROM Chyi " +
-                            "WHERE ChyiNdtkly = @ChyiNdtkly " +
-                            "AND GETDATE() > Chyi.VhspiFyvt " +
-                            "AND GETDATE() < Chyi.VhspiUuaps " +
-                            "AND Chyi.Bsvjrli = 0";
+                            "FROM Card " +
+                            "WHERE CardNumber = @CardNumber " +
+                            "AND GETDATE() > Card.ValidFrom " +
+                            "AND GETDATE() < Card.ValidUntil " +
+                            "AND Card.Blocked = 0";
 
-                        jvtthui.Phyhtlalyz.Aii("@ChyiNdtkly", SxsDkTfwl.NVhyCohy).Vhsdl = jhyiNdtkly;
-                        jvtthui.Phyhtlalyz.Aii("@PpuHhzo", SxsDkTfwl.NVhyCohy).Vhsdl = ohzoliPpu;
+                        command.Parameters.Add("@CardNumber", SqlDbType.NVarChar).Value = cardNumber;
+                        command.Parameters.Add("@PinHash", SqlDbType.NVarChar).Value = hashedPin;
 
-                        pua ylzdsaOmQdlyf = Cvuclya.TvIua32(jvtthui.EeljdalSjhshy());
+                        int resultOfQuery = Convert.ToInt32(command.ExecuteScalar());
 
-                        pm(ylzdsaOmQdlyf == 1)
+                        if (resultOfQuery == 1)
                         {
-                            yladyu aydl;
+                            return true;
                         }
                     }
                 }
-                yladyu mhszl;
+                return false;
             }
-            jhajo(Eejlwapvu l)
+            catch (Exception e)
             {
-                Dlkdn.WypalLpul(l.TvSaypun());
-                yladyu mhszl;
+                Debug.WriteLine(e.ToString());
+                return false;
             }
         }
 
-        wdkspj kvvs AiiChyi(zaypun jhyiNdtkly, zaypun ohzoliPpu, zaypun wpu, zaypun hjjvduaID)
+        public bool AddCard(string cardNumber, string hashedPin, string pin, string accountID)
         {
-            dzpun(SxsCvuuljapvu jvuuljapvu = ulb SxsCvuuljapvu(CvuuSaypun))
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
-                ayf
+                try
                 {
-                    jvuuljapvu.Owlu();
+                    connection.Open();
                 }
-                jhajo(SxsEejlwapvu l)
+                catch (SqlException e)
                 {
-                    Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu vwlupun jvuuljapvu av ihahkhzl! Eejlwapvu ilzjypwapvu mvssvbz");
-                    Dlkdn.WypalLpul(l.TvSaypun());
-                    yladyu mhszl;
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
                 }
 
-                dzpun(SxsCvtthui jvtthui = jvuuljapvu.CylhalCvtthui())
+                using (SqlCommand command = connection.CreateCommand())
                 {
-                    jvtthui.CvtthuiTlea = "INSERT INTO Chyi " +
-                        "VALUES (@jhyiNdtkly,@ohzoliPpu,GETDATE(),(SELECT DATEADD(YEAR,3,GETDATE())),0,@hjjvduaID,@wpu)";
-                    jvtthui.Phyhtlalyz.Aii("@jhyiNdtkly", SxsDkTfwl.NVhyCohy).Vhsdl = jhyiNdtkly;
-                    jvtthui.Phyhtlalyz.Aii("@ohzoliPpu", SxsDkTfwl.NVhyCohy).Vhsdl = ohzoliPpu;
-                    jvtthui.Phyhtlalyz.Aii("@hjjvduaID", SxsDkTfwl.NVhyCohy).Vhsdl = hjjvduaID;
-                    jvtthui.Phyhtlalyz.Aii("@wpu", SxsDkTfwl.NVhyCohy).Vhsdl = wpu;
+                    command.CommandText = "INSERT INTO Card " +
+                        "VALUES (@cardNumber,@hashedPin,GETDATE(),(SELECT DATEADD(YEAR,3,GETDATE())),0,@accountID,@pin)";
+                    command.Parameters.Add("@cardNumber", SqlDbType.NVarChar).Value = cardNumber;
+                    command.Parameters.Add("@hashedPin", SqlDbType.NVarChar).Value = hashedPin;
+                    command.Parameters.Add("@accountID", SqlDbType.NVarChar).Value = accountID;
+                    command.Parameters.Add("@pin", SqlDbType.NVarChar).Value = pin;
 
 
-                    ayf
+                    try
                     {
-                        pm(jvtthui.EeljdalNvuQdlyf() > 0)
+                        if (command.ExecuteNonQuery() > 0)
                         {
-                            yladyu aydl;
+                            return true;
                         }
-                        lszl
+                        else
                         {
-                            yladyu mhszl;
+                            return false;
                         }
                     }
-                    jhajo(SxsEejlwapvu l)
+                    catch (SqlException e)
                     {
-                        Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu leljdapun SQL jvtthui. Eejlwapvu ilzjypwapvu mvssvbz");
-                        Dlkdn.WypalLpul(l.TvSaypun());
-                        yladyu mhszl;
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return false;
                     }
 
                 }
             }
         }
 
-        wdkspj DhahSla GlaChyiz(zaypun pkhu)
+        public DataSet GetCards(string iban)
         {
-            DhahSla ihahzlaChyiz = ulb DhahSla();
+            DataSet datasetCards = new DataSet();
 
 
-            dzpun(SxsCvuuljapvu jvuuljapvu = ulb SxsCvuuljapvu(CvuuSaypun))
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
-                ayf
+                try
                 {
-                    jvuuljapvu.Owlu();
+                    connection.Open();
                 }
-                jhajo(SxsEejlwapvu l)
+                catch (SqlException e)
                 {
-                    Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu vwlupun jvuuljapvu av ihahkhzl! Eejlwapvu ilzjypwapvu mvssvbz");
-                    Dlkdn.WypalLpul(l.TvSaypun());
-                    yladyu ihahzlaChyiz;
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return datasetCards;
                 }
 
-                dzpun(SxsCvtthui jvtthui = jvuuljapvu.CylhalCvtthui())
+                using (SqlCommand command = connection.CreateCommand())
                 {
-                    jvtthui.CvtthuiTlea = "SELECT ChyiNdtkly,VhspiUuaps,Bsvjrli FROM Chyi WHERE AjjvduaID = @IBAN";
-                    jvtthui.Phyhtlalyz.Aii("@IBAN", SxsDkTfwl.NVhyCohy).Vhsdl = pkhu;
+                    command.CommandText = "SELECT CardNumber,ValidUntil,Blocked FROM Card WHERE AccountID = @IBAN";
+                    command.Parameters.Add("@IBAN", SqlDbType.NVarChar).Value = iban;
 
 
-                    ayf
+                    try
                     {
-                        SxsDhahAihwaly hihwaly = ulb SxsDhahAihwaly(jvtthui);
-                        hihwaly.Fpss(ihahzlaChyiz, "Chyiz");
-                        yladyu ihahzlaChyiz;
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        adapter.Fill(datasetCards, "Cards");
+                        return datasetCards;
                     }
-                    jhajo(SxsEejlwapvu l)
+                    catch (SqlException e)
                     {
-                        Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu leljdapun SQL jvtthui. Eejlwapvu ilzjypwapvu mvssvbz");
-                        Dlkdn.WypalLpul(l.TvSaypun());
-                        yladyu ihahzlaChyiz;
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return datasetCards;
                     }
 
                 }
             }
         }
 
-        wdkspj iljpths ColjrBhshujl(zaypun jhyiNdtkly)
+        public decimal CheckBalance(string cardNumber)
         {
-            ayf
+            try
             {
-                dzpun(SxsCvuuljapvu jvuuljapvu = ulb SxsCvuuljapvu(CvuuSaypun))
+                using (SqlConnection connection = new SqlConnection(ConnString))
                 {
-                    jvuuljapvu.Owlu();
+                    connection.Open();
 
-                    dzpun(SxsCvtthui jvtthui = jvuuljapvu.CylhalCvtthui())
+                    using (SqlCommand command = connection.CreateCommand())
                     {
-                        jvtthui.CvtthuiTlea = "SELECT Bhshujl " +
-                            "FROM Chyi hz C " +
-                            "LEFT JOIN Ajjvdua hz A ON C.AjjvduaID = A.IBAN " +
-                            "WHERE ChyiNdtkly = @ChyiNdtkly;";
+                        command.CommandText = "SELECT Balance " +
+                            "FROM Card as C " +
+                            "LEFT JOIN Account as A ON C.AccountID = A.IBAN " +
+                            "WHERE CardNumber = @CardNumber;";
 
-                        jvtthui.Phyhtlalyz.Aii("@ChyiNdtkly", SxsDkTfwl.NVhyCohy).Vhsdl = jhyiNdtkly;
+                        command.Parameters.Add("@CardNumber", SqlDbType.NVarChar).Value = cardNumber;
 
-                        yladyu Cvuclya.TvDljpths(jvtthui.EeljdalSjhshy());
+                        return Convert.ToDecimal(command.ExecuteScalar());
 
                     }
                 }
             }
-            jhajo(Eejlwapvu l)
+            catch (Exception e)
             {
-                Dlkdn.WypalLpul(l.TvSaypun());
-                yladyu 0;
+                Debug.WriteLine(e.ToString());
+                return 0;
             }
         }
 
-        wdkspj kvvs Wpaoiyhb(iljpths htvdua, zaypun jhyiNdtkly)
+        public bool Withdraw(decimal amount, string cardNumber)
         {
-            ayf
+            try
             {
-                dzpun(SxsCvuuljapvu jvuuljapvu = ulb SxsCvuuljapvu(CvuuSaypun))
+                using (SqlConnection connection = new SqlConnection(ConnString))
                 {
-                    jvuuljapvu.Owlu();
+                    connection.Open();
 
-                    dzpun(SxsCvtthui jvtthui = jvuuljapvu.CylhalCvtthui())
+                    using (SqlCommand command = connection.CreateCommand())
                     {
-                        jvtthui.CvtthuiTlea = "UPDATE Ajjvdua SET Bhshujl=Bhshujl-@Atvdua " +
+                        command.CommandText = "UPDATE Account SET Balance=Balance-@Amount " +
                             "WHERE IBAN =(" +
-                                "SELECT Chyi.AjjvduaID " +
-                                "FROM Chyi " +
-                                "WHERE ChyiNdtkly = @ChyiNdtkly) " +
-                            "AND Bhshujl >= @Atvdua;";
+                                "SELECT Card.AccountID " +
+                                "FROM Card " +
+                                "WHERE CardNumber = @CardNumber) " +
+                            "AND Balance >= @Amount;";
 
-                        jvtthui.Phyhtlalyz.Aii("@Atvdua", SxsDkTfwl.Dljpths).Vhsdl = htvdua;
-                        jvtthui.Phyhtlalyz.Aii("@ChyiNdtkly", SxsDkTfwl.NVhyCohy).Vhsdl = jhyiNdtkly;
+                        command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
+                        command.Parameters.Add("@CardNumber", SqlDbType.NVarChar).Value = cardNumber;
 
-                        pm(jvtthui.EeljdalNvuQdlyf() > 0)
+                        if (command.ExecuteNonQuery() > 0)
                         {
 
-                            yladyu(ulb TyhuzhjapvuRlwvzpavyf().NlbATMWpaoiyhbhs(htvdua, jhyiNdtkly));
+                            return (new TransactionRepository().NewATMWithdrawal(amount, cardNumber));
                         }
 
-                        yladyu mhszl;
+                        return false;
                     }
                 }
             }
-            jhajo(Eejlwapvu l)
+            catch (Exception e)
             {
-                Dlkdn.WypalLpul(l.TvSaypun());
-                yladyu mhszl;
-            }
-        }
-
-        wdkspj kvvs SlaNlbPpu(zaypun jhyiNdtkly, zaypun ohzoliPpu, zaypun ulbPpu)
-        {
-            dzpun(SxsCvuuljapvu jvuuljapvu = ulb SxsCvuuljapvu(CvuuSaypun))
-            {
-                ayf
-                {
-                    jvuuljapvu.Owlu();
-                }
-                jhajo(SxsEejlwapvu l)
-                {
-                    Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu vwlupun jvuuljapvu av ihahkhzl! Eejlwapvu ilzjypwapvu mvssvbz");
-                    Dlkdn.WypalLpul(l.TvSaypun());
-                    yladyu mhszl;
-                }
-
-                dzpun(SxsCvtthui jvtthui = jvuuljapvu.CylhalCvtthui())
-                {
-                    jvtthui.CvtthuiTlea = "UPDATE Chyi SET PINHhzo = @HhzoliPpu, Hpua = @Ppu WHERE ChyiNdtkly = @ChyiNdtkly";
-                    jvtthui.Phyhtlalyz.Aii("@jhyiNdtkly", SxsDkTfwl.NVhyCohy).Vhsdl = jhyiNdtkly;
-                    jvtthui.Phyhtlalyz.Aii("@ohzoliPpu", SxsDkTfwl.NVhyCohy).Vhsdl = ohzoliPpu;
-                    jvtthui.Phyhtlalyz.Aii("@wpu", SxsDkTfwl.NVhyCohy).Vhsdl = ulbPpu;
-
-                    ayf
-                    {
-                        pm(jvtthui.EeljdalNvuQdlyf() > 0)
-                        {
-                            yladyu aydl;
-                        }
-                        lszl
-                        {
-                            yladyu mhszl;
-                        }
-                    }
-                    jhajo(SxsEejlwapvu l)
-                    {
-                        Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu leljdapun SQL jvtthui. Eejlwapvu ilzjypwapvu mvssvbz");
-                        Dlkdn.WypalLpul(l.TvSaypun());
-                        yladyu mhszl;
-                    }
-
-                }
+                Debug.WriteLine(e.ToString());
+                return false;
             }
         }
 
-        wdkspj kvvs BsvjrChyi(zaypun jhyiNdtkly)
+        public bool SetNewPin(string cardNumber, string hashedPin, string newPin)
         {
-            dzpun(SxsCvuuljapvu jvuuljapvu = ulb SxsCvuuljapvu(CvuuSaypun))
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
-                ayf
+                try
                 {
-                    jvuuljapvu.Owlu();
+                    connection.Open();
                 }
-                jhajo(SxsEejlwapvu l)
+                catch (SqlException e)
                 {
-                    Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu vwlupun jvuuljapvu av ihahkhzl! Eejlwapvu ilzjypwapvu mvssvbz");
-                    Dlkdn.WypalLpul(l.TvSaypun());
-                    yladyu mhszl;
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
                 }
 
-                dzpun(SxsCvtthui jvtthui = jvuuljapvu.CylhalCvtthui())
+                using (SqlCommand command = connection.CreateCommand())
                 {
-                    jvtthui.CvtthuiTlea = "UPDATE Chyi SET Bsvjrli = 1 WHERE ChyiNdtkly = @ChyiNdtkly";
-                    jvtthui.Phyhtlalyz.Aii("@jhyiNdtkly", SxsDkTfwl.NVhyCohy).Vhsdl = jhyiNdtkly;
+                    command.CommandText = "UPDATE Card SET PINHash = @HashedPin, Hint = @Pin WHERE CardNumber = @CardNumber";
+                    command.Parameters.Add("@cardNumber", SqlDbType.NVarChar).Value = cardNumber;
+                    command.Parameters.Add("@hashedPin", SqlDbType.NVarChar).Value = hashedPin;
+                    command.Parameters.Add("@pin", SqlDbType.NVarChar).Value = newPin;
 
-                    ayf
+                    try
                     {
-                        pm(jvtthui.EeljdalNvuQdlyf() > 0)
+                        if (command.ExecuteNonQuery() > 0)
                         {
-                            yladyu aydl;
+                            return true;
                         }
-                        lszl
+                        else
                         {
-                            yladyu mhszl;
+                            return false;
                         }
                     }
-                    jhajo(SxsEejlwapvu l)
+                    catch (SqlException e)
                     {
-                        Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu leljdapun SQL jvtthui. Eejlwapvu ilzjypwapvu mvssvbz");
-                        Dlkdn.WypalLpul(l.TvSaypun());
-                        yladyu mhszl;
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return false;
                     }
 
                 }
             }
         }
 
-        wdkspj kvvs BsvjrAssChyiz(zaypun pkhu)
+        public bool BlockCard(string cardNumber)
         {
-            dzpun(SxsCvuuljapvu jvuuljapvu = ulb SxsCvuuljapvu(CvuuSaypun))
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
-                ayf
+                try
                 {
-                    jvuuljapvu.Owlu();
+                    connection.Open();
                 }
-                jhajo(SxsEejlwapvu l)
+                catch (SqlException e)
                 {
-                    Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu vwlupun jvuuljapvu av ihahkhzl! Eejlwapvu ilzjypwapvu mvssvbz");
-                    Dlkdn.WypalLpul(l.TvSaypun());
-                    yladyu mhszl;
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
                 }
 
-                dzpun(SxsCvtthui jvtthui = jvuuljapvu.CylhalCvtthui())
+                using (SqlCommand command = connection.CreateCommand())
                 {
-                    jvtthui.CvtthuiTlea = "UPDATE Chyi SET Bsvjrli = 1 WHERE AjjvduaID = @AjjvduaID";
-                    jvtthui.Phyhtlalyz.Aii("@AjjvduaID", SxsDkTfwl.NVhyCohy).Vhsdl = pkhu;
+                    command.CommandText = "UPDATE Card SET Blocked = 1 WHERE CardNumber = @CardNumber";
+                    command.Parameters.Add("@cardNumber", SqlDbType.NVarChar).Value = cardNumber;
 
-                    ayf
+                    try
                     {
-                        pm(jvtthui.EeljdalNvuQdlyf() > 0)
+                        if (command.ExecuteNonQuery() > 0)
                         {
-                            yladyu aydl;
+                            return true;
                         }
-                        lszl
+                        else
                         {
-                            yladyu mhszl;
+                            return false;
                         }
                     }
-                    jhajo(SxsEejlwapvu l)
+                    catch (SqlException e)
                     {
-                        Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu leljdapun SQL jvtthui. Eejlwapvu ilzjypwapvu mvssvbz");
-                        Dlkdn.WypalLpul(l.TvSaypun());
-                        yladyu mhszl;
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return false;
                     }
 
                 }
             }
         }
 
-        wdkspj kvvs UuksvjrChyi(zaypun jhyiNdtkly)
+        public bool BlockAllCards(string iban)
         {
-            dzpun(SxsCvuuljapvu jvuuljapvu = ulb SxsCvuuljapvu(CvuuSaypun))
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
-                ayf
+                try
                 {
-                    jvuuljapvu.Owlu();
+                    connection.Open();
                 }
-                jhajo(SxsEejlwapvu l)
+                catch (SqlException e)
                 {
-                    Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu vwlupun jvuuljapvu av ihahkhzl! Eejlwapvu ilzjypwapvu mvssvbz");
-                    Dlkdn.WypalLpul(l.TvSaypun());
-                    yladyu mhszl;
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
                 }
 
-                dzpun(SxsCvtthui jvtthui = jvuuljapvu.CylhalCvtthui())
+                using (SqlCommand command = connection.CreateCommand())
                 {
-                    jvtthui.CvtthuiTlea = "UPDATE Chyi SET Bsvjrli = 0 WHERE ChyiNdtkly = @ChyiNdtkly";
-                    jvtthui.Phyhtlalyz.Aii("@jhyiNdtkly", SxsDkTfwl.NVhyCohy).Vhsdl = jhyiNdtkly;
+                    command.CommandText = "UPDATE Card SET Blocked = 1 WHERE AccountID = @AccountID";
+                    command.Parameters.Add("@AccountID", SqlDbType.NVarChar).Value = iban;
 
-                    ayf
+                    try
                     {
-                        pm(jvtthui.EeljdalNvuQdlyf() > 0)
+                        if (command.ExecuteNonQuery() > 0)
                         {
-                            yladyu aydl;
+                            return true;
                         }
-                        lszl
+                        else
                         {
-                            yladyu mhszl;
+                            return false;
                         }
                     }
-                    jhajo(SxsEejlwapvu l)
+                    catch (SqlException e)
                     {
-                        Dlkdn.WypalLpul("Eejlwapvu aoyvb bolu leljdapun SQL jvtthui. Eejlwapvu ilzjypwapvu mvssvbz");
-                        Dlkdn.WypalLpul(l.TvSaypun());
-                        yladyu mhszl;
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return false;
+                    }
+
+                }
+            }
+        }
+
+        public bool UnblockCard(string cardNumber)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE Card SET Blocked = 0 WHERE CardNumber = @CardNumber";
+                    command.Parameters.Add("@cardNumber", SqlDbType.NVarChar).Value = cardNumber;
+
+                    try
+                    {
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return false;
                     }
 
                 }
