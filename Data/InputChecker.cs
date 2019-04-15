@@ -9,7 +9,6 @@ namespace Data
 {
     public static class InputChecker
     {
-
         public static DateTime ConvertToDate(string stringDate)
         {
             char[] separators = {'.',':','/',' '};
@@ -40,14 +39,19 @@ namespace Data
 
         public static string CheckName(string name)
         {
-            if (name.Contains("0123456789.,/;'][{}_:"))
+
+            string unwanted = "0123456789.,/;'][{}_:";
+
+            foreach (char character in unwanted)
             {
-                return String.Empty;
+                if (name.Contains(character))
+                {
+                    return String.Empty;
+                }
             }
-            else
-            {
-                return name;
-            } 
+            return name;
+
+            
         }
 
         public static string CheckEmail(string email)

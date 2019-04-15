@@ -146,7 +146,7 @@ namespace BankSystem
 
         private void tb_LastName_Leave(object sender, EventArgs e)
         {
-            tb_LastName.Text = InputChecker.CheckName(tb_FirstName.Text);
+            tb_LastName.Text = InputChecker.CheckName(tb_LastName.Text);
         }
 
         private void tb_Email_Leave(object sender, EventArgs e)

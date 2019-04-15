@@ -27,6 +27,7 @@ namespace TransformerBank
                 new MainMenuView(ntb_CardNumber.Text).ShowDialog();
                 ntb_CardNumber.Text = String.Empty;
                 ntb_Pin.Text = String.Empty;
+                btn_InserCard.Enabled = true;
             }
             else
             {

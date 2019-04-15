@@ -14,6 +14,7 @@ namespace TransformerBank
     {
         TextBox textBox;
 
+
         public InsertCardView(TextBox textBox)
         {
             InitializeComponent();
