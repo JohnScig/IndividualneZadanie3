@@ -338,22 +338,36 @@ namespace Data.Repositories
 
                     using (SqlCommand command = connection.CreateCommand())
                     {
-                        command.CommandText = "UPDATE Account SET Balance=Balance-@Amount " +
+                        command.CommandText =
+                            "UPDATE Account SET Balance=Balance-@Amount " +
                             "WHERE IBAN =(" +
                                 "SELECT Card.AccountID " +
                                 "FROM Card " +
                                 "WHERE CardNumber = @CardNumber) " +
-                            "AND Balance >= @Amount;";
+                            "AND Balance+DebtLimit >= @Amount; "; // +
+
+                            //"UPDATE Account SET Balance=Balance+@Amount " +
+                            //"WHERE IBAN = @MasterAccount;";
 
                         command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
                         command.Parameters.Add("@CardNumber", SqlDbType.NVarChar).Value = cardNumber;
+                        //command.Parameters.Add("@MasterAccount", SqlDbType.NVarChar).Value = ServerSettings.MasterAccount;
 
                         if (command.ExecuteNonQuery() > 0)
                         {
+                            using (SqlCommand command2 = connection.CreateCommand())
+                            {
+                                command2.CommandText = "UPDATE Account SET Balance=Balance+@Amount " +
+                                "WHERE IBAN = @MasterAccount;";
 
-                            return (new TransactionRepository().NewATMWithdrawal(amount, cardNumber));
+                                command2.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
+                                command.Parameters.Add("@MasterAccount", SqlDbType.NVarChar).Value = ServerSettings.MasterAccount;
+                                if (command.ExecuteNonQuery()>0)
+                                {
+                                    return (new TransactionRepository().NewATMWithdrawal(amount, cardNumber));
+                                }
+                            }
                         }
-
                         return false;
                     }
                 }

@@ -460,14 +460,26 @@ namespace Data.Repositories
                     {
                         command.CommandText = "UPDATE Account SET Balance=Balance-@Amount " +
                             "WHERE IBAN = @AccountID " +
-                            "AND Balance >= @Amount;";
+                            "AND Balance+DebtLimit >= @Amount; ";
+
 
                         command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
                         command.Parameters.Add("@AccountID", SqlDbType.NVarChar).Value = accountID;
 
                         if (command.ExecuteNonQuery() > 0)
                         {
-                            return (new TransactionRepository().NewBankWithdrawal(amount, accountID));
+                            using (SqlCommand command2 = connection.CreateCommand())
+                            {
+                                command2.CommandText = "UPDATE Account SET Balance=Balance+@Amount " +
+                                                       "WHERE IBAN = @MasterAccount;";
+                                command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
+                                command.Parameters.Add("@MasterAccount", SqlDbType.NVarChar).Value = ServerSettings.MasterAccount;
+
+                                if (command2.ExecuteNonQuery() > 0)
+                                {
+                                    return (new TransactionRepository().NewBankWithdrawal(amount, accountID));
+                                }
+                            }
                         }
 
                         return false;
@@ -505,10 +517,13 @@ namespace Data.Repositories
                     using (SqlCommand command = connection.CreateCommand())
                     {
                         command.CommandText = "UPDATE Account SET Balance=Balance+@Amount " +
-                            "WHERE IBAN = @AccountID;";
+                            "WHERE IBAN = @AccountID; " +
+                            "UPDATE Account SET Balance=Balance-@Amount " +
+                            "WHERE IBAN = @MasterAccount;";
 
                         command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
                         command.Parameters.Add("@AccountID", SqlDbType.NVarChar).Value = accountID;
+                        command.Parameters.Add("@MasterAccount", SqlDbType.NVarChar).Value = ServerSettings.MasterAccount;
 
                         if (command.ExecuteNonQuery() > 0)
                         {

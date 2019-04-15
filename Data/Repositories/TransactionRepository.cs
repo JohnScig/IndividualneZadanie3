@@ -242,9 +242,9 @@ namespace Data.Repositories
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     command.CommandText = "INSERT INTO Transactions (FromAccount, ToAccount, Amount, Timestamp) " +
-                                                    "VALUES ((SELECT Card.AccountID FROM Card WHERE CardNumber = @CardNumber), @ToAccount, @Amount, @Timestamp)";
+                                                    "VALUES ((SELECT Card.AccountID FROM Card WHERE CardNumber = @CardNumber), @MasterAccount, @Amount, @Timestamp)";
                     command.Parameters.Add("@CardNumber", SqlDbType.NVarChar).Value = cardNumber;
-                    command.Parameters.Add("@ToAccount", SqlDbType.NVarChar).Value = "SK9999999999999999999999";
+                    command.Parameters.Add("@MasterAccount", SqlDbType.NVarChar).Value = ServerSettings.MasterAccount;
                     command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
                     command.Parameters.Add("@Timestamp", SqlDbType.DateTime2).Value = DateTime.Now;
 
@@ -285,9 +285,9 @@ namespace Data.Repositories
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     command.CommandText = "INSERT INTO Transactions (FromAccount, ToAccount, Amount, Timestamp) " +
-                                                    "VALUES (@FromAccount, @ToAccount, @Amount, @Timestamp)";
+                                                    "VALUES (@FromAccount, @MasterAccount, @Amount, @Timestamp)";
                     command.Parameters.Add("@FromAccount", SqlDbType.NVarChar).Value = accountID;
-                    command.Parameters.Add("@ToAccount", SqlDbType.NVarChar).Value = "SK9999999999999999999999";
+                    command.Parameters.Add("@MasterAccount", SqlDbType.NVarChar).Value = ServerSettings.MasterAccount;
                     command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
                     command.Parameters.Add("@Timestamp", SqlDbType.DateTime2).Value = DateTime.Now;
 
@@ -328,8 +328,8 @@ namespace Data.Repositories
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     command.CommandText = "INSERT INTO Transactions (FromAccount, ToAccount, Amount, Timestamp) " +
-                                                    "VALUES (@FromAccount, @ToAccount, @Amount, @Timestamp)";
-                    command.Parameters.Add("@FromAccount", SqlDbType.NVarChar).Value = "SK9999999999999999999999";
+                                                    "VALUES (@MasterAccount, @ToAccount, @Amount, @Timestamp)";
+                    command.Parameters.Add("@MasterAccount", SqlDbType.NVarChar).Value = ServerSettings.MasterAccount;
                     command.Parameters.Add("@ToAccount", SqlDbType.NVarChar).Value = accountID;
                     command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
                     command.Parameters.Add("@Timestamp", SqlDbType.DateTime2).Value = DateTime.Now;

@@ -12,7 +12,7 @@ namespace Data
         //        TRANSFORMER10\SQLEXPRESS2017
         public static string ServerName { get; set; } = @"TRANSFORMER10\SQLEXPRESS2017";
         public static string DatabaseName { get; set; } = "TransformerBank";
-
+        public static string MasterAccount { get; set; } = "SK9999999999999999999999";
 
     }
 }
