@@ -72,7 +72,7 @@ namespace GeneratorTester
             {
                 LastName = parsedPerson[0],
                 FirstName = parsedPerson[1],
-                DateOfBirth = DateConverter.ConvertToDate(parsedPerson[2]),
+                DateOfBirth = InputChecker.ConvertToDate(parsedPerson[2]),
                 PersonalID = parsedPerson[3].Replace(" ", String.Empty),
                 PhoneNumber = parsedPerson[4].Replace(" ", String.Empty),
                 Email = parsedPerson[5],

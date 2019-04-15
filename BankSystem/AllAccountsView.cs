@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -78,11 +79,13 @@ namespace BankSystem
 
         private void tb_FirstName_Leave(object sender, EventArgs e)
         {
+            tb_FirstName.Text = InputChecker.CheckName(tb_FirstName.Text);
             btn_Filter_Click(this, null);
         }
 
         private void tb_LastName_Leave(object sender, EventArgs e)
         {
+            tb_LastName.Text = InputChecker.CheckName(tb_LastName.Text);
             btn_Filter_Click(this, null);
         }
 

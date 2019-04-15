@@ -138,6 +138,7 @@
             // tb_Iban
             // 
             this.tb_Iban.Location = new System.Drawing.Point(901, 243);
+            this.tb_Iban.MaxLength = 34;
             this.tb_Iban.Name = "tb_Iban";
             this.tb_Iban.Size = new System.Drawing.Size(246, 20);
             this.tb_Iban.TabIndex = 5;
@@ -208,6 +209,7 @@
             // tb_PersonalID
             // 
             this.tb_PersonalID.Location = new System.Drawing.Point(924, 175);
+            this.tb_PersonalID.MaxLength = 8;
             this.tb_PersonalID.Name = "tb_PersonalID";
             this.tb_PersonalID.Size = new System.Drawing.Size(225, 20);
             this.tb_PersonalID.TabIndex = 4;

@@ -35,7 +35,6 @@
             this.btn_Withdraw = new System.Windows.Forms.Button();
             this.btn_Deposit = new System.Windows.Forms.Button();
             this.btn_AddCard = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_BlockCard = new System.Windows.Forms.Button();
             this.btn_UnblockCard = new System.Windows.Forms.Button();
             this.dgv_AccountsInfo = new System.Windows.Forms.DataGridView();
@@ -52,16 +51,16 @@
             this.lbl_DateOfBirth = new System.Windows.Forms.Label();
             this.btn_OpenNewAccount = new System.Windows.Forms.Button();
             this.btn_Close = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.btn_AdjustDebit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AccountsInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_CardsInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_UpdateClientInfo
             // 
-            this.btn_UpdateClientInfo.Location = new System.Drawing.Point(12, 201);
+            this.btn_UpdateClientInfo.Location = new System.Drawing.Point(179, 439);
             this.btn_UpdateClientInfo.Name = "btn_UpdateClientInfo";
-            this.btn_UpdateClientInfo.Size = new System.Drawing.Size(112, 23);
+            this.btn_UpdateClientInfo.Size = new System.Drawing.Size(115, 25);
             this.btn_UpdateClientInfo.TabIndex = 1;
             this.btn_UpdateClientInfo.Text = "Update Client Info";
             this.btn_UpdateClientInfo.UseVisualStyleBackColor = true;
@@ -69,39 +68,39 @@
             // 
             // btn_NewTransaction
             // 
-            this.btn_NewTransaction.Location = new System.Drawing.Point(12, 298);
+            this.btn_NewTransaction.Location = new System.Drawing.Point(300, 439);
             this.btn_NewTransaction.Name = "btn_NewTransaction";
-            this.btn_NewTransaction.Size = new System.Drawing.Size(112, 23);
-            this.btn_NewTransaction.TabIndex = 4;
+            this.btn_NewTransaction.Size = new System.Drawing.Size(115, 25);
+            this.btn_NewTransaction.TabIndex = 3;
             this.btn_NewTransaction.Text = "New Transaction";
             this.btn_NewTransaction.UseVisualStyleBackColor = true;
             this.btn_NewTransaction.Click += new System.EventHandler(this.btn_NewTransaction_Click);
             // 
             // btn_CloseAccount
             // 
-            this.btn_CloseAccount.Location = new System.Drawing.Point(12, 259);
+            this.btn_CloseAccount.Location = new System.Drawing.Point(542, 470);
             this.btn_CloseAccount.Name = "btn_CloseAccount";
-            this.btn_CloseAccount.Size = new System.Drawing.Size(112, 23);
-            this.btn_CloseAccount.TabIndex = 3;
+            this.btn_CloseAccount.Size = new System.Drawing.Size(115, 25);
+            this.btn_CloseAccount.TabIndex = 8;
             this.btn_CloseAccount.Text = "Close Account";
             this.btn_CloseAccount.UseVisualStyleBackColor = true;
             this.btn_CloseAccount.Click += new System.EventHandler(this.btn_CloseAccount_Click);
             // 
             // btn_AllTransactions
             // 
-            this.btn_AllTransactions.Location = new System.Drawing.Point(12, 385);
+            this.btn_AllTransactions.Location = new System.Drawing.Point(300, 470);
             this.btn_AllTransactions.Name = "btn_AllTransactions";
-            this.btn_AllTransactions.Size = new System.Drawing.Size(112, 23);
-            this.btn_AllTransactions.TabIndex = 7;
+            this.btn_AllTransactions.Size = new System.Drawing.Size(115, 25);
+            this.btn_AllTransactions.TabIndex = 4;
             this.btn_AllTransactions.Text = "All transactions";
             this.btn_AllTransactions.UseVisualStyleBackColor = true;
             this.btn_AllTransactions.Click += new System.EventHandler(this.btn_AllTransactions_Click);
             // 
             // btn_Withdraw
             // 
-            this.btn_Withdraw.Location = new System.Drawing.Point(12, 356);
+            this.btn_Withdraw.Location = new System.Drawing.Point(421, 470);
             this.btn_Withdraw.Name = "btn_Withdraw";
-            this.btn_Withdraw.Size = new System.Drawing.Size(112, 23);
+            this.btn_Withdraw.Size = new System.Drawing.Size(115, 25);
             this.btn_Withdraw.TabIndex = 6;
             this.btn_Withdraw.Text = "Withdraw";
             this.btn_Withdraw.UseVisualStyleBackColor = true;
@@ -109,9 +108,9 @@
             // 
             // btn_Deposit
             // 
-            this.btn_Deposit.Location = new System.Drawing.Point(12, 327);
+            this.btn_Deposit.Location = new System.Drawing.Point(421, 439);
             this.btn_Deposit.Name = "btn_Deposit";
-            this.btn_Deposit.Size = new System.Drawing.Size(112, 23);
+            this.btn_Deposit.Size = new System.Drawing.Size(115, 25);
             this.btn_Deposit.TabIndex = 5;
             this.btn_Deposit.Text = "Deposit";
             this.btn_Deposit.UseVisualStyleBackColor = true;
@@ -119,27 +118,19 @@
             // 
             // btn_AddCard
             // 
-            this.btn_AddCard.Location = new System.Drawing.Point(746, 393);
+            this.btn_AddCard.Location = new System.Drawing.Point(722, 439);
             this.btn_AddCard.Name = "btn_AddCard";
-            this.btn_AddCard.Size = new System.Drawing.Size(141, 25);
+            this.btn_AddCard.Size = new System.Drawing.Size(115, 25);
             this.btn_AddCard.TabIndex = 10;
             this.btn_AddCard.Text = "Add New Card";
             this.btn_AddCard.UseVisualStyleBackColor = true;
             this.btn_AddCard.Click += new System.EventHandler(this.btn_AddCard_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(162, 201);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(564, 280);
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
-            // 
             // btn_BlockCard
             // 
-            this.btn_BlockCard.Location = new System.Drawing.Point(746, 424);
+            this.btn_BlockCard.Location = new System.Drawing.Point(843, 439);
             this.btn_BlockCard.Name = "btn_BlockCard";
-            this.btn_BlockCard.Size = new System.Drawing.Size(141, 25);
+            this.btn_BlockCard.Size = new System.Drawing.Size(115, 25);
             this.btn_BlockCard.TabIndex = 12;
             this.btn_BlockCard.Text = "Block Card";
             this.btn_BlockCard.UseVisualStyleBackColor = true;
@@ -147,9 +138,9 @@
             // 
             // btn_UnblockCard
             // 
-            this.btn_UnblockCard.Location = new System.Drawing.Point(893, 424);
+            this.btn_UnblockCard.Location = new System.Drawing.Point(843, 470);
             this.btn_UnblockCard.Name = "btn_UnblockCard";
-            this.btn_UnblockCard.Size = new System.Drawing.Size(137, 25);
+            this.btn_UnblockCard.Size = new System.Drawing.Size(115, 25);
             this.btn_UnblockCard.TabIndex = 13;
             this.btn_UnblockCard.Text = "Unblock Card";
             this.btn_UnblockCard.UseVisualStyleBackColor = true;
@@ -169,13 +160,13 @@
             this.Column_Balance,
             this.Column_Debit,
             this.Colum_Open});
-            this.dgv_AccountsInfo.Location = new System.Drawing.Point(12, 50);
+            this.dgv_AccountsInfo.Location = new System.Drawing.Point(16, 35);
             this.dgv_AccountsInfo.MultiSelect = false;
             this.dgv_AccountsInfo.Name = "dgv_AccountsInfo";
             this.dgv_AccountsInfo.ReadOnly = true;
             this.dgv_AccountsInfo.RowHeadersVisible = false;
             this.dgv_AccountsInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_AccountsInfo.Size = new System.Drawing.Size(714, 132);
+            this.dgv_AccountsInfo.Size = new System.Drawing.Size(641, 398);
             this.dgv_AccountsInfo.TabIndex = 0;
             this.dgv_AccountsInfo.SelectionChanged += new System.EventHandler(this.dgv_AccountsInfo_SelectionChanged);
             // 
@@ -214,20 +205,20 @@
             this.dgv_CardsInfo.AllowUserToResizeRows = false;
             this.dgv_CardsInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_CardsInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_CardsInfo.Location = new System.Drawing.Point(746, 9);
+            this.dgv_CardsInfo.Location = new System.Drawing.Point(674, 35);
             this.dgv_CardsInfo.MultiSelect = false;
             this.dgv_CardsInfo.Name = "dgv_CardsInfo";
             this.dgv_CardsInfo.ReadOnly = true;
             this.dgv_CardsInfo.RowHeadersVisible = false;
             this.dgv_CardsInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_CardsInfo.Size = new System.Drawing.Size(284, 378);
+            this.dgv_CardsInfo.Size = new System.Drawing.Size(284, 398);
             this.dgv_CardsInfo.TabIndex = 9;
             // 
             // btn_ResetPin
             // 
-            this.btn_ResetPin.Location = new System.Drawing.Point(893, 395);
+            this.btn_ResetPin.Location = new System.Drawing.Point(722, 470);
             this.btn_ResetPin.Name = "btn_ResetPin";
-            this.btn_ResetPin.Size = new System.Drawing.Size(137, 23);
+            this.btn_ResetPin.Size = new System.Drawing.Size(115, 25);
             this.btn_ResetPin.TabIndex = 11;
             this.btn_ResetPin.Text = "Reset Pin";
             this.btn_ResetPin.UseVisualStyleBackColor = true;
@@ -235,9 +226,9 @@
             // 
             // btn_Refresh
             // 
-            this.btn_Refresh.Location = new System.Drawing.Point(12, 429);
+            this.btn_Refresh.Location = new System.Drawing.Point(16, 439);
             this.btn_Refresh.Name = "btn_Refresh";
-            this.btn_Refresh.Size = new System.Drawing.Size(112, 23);
+            this.btn_Refresh.Size = new System.Drawing.Size(115, 25);
             this.btn_Refresh.TabIndex = 8;
             this.btn_Refresh.Text = "Refresh";
             this.btn_Refresh.UseVisualStyleBackColor = true;
@@ -255,7 +246,7 @@
             // lbl_LastName
             // 
             this.lbl_LastName.AutoSize = true;
-            this.lbl_LastName.Location = new System.Drawing.Point(206, 9);
+            this.lbl_LastName.Location = new System.Drawing.Point(196, 9);
             this.lbl_LastName.Name = "lbl_LastName";
             this.lbl_LastName.Size = new System.Drawing.Size(58, 13);
             this.lbl_LastName.TabIndex = 21;
@@ -264,7 +255,7 @@
             // lbl_PersonalID
             // 
             this.lbl_PersonalID.AutoSize = true;
-            this.lbl_PersonalID.Location = new System.Drawing.Point(421, 9);
+            this.lbl_PersonalID.Location = new System.Drawing.Point(384, 9);
             this.lbl_PersonalID.Name = "lbl_PersonalID";
             this.lbl_PersonalID.Size = new System.Drawing.Size(59, 13);
             this.lbl_PersonalID.TabIndex = 22;
@@ -273,7 +264,7 @@
             // lbl_DateOfBirth
             // 
             this.lbl_DateOfBirth.AutoSize = true;
-            this.lbl_DateOfBirth.Location = new System.Drawing.Point(589, 9);
+            this.lbl_DateOfBirth.Location = new System.Drawing.Point(571, 9);
             this.lbl_DateOfBirth.Name = "lbl_DateOfBirth";
             this.lbl_DateOfBirth.Size = new System.Drawing.Size(68, 13);
             this.lbl_DateOfBirth.TabIndex = 23;
@@ -281,29 +272,40 @@
             // 
             // btn_OpenNewAccount
             // 
-            this.btn_OpenNewAccount.Location = new System.Drawing.Point(12, 230);
+            this.btn_OpenNewAccount.Location = new System.Drawing.Point(542, 439);
             this.btn_OpenNewAccount.Name = "btn_OpenNewAccount";
-            this.btn_OpenNewAccount.Size = new System.Drawing.Size(112, 23);
-            this.btn_OpenNewAccount.TabIndex = 2;
+            this.btn_OpenNewAccount.Size = new System.Drawing.Size(115, 25);
+            this.btn_OpenNewAccount.TabIndex = 7;
             this.btn_OpenNewAccount.Text = "Open New Account";
             this.btn_OpenNewAccount.UseVisualStyleBackColor = true;
             this.btn_OpenNewAccount.Click += new System.EventHandler(this.btn_OpenNewAccount_Click);
             // 
             // btn_Close
             // 
-            this.btn_Close.Location = new System.Drawing.Point(12, 458);
+            this.btn_Close.Location = new System.Drawing.Point(16, 470);
             this.btn_Close.Name = "btn_Close";
-            this.btn_Close.Size = new System.Drawing.Size(112, 23);
+            this.btn_Close.Size = new System.Drawing.Size(115, 25);
             this.btn_Close.TabIndex = 14;
             this.btn_Close.Text = "Close";
             this.btn_Close.UseVisualStyleBackColor = true;
             this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
             // 
+            // btn_AdjustDebit
+            // 
+            this.btn_AdjustDebit.Location = new System.Drawing.Point(179, 470);
+            this.btn_AdjustDebit.Name = "btn_AdjustDebit";
+            this.btn_AdjustDebit.Size = new System.Drawing.Size(115, 25);
+            this.btn_AdjustDebit.TabIndex = 2;
+            this.btn_AdjustDebit.Text = "Adjust Debit";
+            this.btn_AdjustDebit.UseVisualStyleBackColor = true;
+            this.btn_AdjustDebit.Click += new System.EventHandler(this.btn_AdjustDebit_Click);
+            // 
             // ClientManagerView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1042, 493);
+            this.ClientSize = new System.Drawing.Size(968, 505);
+            this.Controls.Add(this.btn_AdjustDebit);
             this.Controls.Add(this.btn_Close);
             this.Controls.Add(this.btn_OpenNewAccount);
             this.Controls.Add(this.lbl_DateOfBirth);
@@ -316,7 +318,6 @@
             this.Controls.Add(this.dgv_AccountsInfo);
             this.Controls.Add(this.btn_UnblockCard);
             this.Controls.Add(this.btn_BlockCard);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btn_AddCard);
             this.Controls.Add(this.btn_Deposit);
             this.Controls.Add(this.btn_Withdraw);
@@ -327,7 +328,6 @@
             this.Name = "ClientManagerView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Client Manager";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AccountsInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_CardsInfo)).EndInit();
             this.ResumeLayout(false);
@@ -343,7 +343,6 @@
         private System.Windows.Forms.Button btn_Withdraw;
         private System.Windows.Forms.Button btn_Deposit;
         private System.Windows.Forms.Button btn_AddCard;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btn_BlockCard;
         private System.Windows.Forms.Button btn_UnblockCard;
         private System.Windows.Forms.DataGridView dgv_AccountsInfo;
@@ -360,5 +359,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Debit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Colum_Open;
         private System.Windows.Forms.Button btn_Close;
+        private System.Windows.Forms.Button btn_AdjustDebit;
     }
 }

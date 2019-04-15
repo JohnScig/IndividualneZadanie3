@@ -41,13 +41,13 @@
             this.lbl_AccountNumber = new System.Windows.Forms.Label();
             this.tb_Iban = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tb_AmountLowPoint = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.tb_AmountHighPoint = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btn_Filter = new System.Windows.Forms.Button();
             this.btn_RemoveFilter = new System.Windows.Forms.Button();
             this.btn_Close = new System.Windows.Forms.Button();
+            this.ntb_AmountLowPoint = new Controls.NumericTextBox();
+            this.ntb_AmountHighPoint = new Controls.NumericTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AllTransactions)).BeginInit();
             this.gb_TransactionType.SuspendLayout();
             this.SuspendLayout();
@@ -185,14 +185,6 @@
             this.label1.TabIndex = 28;
             this.label1.Text = "Filter by Amount";
             // 
-            // tb_AmountLowPoint
-            // 
-            this.tb_AmountLowPoint.Location = new System.Drawing.Point(498, 412);
-            this.tb_AmountLowPoint.Name = "tb_AmountLowPoint";
-            this.tb_AmountLowPoint.Size = new System.Drawing.Size(225, 20);
-            this.tb_AmountLowPoint.TabIndex = 3;
-            this.tb_AmountLowPoint.Leave += new System.EventHandler(this.tb_AmountLowPoint_Leave);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -201,14 +193,6 @@
             this.label2.Size = new System.Drawing.Size(105, 13);
             this.label2.TabIndex = 32;
             this.label2.Text = "Amount Higher Than";
-            // 
-            // tb_AmountHighPoint
-            // 
-            this.tb_AmountHighPoint.Location = new System.Drawing.Point(498, 466);
-            this.tb_AmountHighPoint.Name = "tb_AmountHighPoint";
-            this.tb_AmountHighPoint.Size = new System.Drawing.Size(225, 20);
-            this.tb_AmountHighPoint.TabIndex = 4;
-            this.tb_AmountHighPoint.Leave += new System.EventHandler(this.tb_AmountHighPoint_Leave);
             // 
             // label6
             // 
@@ -249,22 +233,36 @@
             this.btn_Close.UseVisualStyleBackColor = true;
             this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
             // 
+            // ntb_AmountLowPoint
+            // 
+            this.ntb_AmountLowPoint.Location = new System.Drawing.Point(498, 410);
+            this.ntb_AmountLowPoint.Name = "ntb_AmountLowPoint";
+            this.ntb_AmountLowPoint.Size = new System.Drawing.Size(225, 20);
+            this.ntb_AmountLowPoint.TabIndex = 33;
+            // 
+            // ntb_AmountHighPoint
+            // 
+            this.ntb_AmountHighPoint.Location = new System.Drawing.Point(498, 464);
+            this.ntb_AmountHighPoint.Name = "ntb_AmountHighPoint";
+            this.ntb_AmountHighPoint.Size = new System.Drawing.Size(225, 20);
+            this.ntb_AmountHighPoint.TabIndex = 34;
+            // 
             // AllTransactionsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1047, 546);
+            this.Controls.Add(this.ntb_AmountHighPoint);
+            this.Controls.Add(this.ntb_AmountLowPoint);
             this.Controls.Add(this.btn_Close);
             this.Controls.Add(this.btn_RemoveFilter);
             this.Controls.Add(this.btn_Filter);
             this.Controls.Add(this.gb_TransactionType);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.tb_AmountHighPoint);
             this.Controls.Add(this.tb_LatestDate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.tb_AmountLowPoint);
             this.Controls.Add(this.tb_EarliestDate);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
@@ -297,12 +295,12 @@
         private System.Windows.Forms.Label lbl_AccountNumber;
         private System.Windows.Forms.TextBox tb_Iban;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tb_AmountLowPoint;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tb_AmountHighPoint;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btn_Filter;
         private System.Windows.Forms.Button btn_RemoveFilter;
         private System.Windows.Forms.Button btn_Close;
+        private Controls.NumericTextBox ntb_AmountLowPoint;
+        private Controls.NumericTextBox ntb_AmountHighPoint;
     }
 }

@@ -39,6 +39,8 @@
             this.btn_AverageAccountsPerPerson = new System.Windows.Forms.Button();
             this.btn_Demography = new System.Windows.Forms.Button();
             this.dgv_managerView = new System.Windows.Forms.DataGridView();
+            this.btn_TopAccounts = new System.Windows.Forms.Button();
+            this.btn_LastSixMonths = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_managerView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,15 +88,15 @@
             // 
             this.tb_PersonalID.Location = new System.Drawing.Point(625, 11);
             this.tb_PersonalID.Margin = new System.Windows.Forms.Padding(2);
+            this.tb_PersonalID.MaxLength = 8;
             this.tb_PersonalID.Name = "tb_PersonalID";
             this.tb_PersonalID.Size = new System.Drawing.Size(156, 20);
             this.tb_PersonalID.TabIndex = 1;
-            this.tb_PersonalID.Text = "FM891023";
             this.tb_PersonalID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btn_TopClients
             // 
-            this.btn_TopClients.Location = new System.Drawing.Point(502, 213);
+            this.btn_TopClients.Location = new System.Drawing.Point(501, 155);
             this.btn_TopClients.Name = "btn_TopClients";
             this.btn_TopClients.Size = new System.Drawing.Size(137, 23);
             this.btn_TopClients.TabIndex = 6;
@@ -104,7 +106,7 @@
             // 
             // btn_BankAssets
             // 
-            this.btn_BankAssets.Location = new System.Drawing.Point(502, 242);
+            this.btn_BankAssets.Location = new System.Drawing.Point(501, 184);
             this.btn_BankAssets.Name = "btn_BankAssets";
             this.btn_BankAssets.Size = new System.Drawing.Size(137, 23);
             this.btn_BankAssets.TabIndex = 7;
@@ -114,7 +116,7 @@
             // 
             // btn_NumberOfAccounts
             // 
-            this.btn_NumberOfAccounts.Location = new System.Drawing.Point(502, 271);
+            this.btn_NumberOfAccounts.Location = new System.Drawing.Point(501, 213);
             this.btn_NumberOfAccounts.Name = "btn_NumberOfAccounts";
             this.btn_NumberOfAccounts.Size = new System.Drawing.Size(137, 23);
             this.btn_NumberOfAccounts.TabIndex = 8;
@@ -124,7 +126,7 @@
             // 
             // btn_AverageAccountsPerPerson
             // 
-            this.btn_AverageAccountsPerPerson.Location = new System.Drawing.Point(502, 300);
+            this.btn_AverageAccountsPerPerson.Location = new System.Drawing.Point(501, 242);
             this.btn_AverageAccountsPerPerson.Name = "btn_AverageAccountsPerPerson";
             this.btn_AverageAccountsPerPerson.Size = new System.Drawing.Size(137, 23);
             this.btn_AverageAccountsPerPerson.TabIndex = 9;
@@ -134,7 +136,7 @@
             // 
             // btn_Demography
             // 
-            this.btn_Demography.Location = new System.Drawing.Point(502, 329);
+            this.btn_Demography.Location = new System.Drawing.Point(501, 271);
             this.btn_Demography.Name = "btn_Demography";
             this.btn_Demography.Size = new System.Drawing.Size(137, 23);
             this.btn_Demography.TabIndex = 10;
@@ -159,11 +161,33 @@
             this.dgv_managerView.Size = new System.Drawing.Size(484, 341);
             this.dgv_managerView.TabIndex = 11;
             // 
+            // btn_TopAccounts
+            // 
+            this.btn_TopAccounts.Location = new System.Drawing.Point(501, 300);
+            this.btn_TopAccounts.Name = "btn_TopAccounts";
+            this.btn_TopAccounts.Size = new System.Drawing.Size(137, 23);
+            this.btn_TopAccounts.TabIndex = 12;
+            this.btn_TopAccounts.Text = "Top Accounts";
+            this.btn_TopAccounts.UseVisualStyleBackColor = true;
+            this.btn_TopAccounts.Click += new System.EventHandler(this.btn_TopAccounts_Click);
+            // 
+            // btn_LastSixMonths
+            // 
+            this.btn_LastSixMonths.Location = new System.Drawing.Point(502, 329);
+            this.btn_LastSixMonths.Name = "btn_LastSixMonths";
+            this.btn_LastSixMonths.Size = new System.Drawing.Size(136, 23);
+            this.btn_LastSixMonths.TabIndex = 13;
+            this.btn_LastSixMonths.Text = "Last 6 Months";
+            this.btn_LastSixMonths.UseVisualStyleBackColor = true;
+            this.btn_LastSixMonths.Click += new System.EventHandler(this.btn_LastSixMonths_Click);
+            // 
             // MainMenuView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(910, 361);
+            this.Controls.Add(this.btn_LastSixMonths);
+            this.Controls.Add(this.btn_TopAccounts);
             this.Controls.Add(this.dgv_managerView);
             this.Controls.Add(this.btn_Demography);
             this.Controls.Add(this.btn_AverageAccountsPerPerson);
@@ -197,6 +221,8 @@
         private System.Windows.Forms.Button btn_AverageAccountsPerPerson;
         private System.Windows.Forms.Button btn_Demography;
         private System.Windows.Forms.DataGridView dgv_managerView;
+        private System.Windows.Forms.Button btn_TopAccounts;
+        private System.Windows.Forms.Button btn_LastSixMonths;
     }
 }
 

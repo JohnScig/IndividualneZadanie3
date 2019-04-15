@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdjustDebitModel.cs" />
+    <Compile Include="AdjustDebitView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustDebitView.Designer.cs">
+      <DependentUpon>AdjustDebitView.cs</DependentUpon>
+    </Compile>
     <Compile Include="AllAccountsModel.cs" />
     <Compile Include="AllTransactionsModel.cs" />
     <Compile Include="ClientManagerModel.cs" />
@@ -111,6 +118,9 @@
     <Compile Include="WithdrawView.Designer.cs">
       <DependentUpon>WithdrawView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AdjustDebitView.resx">
+      <DependentUpon>AdjustDebitView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DepositView.resx">
       <DependentUpon>DepositView.cs</DependentUpon>
     </EmbeddedResource>

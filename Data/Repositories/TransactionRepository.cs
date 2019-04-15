@@ -182,7 +182,7 @@ namespace Data.Repositories
                     if (filterCriteria[4].Length != 0)
                     {
                         query = query.Replace("JS_AfterCondition", "Timestamp > @EarlierPoint");
-                        command.Parameters.Add("@EarlierPoint", SqlDbType.DateTime2).Value = DateConverter.ConvertToDate(filterCriteria[4]);
+                        command.Parameters.Add("@EarlierPoint", SqlDbType.DateTime2).Value = InputChecker.ConvertToDate(filterCriteria[4]);
                     }
                     else
                     {
@@ -193,7 +193,7 @@ namespace Data.Repositories
                     if (filterCriteria[5].Length != 0)
                     {
                         query = query.Replace("JS_BeforeCondition", "Timestamp < @LaterPoint");
-                        command.Parameters.Add("@LaterPoint", SqlDbType.DateTime2).Value = DateConverter.ConvertToDate(filterCriteria[5]);
+                        command.Parameters.Add("@LaterPoint", SqlDbType.DateTime2).Value = InputChecker.ConvertToDate(filterCriteria[5]);
                     }
                     else
                     {

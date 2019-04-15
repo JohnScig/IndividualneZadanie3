@@ -85,5 +85,17 @@ namespace BankSystem
             dgv_managerView.DataSource = new MainMenuModel().GetDemography();
             dgv_managerView.DataMember = "Demography";
         }
+
+        private void btn_TopAccounts_Click(object sender, EventArgs e)
+        {
+            dgv_managerView.DataSource = new MainMenuModel().GetTopAccounts();
+            dgv_managerView.DataMember = "TopAccounts";
+        }
+
+        private void btn_LastSixMonths_Click(object sender, EventArgs e)
+        {
+            dgv_managerView.DataSource = new MainMenuModel().GetAccountByMonth();
+            dgv_managerView.DataMember = "AccountsByMonth";
+        }
     }
 }

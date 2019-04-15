@@ -68,8 +68,8 @@ namespace BankSystem
             rb_All.Checked = true;
             tb_EarliestDate.Text = String.Empty;
             tb_LatestDate.Text = String.Empty;
-            tb_AmountHighPoint.Text = String.Empty;
-            tb_AmountLowPoint.Text = String.Empty;
+            ntb_AmountHighPoint.Text = String.Empty;
+            ntb_AmountLowPoint.Text = String.Empty;
 
             if (singleClient)
             {
@@ -104,7 +104,7 @@ namespace BankSystem
            
 
 
-            List<string> filterCriteria = new List<string>() {tb_Iban.Text, transactionType, tb_AmountLowPoint.Text,tb_AmountHighPoint.Text,tb_EarliestDate.Text,tb_LatestDate.Text };
+            List<string> filterCriteria = new List<string>() {tb_Iban.Text, transactionType, ntb_AmountLowPoint.Text, ntb_AmountHighPoint.Text,tb_EarliestDate.Text,tb_LatestDate.Text };
 
             dgv_AllTransactions.DataSource = new AllTransactionsModel().GetFilteredTransactions(filterCriteria);
             dgv_AllTransactions.DataMember = "FilteredTransactions";

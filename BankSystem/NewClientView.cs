@@ -73,7 +73,7 @@ namespace BankSystem
             tb_Email.Text = currentClient.Email;
             tb_Street.Text = currentClient.Street;
             tb_City.Text = currentClient.City;
-            tb_PostalCode.Text = currentClient.PostalCode;
+            ntb_PostalCode.Text = currentClient.PostalCode;
         }
 
         private void btn_Confirm_Click(object sender, EventArgs e)
@@ -86,7 +86,7 @@ namespace BankSystem
             currentClient.Email = tb_Email.Text;
             currentClient.Street = tb_Street.Text;
             currentClient.City = tb_City.Text;
-            currentClient.PostalCode = tb_PostalCode.Text;
+            currentClient.PostalCode = ntb_PostalCode.Text;
 
 
             if (editing)
@@ -136,8 +136,22 @@ namespace BankSystem
             tb_Email.Text = currentClient.Email;
             tb_Street.Text = currentClient.Street;
             tb_City.Text = currentClient.City;
-            tb_PostalCode.Text = currentClient.PostalCode;
+            ntb_PostalCode.Text = currentClient.PostalCode;
         }
 
+        private void tb_FirstName_Leave(object sender, EventArgs e)
+        {
+            tb_FirstName.Text = InputChecker.CheckName(tb_FirstName.Text);
+        }
+
+        private void tb_LastName_Leave(object sender, EventArgs e)
+        {
+            tb_LastName.Text = InputChecker.CheckName(tb_FirstName.Text);
+        }
+
+        private void tb_Email_Leave(object sender, EventArgs e)
+        {
+            tb_Email.Text = InputChecker.CheckEmail(tb_Email.Text);
+        }
     }
 }

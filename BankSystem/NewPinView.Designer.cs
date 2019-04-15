@@ -65,6 +65,7 @@
             // 
             // ntb_NewPin
             // 
+            this.ntb_NewPin.AllowDecimals = false;
             this.ntb_NewPin.Location = new System.Drawing.Point(108, 109);
             this.ntb_NewPin.MaxLength = 4;
             this.ntb_NewPin.Name = "ntb_NewPin";

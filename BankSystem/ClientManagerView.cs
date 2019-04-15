@@ -226,6 +226,15 @@ namespace BankSystem
             LoadAccountsInfoGridView();
         }
 
+        private void btn_AdjustDebit_Click(object sender, EventArgs e)
+        {
+            using (AdjustDebitView newForm = new AdjustDebitView(_iban, Convert.ToDecimal(dgv_AccountsInfo.CurrentRow.Cells[2].Value.ToString())))
+            {
+                newForm.ShowDialog();
+                LoadAccountsInfoGridView();
+            }
+        }
+
         private void btn_CloseAccount_Click(object sender, EventArgs e)
         {
             if (Convert.ToDecimal(dgv_AccountsInfo.CurrentRow.Cells[1].Value) < 0)
@@ -257,6 +266,8 @@ namespace BankSystem
         {
             this.Close();
         }
+
+
 
 
 

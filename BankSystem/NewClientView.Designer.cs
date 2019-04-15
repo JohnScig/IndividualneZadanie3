@@ -48,13 +48,13 @@
             this.tb_Street = new System.Windows.Forms.TextBox();
             this.tb_City = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.tb_PostalCode = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.btn_Confirm = new System.Windows.Forms.Button();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.cb_Year = new System.Windows.Forms.ComboBox();
             this.cb_Month = new System.Windows.Forms.ComboBox();
             this.cb_Day = new System.Windows.Forms.ComboBox();
+            this.ntb_PostalCode = new Controls.NumericTextBox();
             this.SuspendLayout();
             // 
             // btn_GenerateRandomPerson
@@ -91,6 +91,7 @@
             this.tb_FirstName.Name = "tb_FirstName";
             this.tb_FirstName.Size = new System.Drawing.Size(100, 20);
             this.tb_FirstName.TabIndex = 1;
+            this.tb_FirstName.Leave += new System.EventHandler(this.tb_FirstName_Leave);
             // 
             // tb_LastName
             // 
@@ -98,6 +99,7 @@
             this.tb_LastName.Name = "tb_LastName";
             this.tb_LastName.Size = new System.Drawing.Size(100, 20);
             this.tb_LastName.TabIndex = 2;
+            this.tb_LastName.Leave += new System.EventHandler(this.tb_LastName_Leave);
             // 
             // label5
             // 
@@ -147,6 +149,7 @@
             // tb_PersonalID
             // 
             this.tb_PersonalID.Location = new System.Drawing.Point(27, 177);
+            this.tb_PersonalID.MaxLength = 8;
             this.tb_PersonalID.Name = "tb_PersonalID";
             this.tb_PersonalID.Size = new System.Drawing.Size(100, 20);
             this.tb_PersonalID.TabIndex = 6;
@@ -163,6 +166,7 @@
             // tb_PhoneNumber
             // 
             this.tb_PhoneNumber.Location = new System.Drawing.Point(170, 177);
+            this.tb_PhoneNumber.MaxLength = 10;
             this.tb_PhoneNumber.Name = "tb_PhoneNumber";
             this.tb_PhoneNumber.Size = new System.Drawing.Size(100, 20);
             this.tb_PhoneNumber.TabIndex = 7;
@@ -182,6 +186,8 @@
             this.tb_Email.Name = "tb_Email";
             this.tb_Email.Size = new System.Drawing.Size(243, 20);
             this.tb_Email.TabIndex = 8;
+            this.tb_Email.Text = "@";
+            this.tb_Email.Leave += new System.EventHandler(this.tb_Email_Leave);
             // 
             // label12
             // 
@@ -223,13 +229,6 @@
             this.label14.Size = new System.Drawing.Size(64, 13);
             this.label14.TabIndex = 14;
             this.label14.Text = "Postal Code";
-            // 
-            // tb_PostalCode
-            // 
-            this.tb_PostalCode.Location = new System.Drawing.Point(170, 376);
-            this.tb_PostalCode.Name = "tb_PostalCode";
-            this.tb_PostalCode.Size = new System.Drawing.Size(100, 20);
-            this.tb_PostalCode.TabIndex = 11;
             // 
             // label15
             // 
@@ -284,17 +283,25 @@
             this.cb_Day.Size = new System.Drawing.Size(49, 21);
             this.cb_Day.TabIndex = 5;
             // 
+            // ntb_PostalCode
+            // 
+            this.ntb_PostalCode.Location = new System.Drawing.Point(170, 376);
+            this.ntb_PostalCode.MaxLength = 5;
+            this.ntb_PostalCode.Name = "ntb_PostalCode";
+            this.ntb_PostalCode.Size = new System.Drawing.Size(100, 20);
+            this.ntb_PostalCode.TabIndex = 15;
+            // 
             // NewClientView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(313, 524);
+            this.Controls.Add(this.ntb_PostalCode);
             this.Controls.Add(this.cb_Day);
             this.Controls.Add(this.cb_Month);
             this.Controls.Add(this.cb_Year);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Confirm);
-            this.Controls.Add(this.tb_PostalCode);
             this.Controls.Add(this.tb_PhoneNumber);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label10);
@@ -345,12 +352,12 @@
         private System.Windows.Forms.TextBox tb_Street;
         private System.Windows.Forms.TextBox tb_City;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox tb_PostalCode;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btn_Confirm;
         private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.ComboBox cb_Year;
         private System.Windows.Forms.ComboBox cb_Month;
         private System.Windows.Forms.ComboBox cb_Day;
+        private Controls.NumericTextBox ntb_PostalCode;
     }
 }

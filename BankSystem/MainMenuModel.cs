@@ -47,5 +47,15 @@ namespace BankSystem
         {
             return new ClientRepository().GetDemography();
         }
+
+        public DataSet GetTopAccounts()
+        {
+            return new AccountRepository().GetTopAccounts();
+        }
+
+        public DataSet GetAccountByMonth()
+        {
+            return new AccountRepository().GetAccountsByMonths();
+        }
     }
 }

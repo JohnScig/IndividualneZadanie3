@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DateConverter.cs" />
+    <Compile Include="InputChecker.cs" />
     <Compile Include="Generators\AccountGenerator.cs" />
     <Compile Include="Generators\CardGenerator.cs" />
     <Compile Include="Generators\ClientGenerator.cs" />

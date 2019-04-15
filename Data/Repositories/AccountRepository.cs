@@ -18,7 +18,6 @@ namespace Data.Repositories
         //public static string ConnString { get; set; } = $"Server={ServerName}; Database = {DatabaseName}; Trusted_Connection = True";
         public static string ConnString { get; set; } = $"Server={ServerSettings.ServerName}; Database = {ServerSettings.DatabaseName}; Trusted_Connection = True";
 
-
         public bool AddAccount(AccountModel accountModel, int ownerID)
         {
             try
@@ -50,6 +49,8 @@ namespace Data.Repositories
                 return false;
             }
         }
+
+
 
         public bool AddAccount(AccountModel accountModel, string personalID)
         {
@@ -346,7 +347,7 @@ namespace Data.Repositories
                     if (filterCriteria[5].Length != 0)
                     {
                         query = query.Replace("JS_AfterCondition", "A.OpenDate > @EarlierPoint");
-                        command.Parameters.Add("@EarlierPoint", SqlDbType.DateTime2).Value = DateConverter.ConvertToDate(filterCriteria[5]);
+                        command.Parameters.Add("@EarlierPoint", SqlDbType.DateTime2).Value = InputChecker.ConvertToDate(filterCriteria[5]);
                     }
                     else
                     {
@@ -357,7 +358,7 @@ namespace Data.Repositories
                     if (filterCriteria[6].Length != 0)
                     {
                         query = query.Replace("JS_BeforeCondition", "A.OpenDate < @LaterPoint");
-                        command.Parameters.Add("@LaterPoint", SqlDbType.DateTime2).Value = DateConverter.ConvertToDate(filterCriteria[6]);
+                        command.Parameters.Add("@LaterPoint", SqlDbType.DateTime2).Value = InputChecker.ConvertToDate(filterCriteria[6]);
                     }
                     else
                     {
@@ -434,6 +435,41 @@ namespace Data.Repositories
                         return allAccounts;
                     }
 
+                }
+            }
+        }
+
+        public bool AdjustDebit(string iban, decimal newDebitLimit)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE Account SET DebtLimit = @NewDebitLimit WHERE IBAN = @Iban";
+                    command.Parameters.Add("@NewDebitLimit", SqlDbType.NVarChar).Value = newDebitLimit;
+                    command.Parameters.Add("@Iban", SqlDbType.NVarChar).Value = iban;
+
+                    try
+                    {
+                        return Convert.ToBoolean(command.ExecuteNonQuery());
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return false;
+                    }
                 }
             }
         }
@@ -746,6 +782,101 @@ namespace Data.Repositories
                 }
             }
         }
+
+        public DataSet GetTopAccounts()
+        {
+            DataSet topAccounts = new DataSet();
+
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return topAccounts;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT TOP 10 IBAN, Balance, OpenDate FROM Account WHERE OwnerID<>1 AND CloseDate IS NULL ORDER BY Balance DESC;";
+                    try
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        adapter.Fill(topAccounts, "TopAccounts");
+                        return topAccounts;
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return topAccounts;
+                    }
+
+                }
+            }
+
+        }
+
+        public DataSet GetAccountsByMonths()
+        {
+            DataSet accountsByMonth = new DataSet();
+
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return accountsByMonth;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"SELECT TOP 6 COUNT (IBAN) AS 'Number of Accounts', CONCAT(DATEPART(YEAR,OpenDate), ' ',
+                                                CASE
+	                                                WHEN DATEPART(MONTH,OpenDate) = 1 THEN 'January'
+	                                                WHEN DATEPART(MONTH,OpenDate) = 2 THEN 'February'
+	                                                WHEN DATEPART(MONTH,OpenDate) = 3 THEN 'March'
+	                                                WHEN DATEPART(MONTH,OpenDate) = 4 THEN 'April'
+	                                                WHEN DATEPART(MONTH,OpenDate) = 5 THEN 'May'
+	                                                WHEN DATEPART(MONTH,OpenDate) = 6 THEN 'June'
+	                                                WHEN DATEPART(MONTH,OpenDate) = 7 THEN 'July'
+	                                                WHEN DATEPART(MONTH,OpenDate) = 8 THEN 'August'
+	                                                WHEN DATEPART(MONTH,OpenDate) = 9 THEN 'September'
+	                                                WHEN DATEPART(MONTH,OpenDate) = 10 THEN 'October'
+	                                                WHEN DATEPART(MONTH,OpenDate) = 11 THEN 'November'
+	                                                ELSE 'December'
+                                                END) AS 'Creation Month'
+                                                 FROM Account GROUP BY DATEPART(YEAR,OpenDate),DATEPART(MONTH,OpenDate) 
+                                                 ORDER BY DATEPART(YEAR,OpenDate) DESC, DATEPART(MONTH,OpenDate) DESC";
+
+                    try
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        adapter.Fill(accountsByMonth, "AccountsByMonth");
+                        return accountsByMonth;
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return accountsByMonth;
+                    }
+
+                }
+            }
+        }
+
 
     }
 }
