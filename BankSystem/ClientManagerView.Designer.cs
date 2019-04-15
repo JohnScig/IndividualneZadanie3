@@ -62,7 +62,7 @@
             this.btn_UpdateClientInfo.Location = new System.Drawing.Point(12, 201);
             this.btn_UpdateClientInfo.Name = "btn_UpdateClientInfo";
             this.btn_UpdateClientInfo.Size = new System.Drawing.Size(112, 23);
-            this.btn_UpdateClientInfo.TabIndex = 4;
+            this.btn_UpdateClientInfo.TabIndex = 1;
             this.btn_UpdateClientInfo.Text = "Update Client Info";
             this.btn_UpdateClientInfo.UseVisualStyleBackColor = true;
             this.btn_UpdateClientInfo.Click += new System.EventHandler(this.btn_UpdateClientInfo_Click);
@@ -72,7 +72,7 @@
             this.btn_NewTransaction.Location = new System.Drawing.Point(12, 298);
             this.btn_NewTransaction.Name = "btn_NewTransaction";
             this.btn_NewTransaction.Size = new System.Drawing.Size(112, 23);
-            this.btn_NewTransaction.TabIndex = 5;
+            this.btn_NewTransaction.TabIndex = 4;
             this.btn_NewTransaction.Text = "New Transaction";
             this.btn_NewTransaction.UseVisualStyleBackColor = true;
             this.btn_NewTransaction.Click += new System.EventHandler(this.btn_NewTransaction_Click);
@@ -82,7 +82,7 @@
             this.btn_CloseAccount.Location = new System.Drawing.Point(12, 259);
             this.btn_CloseAccount.Name = "btn_CloseAccount";
             this.btn_CloseAccount.Size = new System.Drawing.Size(112, 23);
-            this.btn_CloseAccount.TabIndex = 6;
+            this.btn_CloseAccount.TabIndex = 3;
             this.btn_CloseAccount.Text = "Close Account";
             this.btn_CloseAccount.UseVisualStyleBackColor = true;
             this.btn_CloseAccount.Click += new System.EventHandler(this.btn_CloseAccount_Click);
@@ -92,7 +92,7 @@
             this.btn_AllTransactions.Location = new System.Drawing.Point(12, 385);
             this.btn_AllTransactions.Name = "btn_AllTransactions";
             this.btn_AllTransactions.Size = new System.Drawing.Size(112, 23);
-            this.btn_AllTransactions.TabIndex = 8;
+            this.btn_AllTransactions.TabIndex = 7;
             this.btn_AllTransactions.Text = "All transactions";
             this.btn_AllTransactions.UseVisualStyleBackColor = true;
             this.btn_AllTransactions.Click += new System.EventHandler(this.btn_AllTransactions_Click);
@@ -102,7 +102,7 @@
             this.btn_Withdraw.Location = new System.Drawing.Point(12, 356);
             this.btn_Withdraw.Name = "btn_Withdraw";
             this.btn_Withdraw.Size = new System.Drawing.Size(112, 23);
-            this.btn_Withdraw.TabIndex = 9;
+            this.btn_Withdraw.TabIndex = 6;
             this.btn_Withdraw.Text = "Withdraw";
             this.btn_Withdraw.UseVisualStyleBackColor = true;
             this.btn_Withdraw.Click += new System.EventHandler(this.btn_Withdraw_Click);
@@ -112,7 +112,7 @@
             this.btn_Deposit.Location = new System.Drawing.Point(12, 327);
             this.btn_Deposit.Name = "btn_Deposit";
             this.btn_Deposit.Size = new System.Drawing.Size(112, 23);
-            this.btn_Deposit.TabIndex = 10;
+            this.btn_Deposit.TabIndex = 5;
             this.btn_Deposit.Text = "Deposit";
             this.btn_Deposit.UseVisualStyleBackColor = true;
             this.btn_Deposit.Click += new System.EventHandler(this.btn_Deposit_Click);
@@ -122,7 +122,7 @@
             this.btn_AddCard.Location = new System.Drawing.Point(746, 393);
             this.btn_AddCard.Name = "btn_AddCard";
             this.btn_AddCard.Size = new System.Drawing.Size(141, 25);
-            this.btn_AddCard.TabIndex = 12;
+            this.btn_AddCard.TabIndex = 10;
             this.btn_AddCard.Text = "Add New Card";
             this.btn_AddCard.UseVisualStyleBackColor = true;
             this.btn_AddCard.Click += new System.EventHandler(this.btn_AddCard_Click);
@@ -140,7 +140,7 @@
             this.btn_BlockCard.Location = new System.Drawing.Point(746, 424);
             this.btn_BlockCard.Name = "btn_BlockCard";
             this.btn_BlockCard.Size = new System.Drawing.Size(141, 25);
-            this.btn_BlockCard.TabIndex = 14;
+            this.btn_BlockCard.TabIndex = 12;
             this.btn_BlockCard.Text = "Block Card";
             this.btn_BlockCard.UseVisualStyleBackColor = true;
             this.btn_BlockCard.Click += new System.EventHandler(this.btn_BlockCard_Click);
@@ -150,7 +150,7 @@
             this.btn_UnblockCard.Location = new System.Drawing.Point(893, 424);
             this.btn_UnblockCard.Name = "btn_UnblockCard";
             this.btn_UnblockCard.Size = new System.Drawing.Size(137, 25);
-            this.btn_UnblockCard.TabIndex = 15;
+            this.btn_UnblockCard.TabIndex = 13;
             this.btn_UnblockCard.Text = "Unblock Card";
             this.btn_UnblockCard.UseVisualStyleBackColor = true;
             this.btn_UnblockCard.Click += new System.EventHandler(this.btn_UnblockCard_Click);
@@ -176,7 +176,7 @@
             this.dgv_AccountsInfo.RowHeadersVisible = false;
             this.dgv_AccountsInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_AccountsInfo.Size = new System.Drawing.Size(714, 132);
-            this.dgv_AccountsInfo.TabIndex = 16;
+            this.dgv_AccountsInfo.TabIndex = 0;
             this.dgv_AccountsInfo.SelectionChanged += new System.EventHandler(this.dgv_AccountsInfo_SelectionChanged);
             // 
             // Column_IBAN
@@ -221,14 +221,14 @@
             this.dgv_CardsInfo.RowHeadersVisible = false;
             this.dgv_CardsInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_CardsInfo.Size = new System.Drawing.Size(284, 378);
-            this.dgv_CardsInfo.TabIndex = 17;
+            this.dgv_CardsInfo.TabIndex = 9;
             // 
             // btn_ResetPin
             // 
             this.btn_ResetPin.Location = new System.Drawing.Point(893, 395);
             this.btn_ResetPin.Name = "btn_ResetPin";
             this.btn_ResetPin.Size = new System.Drawing.Size(137, 23);
-            this.btn_ResetPin.TabIndex = 18;
+            this.btn_ResetPin.TabIndex = 11;
             this.btn_ResetPin.Text = "Reset Pin";
             this.btn_ResetPin.UseVisualStyleBackColor = true;
             this.btn_ResetPin.Click += new System.EventHandler(this.btn_ResetPin_Click);
@@ -238,7 +238,7 @@
             this.btn_Refresh.Location = new System.Drawing.Point(12, 429);
             this.btn_Refresh.Name = "btn_Refresh";
             this.btn_Refresh.Size = new System.Drawing.Size(112, 23);
-            this.btn_Refresh.TabIndex = 19;
+            this.btn_Refresh.TabIndex = 8;
             this.btn_Refresh.Text = "Refresh";
             this.btn_Refresh.UseVisualStyleBackColor = true;
             this.btn_Refresh.Click += new System.EventHandler(this.btn_Refresh_Click);
@@ -284,7 +284,7 @@
             this.btn_OpenNewAccount.Location = new System.Drawing.Point(12, 230);
             this.btn_OpenNewAccount.Name = "btn_OpenNewAccount";
             this.btn_OpenNewAccount.Size = new System.Drawing.Size(112, 23);
-            this.btn_OpenNewAccount.TabIndex = 24;
+            this.btn_OpenNewAccount.TabIndex = 2;
             this.btn_OpenNewAccount.Text = "Open New Account";
             this.btn_OpenNewAccount.UseVisualStyleBackColor = true;
             this.btn_OpenNewAccount.Click += new System.EventHandler(this.btn_OpenNewAccount_Click);
@@ -294,7 +294,7 @@
             this.btn_Close.Location = new System.Drawing.Point(12, 458);
             this.btn_Close.Name = "btn_Close";
             this.btn_Close.Size = new System.Drawing.Size(112, 23);
-            this.btn_Close.TabIndex = 25;
+            this.btn_Close.TabIndex = 14;
             this.btn_Close.Text = "Close";
             this.btn_Close.UseVisualStyleBackColor = true;
             this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);

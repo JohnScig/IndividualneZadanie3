@@ -39,7 +39,7 @@
             this.btn_Confirm.Location = new System.Drawing.Point(12, 180);
             this.btn_Confirm.Name = "btn_Confirm";
             this.btn_Confirm.Size = new System.Drawing.Size(75, 23);
-            this.btn_Confirm.TabIndex = 0;
+            this.btn_Confirm.TabIndex = 2;
             this.btn_Confirm.Text = "Confirm";
             this.btn_Confirm.UseVisualStyleBackColor = true;
             this.btn_Confirm.Click += new System.EventHandler(this.btn_Confirm_Click);
@@ -49,7 +49,7 @@
             this.btn_Cancel.Location = new System.Drawing.Point(12, 212);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
-            this.btn_Cancel.TabIndex = 1;
+            this.btn_Cancel.TabIndex = 3;
             this.btn_Cancel.Text = "Cancel";
             this.btn_Cancel.UseVisualStyleBackColor = true;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
@@ -69,7 +69,7 @@
             this.ntb_NewPin.MaxLength = 4;
             this.ntb_NewPin.Name = "ntb_NewPin";
             this.ntb_NewPin.Size = new System.Drawing.Size(100, 20);
-            this.ntb_NewPin.TabIndex = 3;
+            this.ntb_NewPin.TabIndex = 1;
             // 
             // NewPinView
             // 

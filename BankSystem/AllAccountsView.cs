@@ -75,5 +75,50 @@ namespace BankSystem
         {
             this.Close();
         }
+
+        private void tb_FirstName_Leave(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void tb_LastName_Leave(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void tb_PersonalID_Leave(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void tb_Iban_Leave(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void rb_All_CheckedChanged(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void rb_Open_CheckedChanged(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void rb_Closed_CheckedChanged(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void tb_EarliestDate_Leave(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void tb_LatestDate_Leave(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
     }
 }

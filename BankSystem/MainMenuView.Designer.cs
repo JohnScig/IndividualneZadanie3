@@ -88,7 +88,7 @@
             this.tb_PersonalID.Margin = new System.Windows.Forms.Padding(2);
             this.tb_PersonalID.Name = "tb_PersonalID";
             this.tb_PersonalID.Size = new System.Drawing.Size(156, 20);
-            this.tb_PersonalID.TabIndex = 10;
+            this.tb_PersonalID.TabIndex = 1;
             this.tb_PersonalID.Text = "FM891023";
             this.tb_PersonalID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -97,7 +97,7 @@
             this.btn_TopClients.Location = new System.Drawing.Point(502, 213);
             this.btn_TopClients.Name = "btn_TopClients";
             this.btn_TopClients.Size = new System.Drawing.Size(137, 23);
-            this.btn_TopClients.TabIndex = 11;
+            this.btn_TopClients.TabIndex = 6;
             this.btn_TopClients.Text = "Top Clients";
             this.btn_TopClients.UseVisualStyleBackColor = true;
             this.btn_TopClients.Click += new System.EventHandler(this.btn_TopClients_Click);
@@ -107,7 +107,7 @@
             this.btn_BankAssets.Location = new System.Drawing.Point(502, 242);
             this.btn_BankAssets.Name = "btn_BankAssets";
             this.btn_BankAssets.Size = new System.Drawing.Size(137, 23);
-            this.btn_BankAssets.TabIndex = 11;
+            this.btn_BankAssets.TabIndex = 7;
             this.btn_BankAssets.Text = "Bank Assets";
             this.btn_BankAssets.UseVisualStyleBackColor = true;
             this.btn_BankAssets.Click += new System.EventHandler(this.btn_BankAssets_Click);
@@ -117,7 +117,7 @@
             this.btn_NumberOfAccounts.Location = new System.Drawing.Point(502, 271);
             this.btn_NumberOfAccounts.Name = "btn_NumberOfAccounts";
             this.btn_NumberOfAccounts.Size = new System.Drawing.Size(137, 23);
-            this.btn_NumberOfAccounts.TabIndex = 11;
+            this.btn_NumberOfAccounts.TabIndex = 8;
             this.btn_NumberOfAccounts.Text = "Number Of Accounts";
             this.btn_NumberOfAccounts.UseVisualStyleBackColor = true;
             this.btn_NumberOfAccounts.Click += new System.EventHandler(this.btn_NumberOfAccounts_Click);
@@ -127,7 +127,7 @@
             this.btn_AverageAccountsPerPerson.Location = new System.Drawing.Point(502, 300);
             this.btn_AverageAccountsPerPerson.Name = "btn_AverageAccountsPerPerson";
             this.btn_AverageAccountsPerPerson.Size = new System.Drawing.Size(137, 23);
-            this.btn_AverageAccountsPerPerson.TabIndex = 11;
+            this.btn_AverageAccountsPerPerson.TabIndex = 9;
             this.btn_AverageAccountsPerPerson.Text = "Accounts / Person";
             this.btn_AverageAccountsPerPerson.UseVisualStyleBackColor = true;
             this.btn_AverageAccountsPerPerson.Click += new System.EventHandler(this.btn_AverageAccountsPerPerson_Click);
@@ -137,7 +137,7 @@
             this.btn_Demography.Location = new System.Drawing.Point(502, 329);
             this.btn_Demography.Name = "btn_Demography";
             this.btn_Demography.Size = new System.Drawing.Size(137, 23);
-            this.btn_Demography.TabIndex = 11;
+            this.btn_Demography.TabIndex = 10;
             this.btn_Demography.Text = "Demography";
             this.btn_Demography.UseVisualStyleBackColor = true;
             this.btn_Demography.Click += new System.EventHandler(this.btn_Demography_Click);
@@ -157,7 +157,7 @@
             this.dgv_managerView.RowHeadersVisible = false;
             this.dgv_managerView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_managerView.Size = new System.Drawing.Size(484, 341);
-            this.dgv_managerView.TabIndex = 12;
+            this.dgv_managerView.TabIndex = 11;
             // 
             // MainMenuView
             // 

@@ -60,7 +60,7 @@
             this.btn_ManageAccount.Location = new System.Drawing.Point(12, 555);
             this.btn_ManageAccount.Name = "btn_ManageAccount";
             this.btn_ManageAccount.Size = new System.Drawing.Size(113, 37);
-            this.btn_ManageAccount.TabIndex = 10;
+            this.btn_ManageAccount.TabIndex = 1;
             this.btn_ManageAccount.Text = "Manage Selected Account";
             this.btn_ManageAccount.UseVisualStyleBackColor = true;
             this.btn_ManageAccount.Click += new System.EventHandler(this.btn_ManageAccount_Click);
@@ -80,14 +80,14 @@
             this.dgv_AllAccounts.RowHeadersVisible = false;
             this.dgv_AllAccounts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_AllAccounts.Size = new System.Drawing.Size(877, 507);
-            this.dgv_AllAccounts.TabIndex = 12;
+            this.dgv_AllAccounts.TabIndex = 0;
             // 
             // btn_Filter
             // 
             this.btn_Filter.Location = new System.Drawing.Point(898, 555);
             this.btn_Filter.Name = "btn_Filter";
             this.btn_Filter.Size = new System.Drawing.Size(133, 37);
-            this.btn_Filter.TabIndex = 13;
+            this.btn_Filter.TabIndex = 12;
             this.btn_Filter.Text = "Filter By Given Criteria";
             this.btn_Filter.UseVisualStyleBackColor = true;
             this.btn_Filter.Click += new System.EventHandler(this.btn_Filter_Click);
@@ -106,14 +106,16 @@
             this.tb_FirstName.Location = new System.Drawing.Point(925, 61);
             this.tb_FirstName.Name = "tb_FirstName";
             this.tb_FirstName.Size = new System.Drawing.Size(225, 20);
-            this.tb_FirstName.TabIndex = 15;
+            this.tb_FirstName.TabIndex = 2;
+            this.tb_FirstName.Leave += new System.EventHandler(this.tb_FirstName_Leave);
             // 
             // tb_LastName
             // 
             this.tb_LastName.Location = new System.Drawing.Point(925, 118);
             this.tb_LastName.Name = "tb_LastName";
             this.tb_LastName.Size = new System.Drawing.Size(225, 20);
-            this.tb_LastName.TabIndex = 15;
+            this.tb_LastName.TabIndex = 3;
+            this.tb_LastName.Leave += new System.EventHandler(this.tb_LastName_Leave);
             // 
             // label1
             // 
@@ -138,7 +140,8 @@
             this.tb_Iban.Location = new System.Drawing.Point(901, 243);
             this.tb_Iban.Name = "tb_Iban";
             this.tb_Iban.Size = new System.Drawing.Size(246, 20);
-            this.tb_Iban.TabIndex = 18;
+            this.tb_Iban.TabIndex = 5;
+            this.tb_Iban.Leave += new System.EventHandler(this.tb_Iban_Leave);
             // 
             // lbl_AccountNumber
             // 
@@ -163,7 +166,8 @@
             this.tb_EarliestDate.Location = new System.Drawing.Point(922, 445);
             this.tb_EarliestDate.Name = "tb_EarliestDate";
             this.tb_EarliestDate.Size = new System.Drawing.Size(225, 20);
-            this.tb_EarliestDate.TabIndex = 22;
+            this.tb_EarliestDate.TabIndex = 10;
+            this.tb_EarliestDate.Leave += new System.EventHandler(this.tb_EarliestDate_Leave);
             // 
             // label4
             // 
@@ -179,7 +183,8 @@
             this.tb_LatestDate.Location = new System.Drawing.Point(922, 499);
             this.tb_LatestDate.Name = "tb_LatestDate";
             this.tb_LatestDate.Size = new System.Drawing.Size(225, 20);
-            this.tb_LatestDate.TabIndex = 22;
+            this.tb_LatestDate.TabIndex = 11;
+            this.tb_LatestDate.Leave += new System.EventHandler(this.tb_LatestDate_Leave);
             // 
             // label5
             // 
@@ -195,7 +200,7 @@
             this.btn_RemoveFilters.Location = new System.Drawing.Point(1037, 555);
             this.btn_RemoveFilters.Name = "btn_RemoveFilters";
             this.btn_RemoveFilters.Size = new System.Drawing.Size(110, 37);
-            this.btn_RemoveFilters.TabIndex = 24;
+            this.btn_RemoveFilters.TabIndex = 13;
             this.btn_RemoveFilters.Text = "Remove Filters";
             this.btn_RemoveFilters.UseVisualStyleBackColor = true;
             this.btn_RemoveFilters.Click += new System.EventHandler(this.btn_RemoveFilters_Click);
@@ -205,7 +210,8 @@
             this.tb_PersonalID.Location = new System.Drawing.Point(924, 175);
             this.tb_PersonalID.Name = "tb_PersonalID";
             this.tb_PersonalID.Size = new System.Drawing.Size(225, 20);
-            this.tb_PersonalID.TabIndex = 15;
+            this.tb_PersonalID.TabIndex = 4;
+            this.tb_PersonalID.Leave += new System.EventHandler(this.tb_PersonalID_Leave);
             // 
             // label6
             // 
@@ -224,7 +230,7 @@
             this.groupBox1.Location = new System.Drawing.Point(901, 281);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(246, 93);
-            this.groupBox1.TabIndex = 25;
+            this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Account Status";
             // 
@@ -234,9 +240,10 @@
             this.rb_Closed.Location = new System.Drawing.Point(27, 65);
             this.rb_Closed.Name = "rb_Closed";
             this.rb_Closed.Size = new System.Drawing.Size(184, 17);
-            this.rb_Closed.TabIndex = 2;
+            this.rb_Closed.TabIndex = 9;
             this.rb_Closed.Text = "Search For Closed Accounts Only";
             this.rb_Closed.UseVisualStyleBackColor = true;
+            this.rb_Closed.CheckedChanged += new System.EventHandler(this.rb_Closed_CheckedChanged);
             // 
             // rb_Open
             // 
@@ -244,9 +251,10 @@
             this.rb_Open.Location = new System.Drawing.Point(27, 42);
             this.rb_Open.Name = "rb_Open";
             this.rb_Open.Size = new System.Drawing.Size(178, 17);
-            this.rb_Open.TabIndex = 1;
+            this.rb_Open.TabIndex = 8;
             this.rb_Open.Text = "Search For Open Accounts Only";
             this.rb_Open.UseVisualStyleBackColor = true;
+            this.rb_Open.CheckedChanged += new System.EventHandler(this.rb_Open_CheckedChanged);
             // 
             // rb_All
             // 
@@ -255,17 +263,18 @@
             this.rb_All.Location = new System.Drawing.Point(27, 19);
             this.rb_All.Name = "rb_All";
             this.rb_All.Size = new System.Drawing.Size(139, 17);
-            this.rb_All.TabIndex = 0;
+            this.rb_All.TabIndex = 7;
             this.rb_All.TabStop = true;
             this.rb_All.Text = "Search For All Accounts";
             this.rb_All.UseVisualStyleBackColor = true;
+            this.rb_All.CheckedChanged += new System.EventHandler(this.rb_All_CheckedChanged);
             // 
             // btn_Close
             // 
             this.btn_Close.Location = new System.Drawing.Point(131, 555);
             this.btn_Close.Name = "btn_Close";
             this.btn_Close.Size = new System.Drawing.Size(113, 37);
-            this.btn_Close.TabIndex = 26;
+            this.btn_Close.TabIndex = 14;
             this.btn_Close.Text = "Close";
             this.btn_Close.UseVisualStyleBackColor = true;
             this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);

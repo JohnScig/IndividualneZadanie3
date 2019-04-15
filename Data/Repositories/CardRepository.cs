@@ -109,6 +109,7 @@ namespace Data.Repositories
                 }
             }
         }
+
         public int CheckTries(string cardNumber)
         {
             using (SqlConnection connection = new SqlConnection(ConnString))
@@ -165,8 +166,6 @@ namespace Data.Repositories
 
             }
         }
-
-
 
         //private CardModel cardModel = new CardModel();
 
@@ -230,7 +229,7 @@ namespace Data.Repositories
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     command.CommandText = "INSERT INTO Card " +
-                        "VALUES (@cardNumber,@hashedPin,GETDATE(),(SELECT DATEADD(YEAR,3,GETDATE())),0,@accountID,@pin)";
+                        "VALUES (@cardNumber,@hashedPin,GETDATE(),(SELECT DATEADD(YEAR,3,GETDATE())),0,@accountID,@pin,0,GETDATE())";
                     command.Parameters.Add("@cardNumber", SqlDbType.NVarChar).Value = cardNumber;
                     command.Parameters.Add("@hashedPin", SqlDbType.NVarChar).Value = hashedPin;
                     command.Parameters.Add("@accountID", SqlDbType.NVarChar).Value = accountID;

@@ -90,7 +90,7 @@
             this.tb_IBAN.MaxLength = 34;
             this.tb_IBAN.Name = "tb_IBAN";
             this.tb_IBAN.Size = new System.Drawing.Size(308, 20);
-            this.tb_IBAN.TabIndex = 12;
+            this.tb_IBAN.TabIndex = 1;
             // 
             // lbl_RecIBAN
             // 
@@ -116,7 +116,7 @@
             this.ntb_Amount.MaxLength = 18;
             this.ntb_Amount.Name = "ntb_Amount";
             this.ntb_Amount.Size = new System.Drawing.Size(308, 20);
-            this.ntb_Amount.TabIndex = 14;
+            this.ntb_Amount.TabIndex = 2;
             // 
             // tb_Variable
             // 
@@ -124,7 +124,7 @@
             this.tb_Variable.MaxLength = 10;
             this.tb_Variable.Name = "tb_Variable";
             this.tb_Variable.Size = new System.Drawing.Size(129, 20);
-            this.tb_Variable.TabIndex = 12;
+            this.tb_Variable.TabIndex = 3;
             this.tb_Variable.Text = "0000000000";
             // 
             // label4
@@ -142,7 +142,7 @@
             this.tb_Specific.MaxLength = 10;
             this.tb_Specific.Name = "tb_Specific";
             this.tb_Specific.Size = new System.Drawing.Size(132, 20);
-            this.tb_Specific.TabIndex = 12;
+            this.tb_Specific.TabIndex = 4;
             this.tb_Specific.Text = "0000000000";
             // 
             // label5
@@ -160,7 +160,7 @@
             this.tb_Constant.MaxLength = 4;
             this.tb_Constant.Name = "tb_Constant";
             this.tb_Constant.Size = new System.Drawing.Size(132, 20);
-            this.tb_Constant.TabIndex = 12;
+            this.tb_Constant.TabIndex = 5;
             this.tb_Constant.Text = "0000";
             // 
             // label6
@@ -179,7 +179,7 @@
             this.tb_Message.Multiline = true;
             this.tb_Message.Name = "tb_Message";
             this.tb_Message.Size = new System.Drawing.Size(161, 145);
-            this.tb_Message.TabIndex = 15;
+            this.tb_Message.TabIndex = 6;
             // 
             // label7
             // 
@@ -195,7 +195,7 @@
             this.btn_Confirm.Location = new System.Drawing.Point(12, 308);
             this.btn_Confirm.Name = "btn_Confirm";
             this.btn_Confirm.Size = new System.Drawing.Size(104, 23);
-            this.btn_Confirm.TabIndex = 16;
+            this.btn_Confirm.TabIndex = 7;
             this.btn_Confirm.Text = "Confirm";
             this.btn_Confirm.UseVisualStyleBackColor = true;
             this.btn_Confirm.Click += new System.EventHandler(this.btn_Confirm_Click);
@@ -205,7 +205,7 @@
             this.btn_Cancel.Location = new System.Drawing.Point(12, 337);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(104, 23);
-            this.btn_Cancel.TabIndex = 17;
+            this.btn_Cancel.TabIndex = 8;
             this.btn_Cancel.Text = "Cancel";
             this.btn_Cancel.UseVisualStyleBackColor = true;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);

@@ -35,11 +35,8 @@
             this.tb_LastName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.tb_Year = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.tb_Month = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.tb_Day = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tb_PersonalID = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -55,6 +52,9 @@
             this.label15 = new System.Windows.Forms.Label();
             this.btn_Confirm = new System.Windows.Forms.Button();
             this.btn_Cancel = new System.Windows.Forms.Button();
+            this.cb_Year = new System.Windows.Forms.ComboBox();
+            this.cb_Month = new System.Windows.Forms.ComboBox();
+            this.cb_Day = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btn_GenerateRandomPerson
@@ -62,7 +62,7 @@
             this.btn_GenerateRandomPerson.Location = new System.Drawing.Point(160, 483);
             this.btn_GenerateRandomPerson.Name = "btn_GenerateRandomPerson";
             this.btn_GenerateRandomPerson.Size = new System.Drawing.Size(141, 23);
-            this.btn_GenerateRandomPerson.TabIndex = 5;
+            this.btn_GenerateRandomPerson.TabIndex = 14;
             this.btn_GenerateRandomPerson.Text = "Generate Random Person";
             this.btn_GenerateRandomPerson.UseVisualStyleBackColor = true;
             this.btn_GenerateRandomPerson.Click += new System.EventHandler(this.btn_GenerateRandomPerson_Click);
@@ -90,14 +90,14 @@
             this.tb_FirstName.Location = new System.Drawing.Point(27, 40);
             this.tb_FirstName.Name = "tb_FirstName";
             this.tb_FirstName.Size = new System.Drawing.Size(100, 20);
-            this.tb_FirstName.TabIndex = 9;
+            this.tb_FirstName.TabIndex = 1;
             // 
             // tb_LastName
             // 
             this.tb_LastName.Location = new System.Drawing.Point(170, 40);
             this.tb_LastName.Name = "tb_LastName";
             this.tb_LastName.Size = new System.Drawing.Size(100, 20);
-            this.tb_LastName.TabIndex = 10;
+            this.tb_LastName.TabIndex = 2;
             // 
             // label5
             // 
@@ -117,13 +117,6 @@
             this.label6.TabIndex = 12;
             this.label6.Text = "Year";
             // 
-            // tb_Year
-            // 
-            this.tb_Year.Location = new System.Drawing.Point(27, 119);
-            this.tb_Year.Name = "tb_Year";
-            this.tb_Year.Size = new System.Drawing.Size(65, 20);
-            this.tb_Year.TabIndex = 13;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -133,13 +126,6 @@
             this.label7.TabIndex = 12;
             this.label7.Text = "Month";
             // 
-            // tb_Month
-            // 
-            this.tb_Month.Location = new System.Drawing.Point(119, 119);
-            this.tb_Month.Name = "tb_Month";
-            this.tb_Month.Size = new System.Drawing.Size(65, 20);
-            this.tb_Month.TabIndex = 13;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -148,13 +134,6 @@
             this.label8.Size = new System.Drawing.Size(26, 13);
             this.label8.TabIndex = 12;
             this.label8.Text = "Day";
-            // 
-            // tb_Day
-            // 
-            this.tb_Day.Location = new System.Drawing.Point(205, 119);
-            this.tb_Day.Name = "tb_Day";
-            this.tb_Day.Size = new System.Drawing.Size(65, 20);
-            this.tb_Day.TabIndex = 13;
             // 
             // label9
             // 
@@ -170,7 +149,7 @@
             this.tb_PersonalID.Location = new System.Drawing.Point(27, 177);
             this.tb_PersonalID.Name = "tb_PersonalID";
             this.tb_PersonalID.Size = new System.Drawing.Size(100, 20);
-            this.tb_PersonalID.TabIndex = 15;
+            this.tb_PersonalID.TabIndex = 6;
             // 
             // label10
             // 
@@ -186,7 +165,7 @@
             this.tb_PhoneNumber.Location = new System.Drawing.Point(170, 177);
             this.tb_PhoneNumber.Name = "tb_PhoneNumber";
             this.tb_PhoneNumber.Size = new System.Drawing.Size(100, 20);
-            this.tb_PhoneNumber.TabIndex = 15;
+            this.tb_PhoneNumber.TabIndex = 7;
             // 
             // label11
             // 
@@ -202,7 +181,7 @@
             this.tb_Email.Location = new System.Drawing.Point(27, 231);
             this.tb_Email.Name = "tb_Email";
             this.tb_Email.Size = new System.Drawing.Size(243, 20);
-            this.tb_Email.TabIndex = 15;
+            this.tb_Email.TabIndex = 8;
             // 
             // label12
             // 
@@ -227,14 +206,14 @@
             this.tb_Street.Location = new System.Drawing.Point(27, 321);
             this.tb_Street.Name = "tb_Street";
             this.tb_Street.Size = new System.Drawing.Size(243, 20);
-            this.tb_Street.TabIndex = 15;
+            this.tb_Street.TabIndex = 9;
             // 
             // tb_City
             // 
             this.tb_City.Location = new System.Drawing.Point(27, 376);
             this.tb_City.Name = "tb_City";
             this.tb_City.Size = new System.Drawing.Size(100, 20);
-            this.tb_City.TabIndex = 15;
+            this.tb_City.TabIndex = 10;
             // 
             // label14
             // 
@@ -250,7 +229,7 @@
             this.tb_PostalCode.Location = new System.Drawing.Point(170, 376);
             this.tb_PostalCode.Name = "tb_PostalCode";
             this.tb_PostalCode.Size = new System.Drawing.Size(100, 20);
-            this.tb_PostalCode.TabIndex = 15;
+            this.tb_PostalCode.TabIndex = 11;
             // 
             // label15
             // 
@@ -266,7 +245,7 @@
             this.btn_Confirm.Location = new System.Drawing.Point(27, 454);
             this.btn_Confirm.Name = "btn_Confirm";
             this.btn_Confirm.Size = new System.Drawing.Size(75, 23);
-            this.btn_Confirm.TabIndex = 16;
+            this.btn_Confirm.TabIndex = 12;
             this.btn_Confirm.Text = "Confirm";
             this.btn_Confirm.UseVisualStyleBackColor = true;
             this.btn_Confirm.Click += new System.EventHandler(this.btn_Confirm_Click);
@@ -276,16 +255,43 @@
             this.btn_Cancel.Location = new System.Drawing.Point(27, 483);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
-            this.btn_Cancel.TabIndex = 17;
+            this.btn_Cancel.TabIndex = 13;
             this.btn_Cancel.Text = "Cancel";
             this.btn_Cancel.UseVisualStyleBackColor = true;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            // 
+            // cb_Year
+            // 
+            this.cb_Year.FormattingEnabled = true;
+            this.cb_Year.Location = new System.Drawing.Point(27, 120);
+            this.cb_Year.Name = "cb_Year";
+            this.cb_Year.Size = new System.Drawing.Size(54, 21);
+            this.cb_Year.TabIndex = 3;
+            // 
+            // cb_Month
+            // 
+            this.cb_Month.FormattingEnabled = true;
+            this.cb_Month.Location = new System.Drawing.Point(119, 120);
+            this.cb_Month.Name = "cb_Month";
+            this.cb_Month.Size = new System.Drawing.Size(53, 21);
+            this.cb_Month.TabIndex = 4;
+            // 
+            // cb_Day
+            // 
+            this.cb_Day.FormattingEnabled = true;
+            this.cb_Day.Location = new System.Drawing.Point(205, 119);
+            this.cb_Day.Name = "cb_Day";
+            this.cb_Day.Size = new System.Drawing.Size(49, 21);
+            this.cb_Day.TabIndex = 5;
             // 
             // NewClientView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(313, 524);
+            this.Controls.Add(this.cb_Day);
+            this.Controls.Add(this.cb_Month);
+            this.Controls.Add(this.cb_Year);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Confirm);
             this.Controls.Add(this.tb_PostalCode);
@@ -300,11 +306,8 @@
             this.Controls.Add(this.label15);
             this.Controls.Add(this.tb_PersonalID);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.tb_Day);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.tb_Month);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.tb_Year);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label5);
@@ -329,11 +332,8 @@
         private System.Windows.Forms.TextBox tb_LastName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox tb_Year;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox tb_Month;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox tb_Day;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox tb_PersonalID;
         private System.Windows.Forms.Label label10;
@@ -349,5 +349,8 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btn_Confirm;
         private System.Windows.Forms.Button btn_Cancel;
+        private System.Windows.Forms.ComboBox cb_Year;
+        private System.Windows.Forms.ComboBox cb_Month;
+        private System.Windows.Forms.ComboBox cb_Day;
     }
 }

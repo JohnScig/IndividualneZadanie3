@@ -68,7 +68,7 @@
             this.ntb_CardNumber.Location = new System.Drawing.Point(45, 67);
             this.ntb_CardNumber.Name = "ntb_CardNumber";
             this.ntb_CardNumber.Size = new System.Drawing.Size(208, 20);
-            this.ntb_CardNumber.TabIndex = 4;
+            this.ntb_CardNumber.TabIndex = 1;
             // 
             // InsertCardView
             // 

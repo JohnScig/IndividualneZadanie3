@@ -39,7 +39,7 @@
             this.btn_Cancel.Location = new System.Drawing.Point(122, 209);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(133, 23);
-            this.btn_Cancel.TabIndex = 11;
+            this.btn_Cancel.TabIndex = 3;
             this.btn_Cancel.Text = "Cancel";
             this.btn_Cancel.UseVisualStyleBackColor = true;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
@@ -49,7 +49,7 @@
             this.btn_Confirm.Location = new System.Drawing.Point(122, 179);
             this.btn_Confirm.Name = "btn_Confirm";
             this.btn_Confirm.Size = new System.Drawing.Size(133, 23);
-            this.btn_Confirm.TabIndex = 10;
+            this.btn_Confirm.TabIndex = 2;
             this.btn_Confirm.Text = "Confirm";
             this.btn_Confirm.UseVisualStyleBackColor = true;
             this.btn_Confirm.Click += new System.EventHandler(this.btn_Confirm_Click);
@@ -59,7 +59,7 @@
             this.ntb_Amount.Location = new System.Drawing.Point(122, 107);
             this.ntb_Amount.Name = "ntb_Amount";
             this.ntb_Amount.Size = new System.Drawing.Size(216, 20);
-            this.ntb_Amount.TabIndex = 9;
+            this.ntb_Amount.TabIndex = 1;
             // 
             // lbl_Command
             // 

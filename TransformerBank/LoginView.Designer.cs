@@ -44,6 +44,7 @@
             this.ntb_CardNumber.Name = "ntb_CardNumber";
             this.ntb_CardNumber.Size = new System.Drawing.Size(299, 20);
             this.ntb_CardNumber.TabIndex = 0;
+            this.ntb_CardNumber.TabStop = false;
             // 
             // lbl_CardNumber
             // 
@@ -77,7 +78,7 @@
             this.btn_Confirm.Location = new System.Drawing.Point(12, 297);
             this.btn_Confirm.Name = "btn_Confirm";
             this.btn_Confirm.Size = new System.Drawing.Size(152, 23);
-            this.btn_Confirm.TabIndex = 4;
+            this.btn_Confirm.TabIndex = 3;
             this.btn_Confirm.Text = "Confirm";
             this.btn_Confirm.UseVisualStyleBackColor = true;
             this.btn_Confirm.Click += new System.EventHandler(this.btn_Confirm_Click);
@@ -87,7 +88,7 @@
             this.btn_InserCard.Location = new System.Drawing.Point(297, 326);
             this.btn_InserCard.Name = "btn_InserCard";
             this.btn_InserCard.Size = new System.Drawing.Size(75, 23);
-            this.btn_InserCard.TabIndex = 5;
+            this.btn_InserCard.TabIndex = 1;
             this.btn_InserCard.Text = "Insert Card";
             this.btn_InserCard.UseVisualStyleBackColor = true;
             this.btn_InserCard.Click += new System.EventHandler(this.btn_InserCard_Click);
@@ -97,7 +98,7 @@
             this.btn_Withdraw.Location = new System.Drawing.Point(12, 326);
             this.btn_Withdraw.Name = "btn_Withdraw";
             this.btn_Withdraw.Size = new System.Drawing.Size(152, 23);
-            this.btn_Withdraw.TabIndex = 6;
+            this.btn_Withdraw.TabIndex = 4;
             this.btn_Withdraw.Text = "Cancel and Withdraw Card";
             this.btn_Withdraw.UseVisualStyleBackColor = true;
             this.btn_Withdraw.Click += new System.EventHandler(this.btn_Withdraw_Click);

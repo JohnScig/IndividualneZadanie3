@@ -25,6 +25,7 @@ namespace BankSystem
         public NewClientView()
         {
             InitializeComponent();
+            LoadComboBoxes();
         }
 
         /// <summary>
@@ -39,7 +40,24 @@ namespace BankSystem
             PopulateTextBoxes(personalID);
         }
 
+        public void LoadComboBoxes()
+        {
+            for (int i = 1; i <= 31; i++)
+            {
+                cb_Day.Items.Add(i);
+            }
 
+            for (int i = 1; i <= 12; i++)
+            {
+                cb_Month.Items.Add(i);
+            }
+
+            for (int i = 1900; i <= 2100; i++)
+            {
+                cb_Year.Items.Add(i);
+            }
+
+        }
 
         private void btn_GenerateRandomPerson_Click(object sender, EventArgs e)
         {           
@@ -47,9 +65,9 @@ namespace BankSystem
 
             tb_FirstName.Text = currentClient.FirstName;
             tb_LastName.Text = currentClient.LastName;
-            tb_Year.Text = currentClient.DateOfBirth.Year.ToString();
-            tb_Month.Text = currentClient.DateOfBirth.Month.ToString();
-            tb_Day.Text = currentClient.DateOfBirth.Day.ToString();
+            cb_Year.Text = currentClient.DateOfBirth.Year.ToString();
+            cb_Month.Text = currentClient.DateOfBirth.Month.ToString();
+            cb_Day.Text = currentClient.DateOfBirth.Day.ToString();
             tb_PersonalID.Text = currentClient.PersonalID;
             tb_PhoneNumber.Text = currentClient.PhoneNumber;
             tb_Email.Text = currentClient.Email;
@@ -62,7 +80,7 @@ namespace BankSystem
         {
             currentClient.FirstName = tb_FirstName.Text;
             currentClient.LastName = tb_LastName.Text;
-            currentClient.DateOfBirth = new DateTime(Convert.ToInt32(tb_Year.Text), Convert.ToInt32(tb_Month.Text), Convert.ToInt32(tb_Day.Text));
+            currentClient.DateOfBirth = new DateTime(Convert.ToInt32(cb_Year.Text), Convert.ToInt32(cb_Month.Text), Convert.ToInt32(cb_Day.Text));
             currentClient.PersonalID = tb_PersonalID.Text;
             currentClient.PhoneNumber = tb_PhoneNumber.Text;
             currentClient.Email = tb_Email.Text;
@@ -110,9 +128,9 @@ namespace BankSystem
 
             tb_FirstName.Text = currentClient.FirstName;
             tb_LastName.Text = currentClient.LastName;
-            tb_Year.Text = currentClient.DateOfBirth.Year.ToString();
-            tb_Month.Text = currentClient.DateOfBirth.Month.ToString();
-            tb_Day.Text = currentClient.DateOfBirth.Day.ToString();
+            cb_Year.Text = currentClient.DateOfBirth.Year.ToString();
+            cb_Month.Text = currentClient.DateOfBirth.Month.ToString();
+            cb_Day.Text = currentClient.DateOfBirth.Day.ToString();
             tb_PersonalID.Text = currentClient.PersonalID;
             tb_PhoneNumber.Text = currentClient.PhoneNumber;
             tb_Email.Text = currentClient.Email;

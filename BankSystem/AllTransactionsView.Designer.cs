@@ -77,7 +77,7 @@
             this.gb_TransactionType.Location = new System.Drawing.Point(176, 417);
             this.gb_TransactionType.Name = "gb_TransactionType";
             this.gb_TransactionType.Size = new System.Drawing.Size(246, 93);
-            this.gb_TransactionType.TabIndex = 33;
+            this.gb_TransactionType.TabIndex = 2;
             this.gb_TransactionType.TabStop = false;
             this.gb_TransactionType.Text = "Account Status";
             // 
@@ -90,6 +90,7 @@
             this.rb_Debit.TabIndex = 2;
             this.rb_Debit.Text = "Search For Debit Operations Only";
             this.rb_Debit.UseVisualStyleBackColor = true;
+            this.rb_Debit.CheckedChanged += new System.EventHandler(this.rb_Debit_CheckedChanged);
             // 
             // rb_Credit
             // 
@@ -100,6 +101,7 @@
             this.rb_Credit.TabIndex = 1;
             this.rb_Credit.Text = "Search For Credit Transactions Only";
             this.rb_Credit.UseVisualStyleBackColor = true;
+            this.rb_Credit.CheckedChanged += new System.EventHandler(this.rb_Credit_CheckedChanged);
             // 
             // rb_All
             // 
@@ -112,6 +114,7 @@
             this.rb_All.TabStop = true;
             this.rb_All.Text = "Search For All Transactions";
             this.rb_All.UseVisualStyleBackColor = true;
+            this.rb_All.CheckedChanged += new System.EventHandler(this.rb_All_CheckedChanged);
             // 
             // label5
             // 
@@ -127,7 +130,8 @@
             this.tb_LatestDate.Location = new System.Drawing.Point(808, 466);
             this.tb_LatestDate.Name = "tb_LatestDate";
             this.tb_LatestDate.Size = new System.Drawing.Size(225, 20);
-            this.tb_LatestDate.TabIndex = 29;
+            this.tb_LatestDate.TabIndex = 6;
+            this.tb_LatestDate.Leave += new System.EventHandler(this.tb_LatestDate_Leave);
             // 
             // label4
             // 
@@ -143,7 +147,8 @@
             this.tb_EarliestDate.Location = new System.Drawing.Point(808, 412);
             this.tb_EarliestDate.Name = "tb_EarliestDate";
             this.tb_EarliestDate.Size = new System.Drawing.Size(225, 20);
-            this.tb_EarliestDate.TabIndex = 30;
+            this.tb_EarliestDate.TabIndex = 5;
+            this.tb_EarliestDate.Leave += new System.EventHandler(this.tb_EarliestDate_Leave);
             // 
             // label3
             // 
@@ -168,7 +173,8 @@
             this.tb_Iban.Location = new System.Drawing.Point(176, 379);
             this.tb_Iban.Name = "tb_Iban";
             this.tb_Iban.Size = new System.Drawing.Size(246, 20);
-            this.tb_Iban.TabIndex = 26;
+            this.tb_Iban.TabIndex = 1;
+            this.tb_Iban.Leave += new System.EventHandler(this.tb_Iban_Leave);
             // 
             // label1
             // 
@@ -184,7 +190,8 @@
             this.tb_AmountLowPoint.Location = new System.Drawing.Point(498, 412);
             this.tb_AmountLowPoint.Name = "tb_AmountLowPoint";
             this.tb_AmountLowPoint.Size = new System.Drawing.Size(225, 20);
-            this.tb_AmountLowPoint.TabIndex = 30;
+            this.tb_AmountLowPoint.TabIndex = 3;
+            this.tb_AmountLowPoint.Leave += new System.EventHandler(this.tb_AmountLowPoint_Leave);
             // 
             // label2
             // 
@@ -200,7 +207,8 @@
             this.tb_AmountHighPoint.Location = new System.Drawing.Point(498, 466);
             this.tb_AmountHighPoint.Name = "tb_AmountHighPoint";
             this.tb_AmountHighPoint.Size = new System.Drawing.Size(225, 20);
-            this.tb_AmountHighPoint.TabIndex = 29;
+            this.tb_AmountHighPoint.TabIndex = 4;
+            this.tb_AmountHighPoint.Leave += new System.EventHandler(this.tb_AmountHighPoint_Leave);
             // 
             // label6
             // 
@@ -216,7 +224,7 @@
             this.btn_Filter.Location = new System.Drawing.Point(749, 511);
             this.btn_Filter.Name = "btn_Filter";
             this.btn_Filter.Size = new System.Drawing.Size(139, 23);
-            this.btn_Filter.TabIndex = 34;
+            this.btn_Filter.TabIndex = 7;
             this.btn_Filter.Text = "Filter";
             this.btn_Filter.UseVisualStyleBackColor = true;
             this.btn_Filter.Click += new System.EventHandler(this.btn_Filter_Click);
@@ -226,7 +234,7 @@
             this.btn_RemoveFilter.Location = new System.Drawing.Point(894, 511);
             this.btn_RemoveFilter.Name = "btn_RemoveFilter";
             this.btn_RemoveFilter.Size = new System.Drawing.Size(139, 23);
-            this.btn_RemoveFilter.TabIndex = 34;
+            this.btn_RemoveFilter.TabIndex = 8;
             this.btn_RemoveFilter.Text = "Remove Filters";
             this.btn_RemoveFilter.UseVisualStyleBackColor = true;
             this.btn_RemoveFilter.Click += new System.EventHandler(this.btn_RemoveFilter_Click);
@@ -236,7 +244,7 @@
             this.btn_Close.Location = new System.Drawing.Point(12, 511);
             this.btn_Close.Name = "btn_Close";
             this.btn_Close.Size = new System.Drawing.Size(75, 23);
-            this.btn_Close.TabIndex = 35;
+            this.btn_Close.TabIndex = 9;
             this.btn_Close.Text = "Close";
             this.btn_Close.UseVisualStyleBackColor = true;
             this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);

@@ -59,7 +59,7 @@
             this.btn_CheckBalance.Location = new System.Drawing.Point(46, 160);
             this.btn_CheckBalance.Name = "btn_CheckBalance";
             this.btn_CheckBalance.Size = new System.Drawing.Size(152, 23);
-            this.btn_CheckBalance.TabIndex = 2;
+            this.btn_CheckBalance.TabIndex = 1;
             this.btn_CheckBalance.Text = "Check Account Balance";
             this.btn_CheckBalance.UseVisualStyleBackColor = true;
             this.btn_CheckBalance.Click += new System.EventHandler(this.btn_CheckBalance_Click);
@@ -69,7 +69,7 @@
             this.btn_Withdraw.Location = new System.Drawing.Point(46, 189);
             this.btn_Withdraw.Name = "btn_Withdraw";
             this.btn_Withdraw.Size = new System.Drawing.Size(152, 23);
-            this.btn_Withdraw.TabIndex = 3;
+            this.btn_Withdraw.TabIndex = 2;
             this.btn_Withdraw.Text = "Withdraw Money";
             this.btn_Withdraw.UseVisualStyleBackColor = true;
             this.btn_Withdraw.Click += new System.EventHandler(this.btn_Withdraw_Click);
@@ -79,7 +79,7 @@
             this.btn_LogOut.Location = new System.Drawing.Point(46, 266);
             this.btn_LogOut.Name = "btn_LogOut";
             this.btn_LogOut.Size = new System.Drawing.Size(152, 23);
-            this.btn_LogOut.TabIndex = 4;
+            this.btn_LogOut.TabIndex = 3;
             this.btn_LogOut.Text = "Log Out";
             this.btn_LogOut.UseVisualStyleBackColor = true;
             this.btn_LogOut.Click += new System.EventHandler(this.btn_LogOut_Click);

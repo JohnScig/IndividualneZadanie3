@@ -120,5 +120,45 @@ namespace BankSystem
         {
             this.Close();
         }
+
+        private void tb_Iban_Leave(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void rb_All_CheckedChanged(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void rb_Credit_CheckedChanged(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void rb_Debit_CheckedChanged(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void tb_AmountLowPoint_Leave(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void tb_AmountHighPoint_Leave(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void tb_EarliestDate_Leave(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void tb_LatestDate_Leave(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
     }
 }

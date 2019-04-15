@@ -48,7 +48,6 @@ namespace BankSystem
 
         }
 
-
         public void LoadAccountsInfoGridView()
         {
             dgv_AccountsInfo.Rows.Clear();
@@ -60,7 +59,7 @@ namespace BankSystem
                 {
                     isOpen = "Closed: " + account.CloseDate.ToString();
                 }
-                dgv_AccountsInfo.Rows.Add(account.IBAN, account.Balance.ToString(), account.DebtLimit.ToString(),isOpen);
+                dgv_AccountsInfo.Rows.Add(account.IBAN, account.Balance.ToString(), account.DebtLimit.ToString(), isOpen);
             }
         }
 
@@ -85,7 +84,7 @@ namespace BankSystem
 
         private void dgv_AccountsInfo_SelectionChanged(object sender, EventArgs e)
         {
-            LoadCardInfoGridView(dgv_AccountsInfo.CurrentRow.Cells[0].Value.ToString());
+
 
             if (dgv_AccountsInfo.CurrentRow.Cells[3].Value.ToString().Equals("open"))
             {
@@ -102,6 +101,7 @@ namespace BankSystem
                 }
             }
 
+            LoadCardInfoGridView(dgv_AccountsInfo.CurrentRow.Cells[0].Value.ToString());
             _iban = dgv_AccountsInfo.CurrentRow.Cells[0].Value.ToString();
         }
 
@@ -113,33 +113,44 @@ namespace BankSystem
 
         private void btn_ResetPin_Click(object sender, EventArgs e)
         {
-            new NewPinView(_iban,dgv_CardsInfo.SelectedRows[0].Cells[0].Value.ToString()).ShowDialog();
-            LoadCardInfoGridView(_iban);
+            if (dgv_CardsInfo.Rows.Count != 0)
+            {
+                new NewPinView(_iban, dgv_CardsInfo.SelectedRows[0].Cells[0].Value.ToString()).ShowDialog();
+                LoadCardInfoGridView(_iban);
+            }
         }
 
         private void btn_BlockCard_Click(object sender, EventArgs e)
         {
-            if (new ClientManagerModel().BlockCard(dgv_CardsInfo.SelectedRows[0].Cells[0].Value.ToString()))
+
+            if (dgv_CardsInfo.Rows.Count != 0)
             {
-                MessageBox.Show("Card successfully blocked");
-                LoadCardInfoGridView(_iban);
-            }
-            else
-            {
-                MessageBox.Show("Something went wrong, card remains unblocked");
+                if (new ClientManagerModel().BlockCard(dgv_CardsInfo.SelectedRows[0].Cells[0].Value.ToString()))
+                {
+                    MessageBox.Show("Card successfully blocked");
+                    LoadCardInfoGridView(_iban);
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong, card remains unblocked");
+                }
+
             }
         }
 
         private void btn_UnblockCard_Click(object sender, EventArgs e)
         {
-            if (new ClientManagerModel().UnblockCard(dgv_CardsInfo.SelectedRows[0].Cells[0].Value.ToString()))
+            if (dgv_CardsInfo.Rows.Count != 0)
             {
-                MessageBox.Show("Card successfully unblocked");
-                LoadCardInfoGridView(_iban);
-            }
-            else
-            {
-                MessageBox.Show("Something went wrong, card remains blocked");
+                if (new ClientManagerModel().UnblockCard(dgv_CardsInfo.SelectedRows[0].Cells[0].Value.ToString()))
+                {
+                    MessageBox.Show("Card successfully unblocked");
+                    LoadCardInfoGridView(_iban);
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong, card remains blocked");
+                }
             }
         }
 
@@ -233,7 +244,8 @@ namespace BankSystem
                 }
                 else
                 {
-                    MessageBox.Show("A problem has occurred. Account remains open");
+                    MessageBox.Show("A problem has occurred. Account remains open!");
+
                 }
 
             }
