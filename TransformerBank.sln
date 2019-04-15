@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Support", "Controls\Support
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{30BA08C2-845E-4062-AD82-153977BB26E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneratorTester", "GeneratorTester\GeneratorTester.csproj", "{98026EA1-C84E-40AB-9613-85FAD682EACF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{30BA08C2-845E-4062-AD82-153977BB26E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30BA08C2-845E-4062-AD82-153977BB26E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30BA08C2-845E-4062-AD82-153977BB26E9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{98026EA1-C84E-40AB-9613-85FAD682EACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98026EA1-C84E-40AB-9613-85FAD682EACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98026EA1-C84E-40AB-9613-85FAD682EACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98026EA1-C84E-40AB-9613-85FAD682EACF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

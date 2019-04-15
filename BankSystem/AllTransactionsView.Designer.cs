@@ -239,6 +239,7 @@
             this.ntb_AmountLowPoint.Name = "ntb_AmountLowPoint";
             this.ntb_AmountLowPoint.Size = new System.Drawing.Size(225, 20);
             this.ntb_AmountLowPoint.TabIndex = 33;
+            this.ntb_AmountLowPoint.Leave += new System.EventHandler(this.ntb_AmountLowPoint_Leave);
             // 
             // ntb_AmountHighPoint
             // 
@@ -246,6 +247,7 @@
             this.ntb_AmountHighPoint.Name = "ntb_AmountHighPoint";
             this.ntb_AmountHighPoint.Size = new System.Drawing.Size(225, 20);
             this.ntb_AmountHighPoint.TabIndex = 34;
+            this.ntb_AmountHighPoint.Leave += new System.EventHandler(this.ntb_AmountHighPoint_Leave);
             // 
             // AllTransactionsView
             // 

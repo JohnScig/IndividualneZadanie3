@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BankSystem
 {
@@ -21,6 +22,16 @@ namespace BankSystem
                 return false;
             }
 
+        }
+
+        public AutoCompleteStringCollection GetAllPersonalIDs()
+        {
+            AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
+            foreach (string item in new ClientRepository().GetAllPersonalIDs())
+            {
+                autoCompleteStringCollection.Add(item);
+            }
+            return autoCompleteStringCollection;
         }
 
         public DataSet GetTopClients()

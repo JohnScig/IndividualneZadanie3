@@ -7,8 +7,17 @@ using System.Threading.Tasks;
 
 namespace Data
 {
+
+    /// <summary>
+    /// Static class with methods that check the user's input
+    /// </summary>
     public static class InputChecker
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stringDate">input string </param>
+        /// <returns></returns>
         public static DateTime ConvertToDate(string stringDate)
         {
             char[] separators = {'.',':','/',' '};
@@ -64,6 +73,19 @@ namespace Data
             {
                 return String.Empty;
             }
+        }
+
+        public static bool PinChecker(string pin)
+        {
+            if (pin.Length == 4)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }

@@ -12,6 +12,7 @@ namespace BankSystem
     public class NewClientModel
     {
         private ClientModel _clientModel = new ClientModel();
+
         private AccountModel _accountModel = new AccountModel();
 
         public ClientModel GenerateRandomClient()

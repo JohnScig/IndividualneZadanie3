@@ -86,7 +86,9 @@
             // 
             // tb_PersonalID
             // 
-            this.tb_PersonalID.Location = new System.Drawing.Point(625, 11);
+            this.tb_PersonalID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tb_PersonalID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.tb_PersonalID.Location = new System.Drawing.Point(625, 9);
             this.tb_PersonalID.Margin = new System.Windows.Forms.Padding(2);
             this.tb_PersonalID.MaxLength = 8;
             this.tb_PersonalID.Name = "tb_PersonalID";

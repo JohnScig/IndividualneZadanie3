@@ -20,7 +20,7 @@ namespace BankSystem
 
         private void btn_Confirm_Click(object sender, EventArgs e)
         {
-            if (new NewTransactionModel().TransferMoney(lbl_IBAN.Text, tb_IBAN.Text, Convert.ToDecimal(ntb_Amount.Text), tb_Variable.Text, tb_Specific.Text, tb_Constant.Text, tb_Message.Text))
+            if (new NewTransactionModel().TransferMoney(lbl_IBAN.Text, tb_IBAN.Text, Convert.ToDecimal(ntb_Amount.Text), ntb_Variable.Text, ntb_Specific.Text, ntb_Constant.Text, tb_Message.Text))
 
             {
                 MessageBox.Show("success");

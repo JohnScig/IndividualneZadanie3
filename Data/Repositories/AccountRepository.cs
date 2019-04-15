@@ -13,77 +13,124 @@ namespace Data.Repositories
 {
     public class AccountRepository
     {
-        //public static string ServerName { get; set; } = ServerSettings.ServerName;
-        //public static string DatabaseName { get; set; } = ServerSettings.DatabaseName;
-        //public static string ConnString { get; set; } = $"Server={ServerName}; Database = {DatabaseName}; Trusted_Connection = True";
+        /// <summary>
+        /// Connection string for the database
+        /// </summary>
         public static string ConnString { get; set; } = $"Server={ServerSettings.ServerName}; Database = {ServerSettings.DatabaseName}; Trusted_Connection = True";
 
+        /// <summary>
+        /// Method that adds a new account based on the owner's ID. 
+        /// This method is called after creating a new client -> at this point, his ID is returned, which makes it simpler to create the account directly with his ID
+        /// </summary>
+        /// <param name="accountModel">account model to be written into the database</param>
+        /// <param name="ownerID">Owner's ID</param>
+        /// <returns>returns true if the account is written into the database successfully</returns>
         public bool AddAccount(AccountModel accountModel, int ownerID)
         {
-            try
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
-                using (SqlConnection connection = new SqlConnection(ConnString))
+                try
                 {
                     connection.Open();
-                    using (SqlCommand command = connection.CreateCommand())
-                    {
-                        command.CommandText = "INSERT INTO Account (IBAN,OwnerID,BankID,OpenDate) " +
-                            "VALUES (@IBAN,@OwnerID,@BankID,@OpenDate)";
-                        command.Parameters.Add("@IBAN", SqlDbType.NVarChar).Value = accountModel.IBAN;
-                        command.Parameters.Add("@OwnerID", SqlDbType.Int).Value = ownerID;
-                        command.Parameters.Add("@BankID", SqlDbType.NVarChar).Value = accountModel.BankID;
-                        command.Parameters.Add("@OpenDate", SqlDbType.DateTime2).Value = accountModel.OpenDate;
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
 
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "INSERT INTO Account (IBAN,OwnerID,BankID,OpenDate) " +
+                        "VALUES (@IBAN,@OwnerID,@BankID,@OpenDate)";
+                    command.Parameters.Add("@IBAN", SqlDbType.NVarChar).Value = accountModel.IBAN;
+                    command.Parameters.Add("@OwnerID", SqlDbType.Int).Value = ownerID;
+                    command.Parameters.Add("@BankID", SqlDbType.NVarChar).Value = accountModel.BankID;
+                    command.Parameters.Add("@OpenDate", SqlDbType.DateTime2).Value = accountModel.OpenDate;
+
+                    try
+                    {
                         if (command.ExecuteNonQuery() > 0)
                         {
                             Debug.WriteLine("Account Added");
                             return true;
                         }
                     }
+                    catch (SqlException e)
+                    {
+
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return false;
+                    }
+
                 }
-                return false;
             }
-            catch (SqlException e)
-            {
-                Console.WriteLine(e.ToString());
-                return false;
-            }
+            return false;
+
         }
 
-
-
+        /// <summary>
+        /// Method that adds a new account based on the owner's ID Card. 
+        /// This method is called when an owner already exists
+        /// </summary>
+        /// <param name="accountModel">account model to be written into the database</param>
+        /// <param name="personalID">Owner's ID Card Number</param>
+        /// <returns>returns true if the account is written into the database successfully</returns>
         public bool AddAccount(AccountModel accountModel, string personalID)
         {
-            try
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
-                using (SqlConnection connection = new SqlConnection(ConnString))
+                try
                 {
                     connection.Open();
-                    using (SqlCommand command = connection.CreateCommand())
-                    {
-                        command.CommandText = "INSERT INTO Account (IBAN,OwnerID,BankID,OpenDate) " +
-                            "VALUES (@IBAN,(SELECT Client_ID FROM Client WHERE PersonalID = @PersonalID),@BankID,@OpenDate)";
-                        command.Parameters.Add("@IBAN", SqlDbType.NVarChar).Value = accountModel.IBAN;
-                        command.Parameters.Add("@PersonalID", SqlDbType.NVarChar).Value = personalID;
-                        command.Parameters.Add("@BankID", SqlDbType.NVarChar).Value = accountModel.BankID;
-                        command.Parameters.Add("@OpenDate", SqlDbType.DateTime2).Value = accountModel.OpenDate;
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return false;
+                }
 
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "INSERT INTO Account (IBAN,OwnerID,BankID,OpenDate) " +
+                        "VALUES (@IBAN,(SELECT Client_ID FROM Client WHERE PersonalID = @PersonalID),@BankID,@OpenDate)";
+                    command.Parameters.Add("@IBAN", SqlDbType.NVarChar).Value = accountModel.IBAN;
+                    command.Parameters.Add("@PersonalID", SqlDbType.NVarChar).Value = personalID;
+                    command.Parameters.Add("@BankID", SqlDbType.NVarChar).Value = accountModel.BankID;
+                    command.Parameters.Add("@OpenDate", SqlDbType.DateTime2).Value = accountModel.OpenDate;
+
+                    try
+                    {
                         if (command.ExecuteNonQuery() > 0)
                         {
                             Debug.WriteLine("Account Added");
                             return true;
                         }
                     }
+                    catch (SqlException e)
+                    {
+
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return false;
+                    }
+
                 }
-                return false;
             }
-            catch (SqlException e)
-            {
-                Console.WriteLine(e.ToString());
-                return false;
-            }
+            return false;
+
         }
 
+        /// <summary>
+        /// Method which closes an account (gives it a CloseDate value in the database)
+        /// </summary>
+        /// <param name="iban">Iban number of the account to be closed</param>
+        /// <returns>Returns true if the account is closed successfully</returns>
         public bool CloseAccount(string iban)
         {
             using (SqlConnection connection = new SqlConnection(ConnString))
@@ -124,6 +171,11 @@ namespace Data.Repositories
             }
         }
 
+        /// <summary>
+        /// Checks whether a client has an existing account
+        /// </summary>
+        /// <param name="clientID">Client's ID Card Number</param>
+        /// <returns>return true if the client has an account</returns>
         public bool CheckAccountExistence(int clientID)
         {
             using (SqlConnection connection = new SqlConnection(ConnString))
@@ -160,6 +212,11 @@ namespace Data.Repositories
             }
         }
 
+        /// <summary>
+        /// Returns basic information about the client and his account in a list of strings.
+        /// </summary>
+        /// <param name="clientID">Client's ID card based on which the data is fetched</param>
+        /// <returns>a list of strings with basic information on the client and his account</returns>
         public List<string> GetBasicInfo(string clientID)
         {
             List<string> basicInfo = new List<string>();
@@ -208,10 +265,13 @@ namespace Data.Repositories
             }
         }
 
+        /// <summary>
+        /// Method for getting all accounts in the database.
+        /// </summary>
+        /// <returns>A dataset of all existing accounts</returns>
         public DataSet GetAllAccounts()
         {
             DataSet datasetAllAccount = new DataSet();
-
 
             using (SqlConnection connection = new SqlConnection(ConnString))
             {
@@ -244,11 +304,15 @@ namespace Data.Repositories
                         Debug.WriteLine(e.ToString());
                         return datasetAllAccount;
                     }
-
                 }
             }
         }
 
+        /// <summary>
+        /// Returns accounts filtered based on the criteria. These can be combines into multiple filters.
+        /// </summary>
+        /// <param name="filterCriteria">List of string containing the parameters for filtering</param>
+        /// <returns>Datased of filtered accounts</returns>
         public DataSet GetFilteredAccounts(List<string> filterCriteria)
         {
             DataSet datasetFilteredAccount = new DataSet();
@@ -385,6 +449,11 @@ namespace Data.Repositories
             }
         }
 
+        /// <summary>
+        /// Method for getting all accounts for a certain client identified by his personal ID.
+        /// </summary>
+        /// <param name="personalID">Client's ID card number</param>
+        /// <returns>List of AccountModel entities belonging to one client</returns>
         public List<AccountModel> GetAllAccounts(string personalID)
         {
             List<AccountModel> allAccounts = new List<AccountModel>();
@@ -439,6 +508,12 @@ namespace Data.Repositories
             }
         }
 
+        /// <summary>
+        /// Function for adjusting the overdraw debit limit on the account
+        /// </summary>
+        /// <param name="iban">Identifier of the account - IBAN</param>
+        /// <param name="newDebitLimit">New value for the debit limti</param>
+        /// <returns>returns true if the new value was set in the database</returns>
         public bool AdjustDebit(string iban, decimal newDebitLimit)
         {
             using (SqlConnection connection = new SqlConnection(ConnString))
@@ -474,6 +549,12 @@ namespace Data.Repositories
             }
         }
 
+        /// <summary>
+        /// Function for handling withdrawal of money from the bank.
+        /// </summary>
+        /// <param name="amount">Amount to be withdrawn</param>
+        /// <param name="accountID">ID number of the account - IBAN</param>
+        /// <returns>Returns true if the withdrawal was successful</returns>
         public bool Withdraw(decimal amount, string accountID)
         {
 
@@ -508,8 +589,8 @@ namespace Data.Repositories
                             {
                                 command2.CommandText = "UPDATE Account SET Balance=Balance+@Amount " +
                                                        "WHERE IBAN = @MasterAccount;";
-                                command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
-                                command.Parameters.Add("@MasterAccount", SqlDbType.NVarChar).Value = ServerSettings.MasterAccount;
+                                command2.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount;
+                                command2.Parameters.Add("@MasterAccount", SqlDbType.NVarChar).Value = ServerSettings.MasterAccount;
 
                                 if (command2.ExecuteNonQuery() > 0)
                                 {
@@ -533,6 +614,12 @@ namespace Data.Repositories
 
         }
 
+        /// <summary>
+        /// Function for handling deposit of money to the bank.
+        /// </summary>
+        /// <param name="amount">Amount to be deposited</param>
+        /// <param name="accountID">ID number of the account - IBAN</param>
+        /// <returns>Returns true if the deposit was successful</returns>
         public bool Deposit(decimal amount, string accountID)
         {
             using (SqlConnection connection = new SqlConnection(ConnString))
@@ -578,6 +665,17 @@ namespace Data.Repositories
             }
         }
 
+        /// <summary>
+        /// Function for handling transaction of money between two accounts.
+        /// </summary>
+        /// <param name="senderIBAN">Identification of the sender</param>
+        /// <param name="receiverIBAN">Identification of the receiver</param>
+        /// <param name="amount">Amount to be transfered</param>
+        /// <param name="variable">Variable Symbol</param>
+        /// <param name="specific">Specific Symbol</param>
+        /// <param name="constant">Constant Symbol</param>
+        /// <param name="message">Message for the receiver</param>
+        /// <returns>Returns true if the transaction went smoothly, amounts were subtracted/added to their respective account and the transaction was put into the database</returns>
         public static bool TransferMoney(string senderIBAN, string receiverIBAN, decimal amount, string variable, string specific, string constant, string message)
         {
             using (SqlConnection connection = new SqlConnection(ConnString))
@@ -621,6 +719,10 @@ namespace Data.Repositories
             }
         }
 
+        /// <summary>
+        /// Function for selecting top 10 clients - they have more than 3 active accounts
+        /// </summary>
+        /// <returns>A Dataset of 10 clients with more than 3 accounts</returns>
         public DataSet GetTopClients()
         {
 
@@ -665,6 +767,10 @@ namespace Data.Repositories
 
         }
 
+        /// <summary>
+        /// Function for retrieving the amount of money the bank has in all accounts
+        /// </summary>
+        /// <returns>Dataset with the numeric information</returns>
         public DataSet GetBankAssets()
         {
             DataSet bankAssets = new DataSet();
@@ -703,6 +809,10 @@ namespace Data.Repositories
             }
         }
 
+        /// <summary>
+        /// unction for retrieving the number of active accounts
+        /// </summary>
+        /// <returns>Dataset with the relevant information</returns>
         public DataSet GetNumberOfAccounts()
         {
             DataSet numberOfAccounts = new DataSet();
@@ -741,6 +851,10 @@ namespace Data.Repositories
             }
         }
 
+        /// <summary>
+        /// Function which calculates how many accounts there are per person on average
+        /// </summary>
+        /// <returns>Dataset with the relevant information</returns>
         public DataSet GetAverageAccountPerPerson()
         {
             DataSet averageAccountPerPerson = new DataSet();
@@ -783,6 +897,10 @@ namespace Data.Repositories
             }
         }
 
+        /// <summary>
+        /// Function for retrieving top 10 accounts with the most money in them.
+        /// </summary>
+        /// <returns>Dataset with the relevant information</returns>
         public DataSet GetTopAccounts()
         {
             DataSet topAccounts = new DataSet();
@@ -822,6 +940,10 @@ namespace Data.Repositories
 
         }
 
+        /// <summary>
+        /// Returns a summary of accounts created within the past 6 months per month.
+        /// </summary>
+        /// <returns>Dataset with the relevant information</returns>
         public DataSet GetAccountsByMonths()
         {
             DataSet accountsByMonth = new DataSet();
@@ -842,23 +964,12 @@ namespace Data.Repositories
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = @"SELECT TOP 6 COUNT (IBAN) AS 'Number of Accounts', CONCAT(DATEPART(YEAR,OpenDate), ' ',
-                                                CASE
-	                                                WHEN DATEPART(MONTH,OpenDate) = 1 THEN 'January'
-	                                                WHEN DATEPART(MONTH,OpenDate) = 2 THEN 'February'
-	                                                WHEN DATEPART(MONTH,OpenDate) = 3 THEN 'March'
-	                                                WHEN DATEPART(MONTH,OpenDate) = 4 THEN 'April'
-	                                                WHEN DATEPART(MONTH,OpenDate) = 5 THEN 'May'
-	                                                WHEN DATEPART(MONTH,OpenDate) = 6 THEN 'June'
-	                                                WHEN DATEPART(MONTH,OpenDate) = 7 THEN 'July'
-	                                                WHEN DATEPART(MONTH,OpenDate) = 8 THEN 'August'
-	                                                WHEN DATEPART(MONTH,OpenDate) = 9 THEN 'September'
-	                                                WHEN DATEPART(MONTH,OpenDate) = 10 THEN 'October'
-	                                                WHEN DATEPART(MONTH,OpenDate) = 11 THEN 'November'
-	                                                ELSE 'December'
-                                                END) AS 'Creation Month'
-                                                 FROM Account GROUP BY DATEPART(YEAR,OpenDate),DATEPART(MONTH,OpenDate) 
-                                                 ORDER BY DATEPART(YEAR,OpenDate) DESC, DATEPART(MONTH,OpenDate) DESC";
+                    command.CommandText = @" SELECT COUNT (IBAN) AS 'Number of Accounts', CONCAT (DATEPART(YEAR,OpenDate), ' ',
+                                             Format(OpenDate,'MMMM')) AS 'Date of Creation'
+                                             FROM Account 
+                                              WHERE DATEDIFF(MONTH,OpenDate,GETDATE()) < 6
+                                             GROUP BY DATEPART(YEAR,OpenDate), Format(OpenDate,'MMMM') 
+                                             ORDER BY DATEPART(YEAR,opendate) DESC, Format(OpenDate,'MMMM') DESC";
 
                     try
                     {

@@ -18,19 +18,27 @@ namespace TransformerBank
         //}
 
         string currentCardNumber;
-        
+
 
         public MainMenuView(string cardNumber)
         {
             InitializeComponent();
             currentCardNumber = cardNumber;
             ntb_CurrentCardNumber.Text = currentCardNumber;
-            
+
         }
 
         private void btn_CheckBalance_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(new MainMenuModel().CheckBalance(currentCardNumber).ToString());
+            decimal balance = new MainMenuModel().CheckBalance(currentCardNumber);
+            if (balance == -99999)
+            {
+                MessageBox.Show("An error has occurred");
+            }
+            else
+            {
+                MessageBox.Show(balance.ToString());
+            }
         }
 
         private void btn_Withdraw_Click(object sender, EventArgs e)

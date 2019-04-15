@@ -36,16 +36,16 @@
             this.lbl_RecIBAN = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ntb_Amount = new Controls.NumericTextBox();
-            this.tb_Variable = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.tb_Specific = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.tb_Constant = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tb_Message = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btn_Confirm = new System.Windows.Forms.Button();
             this.btn_Cancel = new System.Windows.Forms.Button();
+            this.ntb_Variable = new Controls.NumericTextBox();
+            this.ntb_Specific = new Controls.NumericTextBox();
+            this.ntb_Constant = new Controls.NumericTextBox();
             this.SuspendLayout();
             // 
             // lbl_FirstName
@@ -118,15 +118,6 @@
             this.ntb_Amount.Size = new System.Drawing.Size(308, 20);
             this.ntb_Amount.TabIndex = 2;
             // 
-            // tb_Variable
-            // 
-            this.tb_Variable.Location = new System.Drawing.Point(368, 191);
-            this.tb_Variable.MaxLength = 10;
-            this.tb_Variable.Name = "tb_Variable";
-            this.tb_Variable.Size = new System.Drawing.Size(129, 20);
-            this.tb_Variable.TabIndex = 3;
-            this.tb_Variable.Text = "0000000000";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -136,37 +127,19 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "Variable Symbol";
             // 
-            // tb_Specific
-            // 
-            this.tb_Specific.Location = new System.Drawing.Point(368, 250);
-            this.tb_Specific.MaxLength = 10;
-            this.tb_Specific.Name = "tb_Specific";
-            this.tb_Specific.Size = new System.Drawing.Size(132, 20);
-            this.tb_Specific.TabIndex = 4;
-            this.tb_Specific.Text = "0000000000";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(368, 234);
+            this.label5.Location = new System.Drawing.Point(368, 222);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(82, 13);
             this.label5.TabIndex = 13;
             this.label5.Text = "Specific Symbol";
             // 
-            // tb_Constant
-            // 
-            this.tb_Constant.Location = new System.Drawing.Point(368, 316);
-            this.tb_Constant.MaxLength = 4;
-            this.tb_Constant.Name = "tb_Constant";
-            this.tb_Constant.Size = new System.Drawing.Size(132, 20);
-            this.tb_Constant.TabIndex = 5;
-            this.tb_Constant.Text = "0000";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(365, 290);
+            this.label6.Location = new System.Drawing.Point(368, 281);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(86, 13);
             this.label6.TabIndex = 13;
@@ -210,23 +183,50 @@
             this.btn_Cancel.UseVisualStyleBackColor = true;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
+            // ntb_Variable
+            // 
+            this.ntb_Variable.Location = new System.Drawing.Point(368, 182);
+            this.ntb_Variable.MaxLength = 3;
+            this.ntb_Variable.Name = "ntb_Variable";
+            this.ntb_Variable.Size = new System.Drawing.Size(100, 20);
+            this.ntb_Variable.TabIndex = 14;
+            this.ntb_Variable.Text = "0000000000";
+            // 
+            // ntb_Specific
+            // 
+            this.ntb_Specific.Location = new System.Drawing.Point(368, 238);
+            this.ntb_Specific.MaxLength = 10;
+            this.ntb_Specific.Name = "ntb_Specific";
+            this.ntb_Specific.Size = new System.Drawing.Size(100, 20);
+            this.ntb_Specific.TabIndex = 15;
+            this.ntb_Specific.Text = "0000000000";
+            // 
+            // ntb_Constant
+            // 
+            this.ntb_Constant.Location = new System.Drawing.Point(368, 297);
+            this.ntb_Constant.MaxLength = 4;
+            this.ntb_Constant.Name = "ntb_Constant";
+            this.ntb_Constant.Size = new System.Drawing.Size(72, 20);
+            this.ntb_Constant.TabIndex = 16;
+            this.ntb_Constant.Text = "0000";
+            // 
             // NewTransactionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(767, 372);
+            this.Controls.Add(this.ntb_Constant);
+            this.Controls.Add(this.ntb_Specific);
+            this.Controls.Add(this.ntb_Variable);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Confirm);
             this.Controls.Add(this.tb_Message);
             this.Controls.Add(this.ntb_Amount);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.tb_Constant);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.tb_Specific);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.tb_Variable);
             this.Controls.Add(this.lbl_RecIBAN);
             this.Controls.Add(this.tb_IBAN);
             this.Controls.Add(this.lbl_Balance);
@@ -252,15 +252,15 @@
         private System.Windows.Forms.Label lbl_RecIBAN;
         private System.Windows.Forms.Label label1;
         private Controls.NumericTextBox ntb_Amount;
-        private System.Windows.Forms.TextBox tb_Variable;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tb_Specific;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tb_Constant;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tb_Message;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btn_Confirm;
         private System.Windows.Forms.Button btn_Cancel;
+        private Controls.NumericTextBox ntb_Variable;
+        private Controls.NumericTextBox ntb_Specific;
+        private Controls.NumericTextBox ntb_Constant;
     }
 }

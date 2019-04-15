@@ -141,22 +141,22 @@ namespace BankSystem
             btn_Filter_Click(this, null);
         }
 
-        private void tb_AmountLowPoint_Leave(object sender, EventArgs e)
-        {
-            btn_Filter_Click(this, null);
-        }
-
-        private void tb_AmountHighPoint_Leave(object sender, EventArgs e)
-        {
-            btn_Filter_Click(this, null);
-        }
-
         private void tb_EarliestDate_Leave(object sender, EventArgs e)
         {
             btn_Filter_Click(this, null);
         }
 
         private void tb_LatestDate_Leave(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void ntb_AmountLowPoint_Leave(object sender, EventArgs e)
+        {
+            btn_Filter_Click(this, null);
+        }
+
+        private void ntb_AmountHighPoint_Leave(object sender, EventArgs e)
         {
             btn_Filter_Click(this, null);
         }

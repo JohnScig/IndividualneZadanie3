@@ -14,34 +14,98 @@ namespace Data.Repositories
     {
         //public static string ServerName { get; set; } = ServerSettings.ServerName;
         //public static string DatabaseName { get; set; } = ServerSettings.DatabaseName;
+
+        /// <summary>
+        /// Connection String
+        /// </summary>
         public static string ConnString { get; set; } = $"Server={ServerSettings.ServerName}; Database = {ServerSettings.DatabaseName}; Trusted_Connection = True";
 
-        public int AddClient(ClientModel clientModel)
+        public List<string> GetAllPersonalIDs()
         {
-            try
+            List<string> personalIDs = new List<string>();
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
-                using (SqlConnection connection = new SqlConnection(ConnString))
+                try
                 {
                     connection.Open();
-                    using (SqlCommand command = connection.CreateCommand())
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return personalIDs;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT PersonalID FROM Client";
+                    try
                     {
-                        //command.CommandText = "INSERT INTO Client (LastName,FirstName,DateOfBirth,PersonalID,PhoneNumber,Email,StreetName,PostalCode,City) " +
-                        //    "VALUES (@LastName,@FirstName,@DateOfBirth,@PersonalID,@PhoneNumber,@Email,@StreetName,@PostalCode,@City)";
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                personalIDs.Add(reader.GetString(0));
+                            }
 
-                        command.CommandText = "IF NOT EXISTS (SELECT * FROM Client WHERE PersonalID = @PersonalID) " +
-                            "INSERT INTO Client (LastName,FirstName,DateOfBirth,PersonalID,PhoneNumber,Email,StreetName,PostalCode,City) " +
-                            "VALUES (@LastName,@FirstName,@DateOfBirth,@PersonalID,@PhoneNumber,@Email,@StreetName,@PostalCode,@City)";
+                            return personalIDs;
 
-                        command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = clientModel.LastName;
-                        command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = clientModel.FirstName;
-                        command.Parameters.Add("@DateOfBirth", SqlDbType.DateTime2).Value = clientModel.DateOfBirth;
-                        command.Parameters.Add("@PersonalID", SqlDbType.NVarChar).Value = clientModel.PersonalID;
-                        command.Parameters.Add("@PhoneNumber", SqlDbType.NVarChar).Value = clientModel.PhoneNumber;
-                        command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = clientModel.Email;
-                        command.Parameters.Add("@StreetName", SqlDbType.NVarChar).Value = clientModel.Street;
-                        command.Parameters.Add("@PostalCode", SqlDbType.NVarChar).Value = clientModel.PostalCode;
-                        command.Parameters.Add("@City", SqlDbType.NVarChar).Value = clientModel.City;
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return personalIDs;
+                    }
 
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// Function that adds a brand new client into the database
+        /// </summary>
+        /// <param name="clientModel">Client model to be inserted into the database</param>
+        /// <returns>Returns the ID of the new client</returns>
+        public int AddClient(ClientModel clientModel)
+        {
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return 0;
+                }
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    //command.CommandText = "INSERT INTO Client (LastName,FirstName,DateOfBirth,PersonalID,PhoneNumber,Email,StreetName,PostalCode,City) " +
+                    //    "VALUES (@LastName,@FirstName,@DateOfBirth,@PersonalID,@PhoneNumber,@Email,@StreetName,@PostalCode,@City)";
+
+                    command.CommandText = "IF NOT EXISTS (SELECT * FROM Client WHERE PersonalID = @PersonalID) " +
+                        "INSERT INTO Client (LastName,FirstName,DateOfBirth,PersonalID,PhoneNumber,Email,StreetName,PostalCode,City) " +
+                        "VALUES (@LastName,@FirstName,@DateOfBirth,@PersonalID,@PhoneNumber,@Email,@StreetName,@PostalCode,@City)";
+
+                    command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = clientModel.LastName;
+                    command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = clientModel.FirstName;
+                    command.Parameters.Add("@DateOfBirth", SqlDbType.DateTime2).Value = clientModel.DateOfBirth;
+                    command.Parameters.Add("@PersonalID", SqlDbType.NVarChar).Value = clientModel.PersonalID;
+                    command.Parameters.Add("@PhoneNumber", SqlDbType.NVarChar).Value = clientModel.PhoneNumber;
+                    command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = clientModel.Email;
+                    command.Parameters.Add("@StreetName", SqlDbType.NVarChar).Value = clientModel.Street;
+                    command.Parameters.Add("@PostalCode", SqlDbType.NVarChar).Value = clientModel.PostalCode;
+                    command.Parameters.Add("@City", SqlDbType.NVarChar).Value = clientModel.City;
+
+                    try
+                    {
                         if (command.ExecuteNonQuery() > 0)
                         {
                             Debug.WriteLine("Person Added");
@@ -57,15 +121,23 @@ namespace Data.Repositories
                             return -1;
                         }
                     }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return 0;
+                    }
+
                 }
-            }
-            catch (SqlException e)
-            {
-                Debug.WriteLine(e.ToString());
-                return 0;
             }
         }
 
+        /// <summary>
+        /// Function which edits the client based on a new client model rewriting the old DB entries.
+        /// </summary>
+        /// <param name="personalID">Client's personal ID</param>
+        /// <param name="clientModel">New client model</param>
+        /// <returns>Returns true if the client was editted successfully</returns>
         public bool EditClient(string personalID, ClientModel clientModel)
         {
 
@@ -128,6 +200,11 @@ namespace Data.Repositories
 
         }
 
+        /// <summary>
+        /// Function that checks if the client already exists in the database based on his Identity Card number
+        /// </summary>
+        /// <param name="personalID">Client's ID card</param>
+        /// <returns>Returns the Client's ID number if he does exist, 0 if he doesn't</returns>
         public int CheckClientExistence(string personalID)
         {
             using (SqlConnection connection = new SqlConnection(ConnString))
@@ -164,6 +241,11 @@ namespace Data.Repositories
             }
         }
 
+        /// <summary>
+        /// Getting basic info on the client to be displayed in the client manager window
+        /// </summary>
+        /// <param name="personalID">Client's personal ID card number</param>
+        /// <returns>Returns a list of string with the client's information</returns>
         public List<string> GetBasicInfo(string personalID)
         {
             List<string> basicInfo = new List<string>();
@@ -214,6 +296,11 @@ namespace Data.Repositories
             }
         }
 
+        /// <summary>
+        /// Returns a Client Model loaded with the clients information based on his ID Card number
+        /// </summary>
+        /// <param name="personalID">Client's personal ID</param>
+        /// <returns>Client Model with his data</returns>
         public ClientModel GetClient(string personalID)
         {
             ClientModel client = new ClientModel();
@@ -267,6 +354,10 @@ namespace Data.Repositories
             }
         }
 
+        /// <summary>
+        /// Returns the top 5 cities from which hail the largest numbers of clients
+        /// </summary>
+        /// <returns>Dataset with relevant information</returns>
         public DataSet GetDemography()
         {
 

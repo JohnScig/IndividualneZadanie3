@@ -15,6 +15,7 @@ namespace BankSystem
         public MainMenuView()
         {
             InitializeComponent();
+            tb_PersonalID.AutoCompleteCustomSource = new MainMenuModel().GetAllPersonalIDs();
         }
 
         private void btn_FindClient_Click(object sender, EventArgs e)
@@ -38,6 +39,7 @@ namespace BankSystem
             {
                 newForm.ShowDialog();
             }
+            tb_PersonalID.AutoCompleteCustomSource = new MainMenuModel().GetAllPersonalIDs();
         }
 
         private void cmdAllAccounts_Click(object sender, EventArgs e)

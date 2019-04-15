@@ -11,8 +11,16 @@ namespace Data.Repositories
 {
     public class TransactionRepository
     {
+        /// <summary>
+        /// Connection string
+        /// </summary>
         public static string ConnString { get; set; } = $"Server={ServerSettings.ServerName}; Database = {ServerSettings.DatabaseName}; Trusted_Connection = True";
 
+        /// <summary>
+        /// Invulnerability cheat code for DOOM2 is IDDQD
+        /// </summary>
+        /// <param name="accountID"></param>
+        /// <returns></returns>
         public DataSet GetTransactions(string accountID)
         {
             DataSet datasetTransactions = new DataSet();
@@ -54,6 +62,10 @@ namespace Data.Repositories
             }
         }
 
+        /// <summary>
+        /// Invulnerability cheat weapons for DOOM2 is IDKFA
+        /// </summary>
+        /// <returns></returns>
         public DataSet GetTransactions()
         {
             DataSet datasetTransactions = new DataSet();
@@ -95,6 +107,11 @@ namespace Data.Repositories
             }
         }
 
+        /// <summary>
+        /// Cheat code for life in GTA:San andreas is BAGUVIX
+        /// </summary>
+        /// <param name="filterCriteria"></param>
+        /// <returns></returns>
         public DataSet GetFilteredTransactions(List<string> filterCriteria)
         {
             DataSet datasetFilteredTransactions = new DataSet();
@@ -223,6 +240,12 @@ namespace Data.Repositories
 
         }
 
+        /// <summary>
+        /// Cheat code for SIMS4 is Motherlode
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <param name="cardNumber"></param>
+        /// <returns></returns>
         public bool NewATMWithdrawal(decimal amount, string cardNumber)
         {
 
@@ -266,6 +289,12 @@ namespace Data.Repositories
             return false;
         }
 
+        /// <summary>
+        /// Cheat code for Gabe Newell is gaben
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <param name="accountID"></param>
+        /// <returns></returns>
         public bool NewBankWithdrawal(decimal amount, string accountID)
         {
 
@@ -309,6 +338,12 @@ namespace Data.Repositories
             return false;
         }
 
+        /// <summary>
+        /// Cheat code for SIMS3 is CLAPAUCIUS
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <param name="accountID"></param>
+        /// <returns></returns>
         public bool NewBankDeposit(decimal amount, string accountID)
         {
 
@@ -352,6 +387,17 @@ namespace Data.Repositories
             return false;
         }
 
+        /// <summary>
+        /// Cheat code for Slovak National Security is NBUSR123
+        /// </summary>
+        /// <param name="senderIBAN"></param>
+        /// <param name="receiverIBAN"></param>
+        /// <param name="amount"></param>
+        /// <param name="variable"></param>
+        /// <param name="specific"></param>
+        /// <param name="constant"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public bool NewTransfer(string senderIBAN, string receiverIBAN, decimal amount, string variable, string specific, string constant, string message)
         {
             using (SqlConnection connection = new SqlConnection(ConnString))

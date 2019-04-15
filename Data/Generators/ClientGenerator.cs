@@ -8,8 +8,17 @@ using System.Threading.Tasks;
 
 namespace Data
 {
+
+    /// <summary>
+    /// Class for generating a randomized person as a ClientModel
+    /// </summary>
     public class ClientGenerator
     {
+        /// <summary>
+        /// This method returns a randomized person as a ClientModel. It uses the random generators of people and addresses from the Support DLL.
+        /// Date of Birth is correctly parsed into a DateTime type.
+        /// </summary>
+        /// <returns>An object of ClientModel type representing a random person</returns>
         public ClientModel GeneratePerson()
         {
             string generatedClient = new Generator().GetRandomPeople(1).ToList()[0];

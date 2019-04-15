@@ -7,8 +7,18 @@ using System.Threading.Tasks;
 
 namespace Data
 {
+
+    /// <summary>
+    /// A class used for generating bank card information.
+    /// </summary>
     public class CardGenerator
     {
+
+        /// <summary>
+        /// This method takes in a string representation of a card PIN and returns an MD5 has of it.
+        /// </summary>
+        /// <param name="password">string representation of a card PIN code</param>
+        /// <returns>MD5 has of the PIN code</returns>
         public string HashPin(string password)
         {
             // step 1, calculate MD5 hash from input
@@ -25,6 +35,10 @@ namespace Data
             return sb.ToString();
         }
 
+        /// <summary>
+        /// This method generates a random 16-digit sequence which serves as the cards ID number.
+        /// </summary>
+        /// <returns>string representation of a bank card ID</returns>
         public string GenerateCardNumber()
         {
             StringBuilder sb = new StringBuilder();

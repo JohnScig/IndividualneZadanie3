@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 
 namespace Data
 {
+
+    /// <summary>
+    /// Class for generating bank accounts.
+    /// </summary>
     public class AccountGenerator
     {
+        /// <summary>
+        /// Generates an Account Model and sets its IBAN code, Bank ID and sets its opening date as current date & time.
+        /// </summary>
+        /// <returns>An AccountModel object</returns>
         public AccountModel GenerateAccount()
         {
             AccountModel accountModel = new AccountModel() {IBAN = IbanGenerator(),BankID="9999",OpenDate=DateTime.Now};
@@ -16,6 +24,10 @@ namespace Data
             return accountModel;
         }
 
+        /// <summary>
+        /// Generates a new IBAN in Slovak format. The bank code is set for 9999 for testing purposes.
+        /// </summary>
+        /// <returns>A string representation of an IBAN code</returns>
         public string IbanGenerator()
         {
             StringBuilder sb = new StringBuilder();

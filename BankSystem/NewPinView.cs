@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +13,9 @@ namespace BankSystem
 {
     public partial class NewPinView : Form
     {
-
-
         private string accountID;
-        private string cardNumber = string.Empty;
 
+        private string cardNumber = string.Empty;
 
         public NewPinView(string accountID)
         {
@@ -31,18 +30,25 @@ namespace BankSystem
             this.cardNumber = cardNumber;
         }
 
-
         private void btn_Confirm_Click(object sender, EventArgs e)
         {
-            if (cardNumber == string.Empty)
+            if (InputChecker.PinChecker(ntb_NewPin.Text))
             {
-                AddNewCard();
-                this.Close();
+                if (cardNumber == string.Empty)
+                {
+                    AddNewCard();
+                    this.Close();
+                }
+                else
+                {
+                    ResetPin();
+                    this.Close();
+                }
             }
             else
             {
-                ResetPin();
-                this.Close();
+                MessageBox.Show("You have entered a wrong PIN. It has to be a 4-digit number");
+
             }
         }
 
