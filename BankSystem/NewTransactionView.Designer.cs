@@ -186,10 +186,10 @@
             // ntb_Variable
             // 
             this.ntb_Variable.Location = new System.Drawing.Point(368, 182);
-            this.ntb_Variable.MaxLength = 3;
+            this.ntb_Variable.MaxLength = 10;
             this.ntb_Variable.Name = "ntb_Variable";
             this.ntb_Variable.Size = new System.Drawing.Size(100, 20);
-            this.ntb_Variable.TabIndex = 14;
+            this.ntb_Variable.TabIndex = 3;
             this.ntb_Variable.Text = "0000000000";
             // 
             // ntb_Specific
